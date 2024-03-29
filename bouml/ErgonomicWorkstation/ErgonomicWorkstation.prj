@@ -1,7 +1,8 @@
 format 224
 "ErgonomicWorkstation"
-  revision 3
+  revision 6
   modified_by 2 "btssn2"
+  cpp_root_dir "../../"
 
 
   
@@ -64,28 +65,12 @@ format 224
     
     activitydiagramsettings
      end
-    class 128002 "IHM"
-      visibility package 
-      cpp_decl ""
-      java_decl ""
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      mysql_decl ""
-      
-      classrelation 135426 // <association>
-	relation 135426 ----
-	  a role_name "" private
-	    classrelation_ref 135426 // <association>
-	  b role_name "" private
-	    classrelation_ref 135554 // <association>
-      end
-    end
-
     class 128130 "PosteTravail"
       visibility package 
-      cpp_decl ""
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
       java_decl ""
       php_decl ""
       python_2_2 python_decl ""
@@ -93,10 +78,6 @@ format 224
       explicit_switch_type ""
       mysql_decl ""
       
-      classrelation 135554 // <association>
-	relation_ref 135426 // <association>
-      end
-
       classrelation 135682 // <association>
 	relation 135554 ----
 	  a role_name "" private
@@ -112,6 +93,7 @@ format 224
 	  b role_name "" private
 	    classrelation_ref 136066 // <association>
       end
+
     end
 
     classdiagram 128130 "Diagramme de classes"
@@ -670,4 +652,6 @@ format 224
       end
     end
   end
+
+  package_ref 134914 // ergonomic-workstation-rpi
 end

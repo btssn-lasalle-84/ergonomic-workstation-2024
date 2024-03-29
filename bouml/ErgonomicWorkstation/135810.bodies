@@ -1,0 +1,5 @@
+class IHM
+!!!134530.cpp!!!	IHM(inout parent : QWidget = nullptr)
+    ui->setupUi(this);
+!!!134658.cpp!!!	~IHM()
+    delete ui;
