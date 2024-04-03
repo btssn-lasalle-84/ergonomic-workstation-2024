@@ -1,7 +1,7 @@
 format 224
 "ErgonomicWorkstation"
-  revision 6
-  modified_by 2 "btssn2"
+  revision 7
+  modified_by 23 "tvaira"
   cpp_root_dir "../../"
 
 
@@ -93,7 +93,6 @@ ${inlines}
 	  b role_name "" private
 	    classrelation_ref 136066 // <association>
       end
-
     end
 
     classdiagram 128130 "Diagramme de classes"
@@ -366,6 +365,21 @@ ${inlines}
 	    classrelation_ref 136450 // <unidirectional association>
 	  b parent class_ref 128642 // Bac
       end
+    end
+
+    class 134551 "IHM"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
     end
   end
 

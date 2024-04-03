@@ -1,0 +1,12 @@
+class IHM
+!!!135191.cpp!!!	IHM(inout parent : QWidget = nullptr)
+    qDebug() << Q_FUNC_INFO;
+    ui->setupUi(this);
+    setWindowTitle(QString(NOM_APPLICATION) + QString(" 2024 v") + QString(VERSION_APPLICATION));
+#ifdef PLEIN_ECRAN_RASPBERRY
+    showFullScreen();
+// showMaximized();
+#endif
+!!!135319.cpp!!!	~IHM()
+    delete ui;
+    qDebug() << Q_FUNC_INFO;

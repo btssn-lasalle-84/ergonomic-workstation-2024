@@ -1,0 +1,5 @@
+class ProcessusAssemblage
+!!!135831.cpp!!!	ProcessusAssemblage(inout parent : QObject = nullptr)
+    qDebug() << Q_FUNC_INFO;
+!!!135959.cpp!!!	~ProcessusAssemblage()
+    qDebug() << Q_FUNC_INFO;
