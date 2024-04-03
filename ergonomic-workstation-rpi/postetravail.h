@@ -1,20 +1,21 @@
 #ifndef POSTETRAVAIL_H
 #define POSTETRAVAIL_H
 
-#include <QWidget>
+#include <QObject>
 
-class PosteTravail : public QWidget
+class ProcessusAssemblage;
+class Operateur;
+
+class PosteTravail : public QObject
 {
     Q_OBJECT
-private:
+  private:
     ProcessusAssemblage* processusAssemblage;
-    Operateur* operateur;
-public:
+    Operateur*           operateur;
 
-    explicit PosteTravail(QWidget *parent = nullptr);
-
-signals:
-
+  public:
+    explicit PosteTravail(ProcessusAssemblage* processusAssemblage = nullptr);
+    ~PosteTravail();
 };
 
 #endif // POSTETRAVAIL_H

@@ -1,20 +1,16 @@
 #ifndef BAC_H
 #define BAC_H
 
-#include <QWidget>
+#include <QString>
 
-class Bac : public QWidget
+class Bac
 {
-    Q_OBJECT
-private:
-    explicit Bac(QWidget *parent = nullptr);
+  private:
+    int     idBac;
     QString typeDePiece;
-    int idBac;
-public:
-    Bac::Bac();
 
-signals:
-
+  public:
+    Bac();
 };
 
 #endif // BAC_H

@@ -1,21 +1,20 @@
 #ifndef ETAPE_H
 #define ETAPE_H
 
-#include <QWidget>
+#include <QVector>
 
-class Etape : public QWidget
+class Bac;
+
+class Etape
 {
-    Q_OBJECT
-private :
-    Bac* bac;
-    int numero;
-    bool valide;
-public:
-    explicit Etape(QWidget *parent = nullptr);
-    Etape::Etape();
+  private:
+    QVector<Bac*> bacs;
+    int           numero;
+    bool          valide;
 
-signals:
-
+  public:
+    explicit Etape();
+    ~Etape();
 };
 
 #endif // ETAPE_H

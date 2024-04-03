@@ -1,6 +1,12 @@
 #include "dialoguemodule.h"
+#include <QDebug>
 
-DialogueModule::DialogueModule(QWidget *parent) : QWidget(parent)
+DialogueModule::DialogueModule(QObject* parent) : QObject(parent)
 {
+    qDebug() << Q_FUNC_INFO;
+}
 
+DialogueModule::~DialogueModule()
+{
+    qDebug() << Q_FUNC_INFO;
 }

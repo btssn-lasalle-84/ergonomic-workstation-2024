@@ -1,6 +1,5 @@
 #include "operateur.h"
 
-Operateur::Operateur(QWidget *parent) : QWidget(parent)
+Operateur::Operateur() : id(-1), nom(), prenom()
 {
-
 }

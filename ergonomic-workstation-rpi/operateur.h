@@ -1,20 +1,17 @@
 #ifndef OPERATEUR_H
 #define OPERATEUR_H
 
-#include <QWidget>
+#include <QString>
 
-class Operateur : public QWidget
+class Operateur
 {
-    Q_OBJECT
-private:
-    int id;
+  private:
+    int     id;
     QString nom;
     QString prenom;
-public:
-    explicit Operateur(QWidget *parent = nullptr);
 
-signals:
-
+  public:
+    Operateur();
 };
 
 #endif // OPERATEUR_H

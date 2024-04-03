@@ -1,6 +1,5 @@
 #include "bac.h"
 
-Bac::Bac(QWidget *parent) : QWidget(parent)
+Bac::Bac() : idBac(-1), typeDePiece()
 {
-
 }
