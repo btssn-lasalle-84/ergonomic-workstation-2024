@@ -8,11 +8,25 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    bac.cpp \
+    dialoguemodule.cpp \
+    etape.cpp \
     main.cpp \
-    ihm.cpp
+    ihm.cpp \
+    operateur.cpp \
+    postetravail.cpp \
+    processusassemblage.cpp
 
 HEADERS += \
-    ihm.h
+    bac.h \
+    dialoguemodule.h \
+    etape.h \
+    ihm.h \
+    operateur.h \
+    postetravail.h \
+    processusassemblage.h
 
 FORMS += \
     ihm.ui
+
+CONFIG(release, debug|release):DEFINES+=QT_NO_DEBUG_OUTPUT

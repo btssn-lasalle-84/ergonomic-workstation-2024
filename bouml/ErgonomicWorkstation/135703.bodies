@@ -1,0 +1,5 @@
+class PosteTravail
+!!!135575.cpp!!!	PosteTravail(inout processusAssemblage : ProcessusAssemblage = nullptr)
+    qDebug() << Q_FUNC_INFO;
+!!!135703.cpp!!!	~PosteTravail()
+    qDebug() << Q_FUNC_INFO;

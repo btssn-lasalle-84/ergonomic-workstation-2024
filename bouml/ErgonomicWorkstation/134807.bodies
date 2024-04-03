@@ -1,0 +1,5 @@
+class DialogueModule
+!!!134679.cpp!!!	DialogueModule(inout parent : QObject = nullptr)
+    qDebug() << Q_FUNC_INFO;
+!!!134807.cpp!!!	~DialogueModule()
+    qDebug() << Q_FUNC_INFO;
