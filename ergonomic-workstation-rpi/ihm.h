@@ -41,17 +41,33 @@ class ProcessusAssemblage;
  * @brief Déclaration de la classe IHM
  * @details Cette classe gère l'affichage de l'application sur l'écran de la Raspberry Pi
  */
-class IHM : public QMainWindow
+class IHM : public QWidget
 {
     Q_OBJECT
 
   public:
     IHM(QWidget* parent = nullptr);
     ~IHM();
+    void creerFenetreMenu();
+    void creerFenetreStatistique();
+    void creerFenetreProcessus();
 
   private:
     Ui::IHM*             ui; //!< association vers la GUI
     ProcessusAssemblage* processusAssemblage;
+    QPushButton*         boutonStatistique;
+    QPushButton*         boutonDemarrer;
+    QLabel*              titre;
+    QLabel*              version;
+    QStackedWidget*      stackedWidget;
+    QWidget*             fenetreMenu;
+    QWidget*             fenetreStatistique;
+    QWidget*             fenetreProcessus;
+
+  private slots:
+    void mettreFenetreMenu();
+    void mettreFenetreStatistique();
+    void mettreFenetreProcessus();
 };
 
 #endif // IHM_H
