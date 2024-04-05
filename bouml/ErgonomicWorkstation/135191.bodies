@@ -1,12 +1,72 @@
 class IHM
 !!!135191.cpp!!!	IHM(inout parent : QWidget = nullptr)
+    creerFenetres();
+    creerConnexionsBoutonsNavigation();
+    afficherFenetrePrincipale();
     qDebug() << Q_FUNC_INFO;
-    ui->setupUi(this);
+!!!135319.cpp!!!	~IHM()
+    qDebug() << Q_FUNC_INFO;
+!!!134570.cpp!!!	creerFenetres() : void
+    fenetres                     = new QStackedWidget(this);
+    QVBoxLayout* layoutPrincipal = new QVBoxLayout(this);
+
+    creerFenetreMenu();
+    creerFenetreStatistique();
+    creerFenetreProcessus();
+
+    layoutPrincipal->addWidget(fenetres);
+!!!134698.cpp!!!	creerFenetreMenu() : void
+    QVBoxLayout* layoutMenu        = new QVBoxLayout;
+    QVBoxLayout* layoutBoutonsMenu = new QVBoxLayout;
+    fenetreMenu                    = new QWidget;
+    boutonStatistique              = new QPushButton("Statistiques", fenetreMenu);
+    boutonDemarrer = new QPushButton("Commencer un processus d'assemblage", fenetreMenu);
+    titre          = new QLabel(fenetreMenu);
+    version        = new QLabel(fenetreMenu);
+    titre->setText(NOM_APPLICATION);
+    version->setText(QString("v ") + VERSION_APPLICATION);
+    fenetres->addWidget(fenetreMenu);
+    layoutMenu->addWidget(titre);
+    layoutMenu->addWidget(version);
+    layoutBoutonsMenu->addWidget(boutonDemarrer);
+    layoutBoutonsMenu->addWidget(boutonStatistique);
+    layoutMenu->addLayout(layoutBoutonsMenu);
+
+    fenetreMenu->setLayout(layoutMenu);
+!!!134826.cpp!!!	creerFenetreProcessus() : void
+    QVBoxLayout* layoutProcessus = new QVBoxLayout;
+    fenetreProcessus             = new QWidget;
+    boutonRetourMenu1            = new QPushButton("Menu", fenetreProcessus);
+    fenetreScrollProcessus       = new QScrollArea(fenetreProcessus);
+    fenetres->addWidget(fenetreProcessus);
+    layoutProcessus->addWidget(fenetreScrollProcessus);
+    layoutProcessus->addWidget(boutonRetourMenu1);
+
+    fenetreProcessus->setLayout(layoutProcessus);
+!!!134954.cpp!!!	creerFenetreStatistique() : void
+    QVBoxLayout* layoutStatistique = new QVBoxLayout;
+    fenetreStatistique             = new QWidget;
+    boutonRetourMenu2              = new QPushButton("Menu", fenetreStatistique);
+    fenetreScrollStatistique       = new QScrollArea(fenetreStatistique);
+    fenetres->addWidget(fenetreStatistique);
+    layoutStatistique->addWidget(fenetreScrollStatistique);
+    layoutStatistique->addWidget(boutonRetourMenu2);
+
+    fenetreStatistique->setLayout(layoutStatistique);
+!!!135082.cpp!!!	afficherFenetrePrincipale() : void
     setWindowTitle(QString(NOM_APPLICATION) + QString(" 2024 v") + QString(VERSION_APPLICATION));
 #ifdef PLEIN_ECRAN_RASPBERRY
     showFullScreen();
-// showMaximized();
 #endif
-!!!135319.cpp!!!	~IHM()
-    delete ui;
-    qDebug() << Q_FUNC_INFO;
+    afficherFenetreMenu();
+!!!135210.cpp!!!	creerConnexionsBoutonsNavigation() : void
+    connect(boutonDemarrer, SIGNAL(clicked()), this, SLOT(afficherFenetreProcessus()));
+    connect(boutonStatistique, SIGNAL(clicked()), this, SLOT(afficherFenetreStatistique()));
+    connect(boutonRetourMenu1, SIGNAL(clicked()), this, SLOT(afficherFenetreMenu()));
+    connect(boutonRetourMenu2, SIGNAL(clicked()), this, SLOT(afficherFenetreMenu()));
+!!!135338.cpp!!!	afficherFenetreMenu() : void
+    fenetres->setCurrentIndex(Fenetre::Menu);
+!!!135466.cpp!!!	afficherFenetreStatistique() : void
+    fenetres->setCurrentIndex(Fenetre::Statistique);
+!!!135594.cpp!!!	afficherFenetreProcessus() : void
+    fenetres->setCurrentIndex(Fenetre::Processus);

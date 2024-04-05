@@ -11,8 +11,8 @@ SOURCES += \
     bac.cpp \
     dialoguemodule.cpp \
     etape.cpp \
-    main.cpp \
     ihm.cpp \
+    main.cpp \
     operateur.cpp \
     postetravail.cpp \
     processusassemblage.cpp
@@ -26,7 +26,6 @@ HEADERS += \
     postetravail.h \
     processusassemblage.h
 
-FORMS += \
-    ihm.ui
+FORMS +=
 
 CONFIG(release, debug|release):DEFINES+=QT_NO_DEBUG_OUTPUT

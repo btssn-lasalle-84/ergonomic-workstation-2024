@@ -29,11 +29,6 @@
  */
 //#define PLEIN_ECRAN_RASPBERRY
 
-namespace Ui
-{
-class IHM;
-}
-
 class ProcessusAssemblage;
 
 /**
@@ -41,7 +36,7 @@ class ProcessusAssemblage;
  * @brief Déclaration de la classe IHM
  * @details Cette classe gère l'affichage de l'application sur l'écran de la Raspberry Pi
  */
-class IHM : public QMainWindow
+class IHM : public QWidget
 {
     Q_OBJECT
 
@@ -50,8 +45,45 @@ class IHM : public QMainWindow
     ~IHM();
 
   private:
-    Ui::IHM*             ui; //!< association vers la GUI
-    ProcessusAssemblage* processusAssemblage;
+    ProcessusAssemblage* processusAssemblage; //!< association
+    // Les ressources IHM
+    QStackedWidget* fenetres;
+    QWidget*        fenetreMenu;
+    QWidget*        fenetreStatistique;
+    QWidget*        fenetreProcessus;
+    QPushButton*    boutonDemarrer;
+    QPushButton*    boutonStatistique;
+    QPushButton*    boutonRetourMenu1; // Depuis Processus
+    QPushButton*    boutonRetourMenu2; // Depuis Statistique
+    QLabel*         titre;
+    QLabel*         version;
+    QScrollArea*    fenetreScrollStatistique;
+    QScrollArea*    fenetreScrollProcessus;
+
+    /**
+     * @enum Fenetre
+     * @brief Définit les différentes fenêtres de l'IHM
+     *
+     */
+    enum Fenetre
+    {
+        Menu = 0,
+        Statistique,
+        Processus,
+        NbFenetres
+    };
+
+    void creerFenetres();
+    void creerFenetreMenu();
+    void creerFenetreProcessus();
+    void creerFenetreStatistique();
+    void afficherFenetrePrincipale();
+    void creerConnexionsBoutonsNavigation();
+
+  private slots:
+    void afficherFenetreMenu();
+    void afficherFenetreStatistique();
+    void afficherFenetreProcessus();
 };
 
 #endif // IHM_H
