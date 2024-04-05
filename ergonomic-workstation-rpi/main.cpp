@@ -18,7 +18,7 @@ int main(int argc, char* argv[])
     QApplication a(argc, argv);
     IHM          ihm;
 
-    ihm.show();
+    ihm.showMaximized();
 
     return a.exec();
 }

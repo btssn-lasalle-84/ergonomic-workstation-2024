@@ -63,6 +63,9 @@ class IHM : public QWidget
     QWidget*             fenetreMenu;
     QWidget*             fenetreStatistique;
     QWidget*             fenetreProcessus;
+    QPushButton*         boutonMenu;
+    QScrollArea*         fenetreScrollStatistique;
+    QScrollArea*         fenetreScrollProcessus;
 
   private slots:
     void mettreFenetreMenu();
