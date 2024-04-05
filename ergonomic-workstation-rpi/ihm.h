@@ -29,11 +29,6 @@
  */
 //#define PLEIN_ECRAN_RASPBERRY
 
-namespace Ui
-{
-class IHM;
-}
-
 class ProcessusAssemblage;
 
 /**
@@ -48,29 +43,47 @@ class IHM : public QWidget
   public:
     IHM(QWidget* parent = nullptr);
     ~IHM();
-    void creerFenetreMenu();
-    void creerFenetreStatistique();
-    void creerFenetreProcessus();
 
   private:
-    Ui::IHM*             ui; //!< association vers la GUI
-    ProcessusAssemblage* processusAssemblage;
-    QPushButton*         boutonStatistique;
-    QPushButton*         boutonDemarrer;
-    QLabel*              titre;
-    QLabel*              version;
-    QStackedWidget*      stackedWidget;
-    QWidget*             fenetreMenu;
-    QWidget*             fenetreStatistique;
-    QWidget*             fenetreProcessus;
-    QPushButton*         boutonMenu;
-    QScrollArea*         fenetreScrollStatistique;
-    QScrollArea*         fenetreScrollProcessus;
+    ProcessusAssemblage* processusAssemblage; //!< association
+    // Les ressources IHM
+    QStackedWidget* fenetres;
+    QWidget*        fenetreMenu;
+    QWidget*        fenetreStatistique;
+    QWidget*        fenetreProcessus;
+    QPushButton*    boutonDemarrer;
+    QPushButton*    boutonStatistique;
+    QPushButton*    boutonRetourMenu1; // Depuis Processus
+    QPushButton*    boutonRetourMenu2; // Depuis Statistique
+    QLabel*         titre;
+    QLabel*         version;
+    QScrollArea*    fenetreScrollStatistique;
+    QScrollArea*    fenetreScrollProcessus;
+
+    /**
+     * @enum Fenetre
+     * @brief Définit les différentes fenêtres de l'IHM
+     *
+     */
+    enum Fenetre
+    {
+        Menu = 0,
+        Statistique,
+        Processus,
+        NbFenetres
+    };
+
+    void creerFenetres();
+    void creerFenetreMenu();
+    void creerFenetreProcessus();
+    void creerFenetreStatistique();
+    void afficherFenetrePrincipale();
+    void creerConnexionsBoutonsNavigation();
 
   private slots:
-    void mettreFenetreMenu();
-    void mettreFenetreStatistique();
-    void mettreFenetreProcessus();
+    void afficherFenetreMenu();
+    void afficherFenetreStatistique();
+    void afficherFenetreProcessus();
 };
 
 #endif // IHM_H
