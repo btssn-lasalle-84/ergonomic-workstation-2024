@@ -1,7 +1,7 @@
 format 224
 "ergonomic-workstation-rpi" // ergonomic-workstation-rpi
-  revision 3
-  modified_by 23 "tvaira"
+  revision 4
+  modified_by 42 "tv"
   // class settings
   
   classdiagramsettings member_max_width 0 end
@@ -30,7 +30,5 @@ format 224
   activitydiagramsettings
    end
   
-  cpp_h_dir "ergonomic-workstation-rpi/"
-  cpp_src_dir "ergonomic-workstation-rpi/"
   package_ref 134551 // ergonomic-workstation-rpi
 end

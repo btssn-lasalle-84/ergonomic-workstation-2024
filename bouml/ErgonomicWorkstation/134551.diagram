@@ -2,56 +2,56 @@ format 224
 
 classcanvas 128023 class_ref 135191 // IHM
   classdiagramsettings member_max_width 0 end
-  xyz 12 48 2000
+  xyz 12 12 2000
 end
 classcanvas 128151 class_ref 135447 // ProcessusAssemblage
   classdiagramsettings member_max_width 0 end
-  xyz 494 14 2006
+  xyz 631 11 2006
 end
 classcanvas 128407 class_ref 135703 // PosteTravail
   classdiagramsettings member_max_width 0 end
-  xyz 13 328 2012
+  xyz 90 718 2012
 end
 classcanvas 128791 class_ref 135063 // Etape
   classdiagramsettings member_max_width 0 end
-  xyz 635 328 3005
+  xyz 806 718 3005
 end
 classcanvas 129047 class_ref 134807 // DialogueModule
   classdiagramsettings member_max_width 0 end
-  xyz 1039 54 3005
+  xyz 1331 62 3005
 end
 classcanvas 129303 class_ref 134679 // Bac
   classdiagramsettings member_max_width 0 end
-  xyz 1039 336 3011
+  xyz 1116 726 3011
 end
 relationcanvas 128279 relation_ref 135063 // <unidirectional association>
   from ref 128023 z 2007 to ref 128151
-  role_a_pos 331 67 3000 no_role_b
+  role_a_pos 430 131 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 128535 relation_ref 135319 // <unidirectional association>
   from ref 128407 z 2013 to ref 128151
-  role_a_pos 400 164 3000 no_role_b
+  role_a_pos 809 198 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 128663 relation_ref 135703 // <unidirectional association>
   from ref 128151 z 2013 to ref 128407
-  role_a_pos 345 312 3000 no_role_b
+  role_a_pos 453 692 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 128919 relation_ref 135831 // <unidirectional association>
-  from ref 128151 z 3006 stereotype "<<QList>>" xyz 652.5 243 3006 to ref 128791
-  role_a_pos 697 307 3000 no_role_b
+  from ref 128151 z 3006 stereotype "<<QList>>" xyz 809.5 436.5 3006 to ref 128791
+  role_a_pos 881 692 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 129175 relation_ref 135959 // <unidirectional association>
   from ref 128151 z 3006 to ref 129047
-  role_a_pos 920 67 3000 no_role_b
+  role_a_pos 1185 75 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 129559 relation_ref 136087 // <unidirectional association>
-  from ref 128791 z 3012 stereotype "<<QVector>>" xyz 846 374.5 3000 to ref 129303
-  role_a_pos 992 355 3000 no_role_b
+  from ref 128791 z 3012 stereotype "<<QVector>>" xyz 970 764 3000 to ref 129303
+  role_a_pos 1060 748 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 end

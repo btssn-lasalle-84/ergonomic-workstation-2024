@@ -1,7 +1,7 @@
 format 224
 "ergonomic-workstation-rpi" // ergonomic-workstation-rpi::ergonomic-workstation-rpi
-  revision 1
-  modified_by 23 "tvaira"
+  revision 2
+  modified_by 42 "tv"
   // class settings
   
   classdiagramsettings member_max_width 0 end
@@ -30,8 +30,8 @@ format 224
   activitydiagramsettings
    end
   
-  cpp_h_dir "/home/tvaira/Documents/git/projets/ergonomic-workstation-2024/ergonomic-workstation-rpi/"
-  cpp_src_dir "/home/tvaira/Documents/git/projets/ergonomic-workstation-2024/ergonomic-workstation-rpi/"
+  cpp_h_dir "ergonomic-workstation-rpi/"
+  cpp_src_dir "ergonomic-workstation-rpi/"
   classview 134551 "ergonomic-workstation-rpi"
     
     classdiagramsettings member_max_width 0 end
@@ -253,7 +253,7 @@ ${inlines}
 	nparams 0
 	cpp_decl "    ${comment}${inline}explicit ${name}${(}${)}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${typeprefix}${class}::${name}${(}${)} : bac(nullptr), numero(0), valide(false)
+	cpp_def "${comment}${inline}${typeprefix}${class}::${name}${(}${)} : numero(0), valide(false)
 ${throw}{
 ${body}}
 "
@@ -292,12 +292,12 @@ ${inlines}
 @brief Déclaration de la classe IHM
 @details Cette classe gère l'affichage de l'application sur l'écran de la Raspberry Pi
 "
-      classrelation 134935 // <generalisation>
-	relation 134935 ---|>
+      classrelation 134570 // <generalisation>
+	relation 134570 ---|>
 	  a public
 	    cpp default "${type}"
-	    classrelation_ref 134935 // <generalisation>
-	  b parent class_ref 135319 // typedef2
+	    classrelation_ref 134570 // <generalisation>
+	  b parent class_ref 134570 // typedef3
       end
 
       extra_member 134935 "Q_OBJECT"
@@ -331,7 +331,7 @@ ${inlines}
 //
 
 ${inline}${typeprefix}${class}::${name}${(}${t0} * ${p0}${)} :
-    QMainWindow(parent), ui(new Ui::IHM), processusAssemblage(new ProcessusAssemblage(this))
+    QWidget(parent), processusAssemblage(new ProcessusAssemblage(this)), fenetres(nullptr)
 ${throw}{
 ${body}}
 "
@@ -346,11 +346,7 @@ ${body}}
 	nparams 0
 	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw}${abstract};
 "
-	cpp_def "//@brief Destructeur de la classe IHM
-//@fn IHM::IHM
-//
-
-${inline}${typeprefix}${class}::${name}${(}${)}${throw}{
+	cpp_def "${comment}${inline}${typeprefix}${class}::${name}${(}${)}${throw}{
 ${body}}
 "
 	
@@ -359,8 +355,18 @@ ${body}}
 	
       end
 
-      attribute 135063 "ui"
-	private explicit_type "Ui::IHM"
+      classrelation 135063 // processusAssemblage (<unidirectional association>)
+	relation 135063 --->
+	  a role_name "processusAssemblage" private
+	    comment "!< association"
+	    cpp default "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 135063 // processusAssemblage (<unidirectional association>)
+	  b parent class_ref 135447 // ProcessusAssemblage
+      end
+
+      attribute 134570 "fenetres"
+	private explicit_type "QStackedWidget"
 	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
 "
 	java_decl ""
@@ -369,16 +375,336 @@ ${body}}
 	idl_decl ""
 	mysql_decl ""
 	MysqlColumn
-	comment "!< association vers la GUI"
+	comment " Les ressources IHM
+"
       end
 
-      classrelation 135063 // processusAssemblage (<unidirectional association>)
-	relation 135063 --->
-	  a role_name "processusAssemblage" private
-	    cpp default "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+      attribute 134698 "fenetreMenu"
+	private explicit_type "QWidget"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 135063 // processusAssemblage (<unidirectional association>)
-	  b parent class_ref 135447 // ProcessusAssemblage
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 134826 "fenetreStatistique"
+	private explicit_type "QWidget"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 134954 "fenetreProcessus"
+	private explicit_type "QWidget"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 135082 "boutonDemarrer"
+	private explicit_type "QPushButton"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 135210 "boutonStatistique"
+	private explicit_type "QPushButton"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 135338 "boutonRetourMenu1"
+	private explicit_type "QPushButton"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Depuis Processus"
+      end
+
+      attribute 135466 "boutonRetourMenu2"
+	private explicit_type "QPushButton"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Depuis Statistique"
+      end
+
+      attribute 135594 "titre"
+	private explicit_type "QLabel"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 135722 "version"
+	private explicit_type "QLabel"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 135850 "fenetreScrollStatistique"
+	private explicit_type "QScrollArea"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 135978 "fenetreScrollProcessus"
+	private explicit_type "QScrollArea"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      class 134698 "Fenetre"
+	visibility package stereotype "enum"
+	cpp_decl "${comment}enum ${name} {
+${items}};
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	mysql_decl ""
+	
+	attribute 136106 "Menu"
+	  public type class_ref 134698 // Fenetre
+	  init_value " 0"
+	  cpp_decl "  ${name}${value},${comment}"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+
+	attribute 136234 "Statistique"
+	  public type class_ref 134698 // Fenetre
+	  cpp_decl "  ${name}${value},${comment}"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+
+	attribute 136362 "Processus"
+	  public type class_ref 134698 // Fenetre
+	  cpp_decl "  ${name}${value},${comment}"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+
+	attribute 136490 "NbFenetres"
+	  public type class_ref 134698 // Fenetre
+	  cpp_decl "  ${name}${value},${comment}"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+      end
+
+      operation 134570 "creerFenetres"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 134698 "creerFenetreMenu"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 134826 "creerFenetreProcessus"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 134954 "creerFenetreStatistique"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 135082 "afficherFenetrePrincipale"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 135210 "creerConnexionsBoutonsNavigation"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      extra_member 134570 "slots"
+	
+	cpp "  private slots:" ""
+	java ""
+	php ""
+	python ""
+	idl ""
+	mysql ""
+      end
+
+      operation 135338 "afficherFenetreMenu"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 135466 "afficherFenetreStatistique"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 135594 "afficherFenetreProcessus"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
       end
     end
 
@@ -709,6 +1035,19 @@ ${body}}
       classdiagramsettings show_members_full_definition yes show_members_visibility yes show_members_stereotype yes show_members_multiplicity yes show_members_initialization yes member_max_width 0 show_relation_visibility yes end
       size A0
     end
+
+    class 134570 "typedef3"
+      visibility package stereotype "typedef" explicit_base_type "QWidget"
+      cpp_decl "${comment}typedef ${type} ${name};
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
   end
 
   deploymentview 134551 "ergonomic-workstation-rpi"
@@ -803,6 +1142,7 @@ ${namespace_start}
 ${members}
 ${namespace_end}"
       associated_elems
+	class_ref 134570 // typedef3
 	class_ref 135191 // IHM
       end
     end
@@ -896,7 +1236,7 @@ int main(int argc, char* argv[])
     QApplication a(argc, argv);
     IHM          ihm;
 
-    ihm.show();
+    ihm.showMaximized();
 
     return a.exec();
 }
