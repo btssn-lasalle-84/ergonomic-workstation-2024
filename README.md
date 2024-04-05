@@ -22,6 +22,8 @@ Il s'agit de digitaliser un poste de travail afin d'accompagner l'opérateur dan
 
 ## Fonctionnalités
 
+La table ergonomique devra être capable de proposer plusieurs processus d'assemblage et d'accompagner l'opérateur durant le  processus d'assemblage. 
+Durant le processus, l'opérateur sera avertit si une erreur est commise. 
 
 ## Documentation du code
 
