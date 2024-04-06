@@ -18,10 +18,24 @@
 
 ## Présentation
 
-Il s'agit de digitaliser un poste de travail afin d'accompagner l'opérateur dans la réalisation d'un assemblage.
+Il s'agit de digitaliser un poste de travail afin de guider l’opérateur pas à pas dans la réalisation d’un processus d’assemblage.
+
+![](images/ergonomic-workstation.png)
 
 ## Fonctionnalités
 
+La table ergonomique devra être capable de proposer plusieurs processus d'assemblage et d'accompagner l'opérateur durant le  processus d'assemblage.
+
+|Tâche|Priorité|Itération|
+|-----|:------:|:-------:|
+|Séquences les opérations|H|2|
+|Visualiser les statistique de production|B|3|
+|Visualiser tous les processus d’assemblage|H|1|
+|Arrêter le système à tout moment|M|3|
+|Choisir un opérateur|B|3|
+|Détecter une erreur|M|2|
+|Choisir le processus d’assemblage|M|2|
+|Communiquer avec le poste de travail (liaison série)|M|2|
 
 ## Documentation du code
 
@@ -29,15 +43,20 @@ https://btssn-lasalle-84.github.io/ergonomic-workstation-2024/
 
 ## Diagramme de classes
 
+![](images/classes-v0.1.png)
 
 ## Protocole
 
 
 ## Screenshots
 
+![](images/screenshot-v0.1.png)
 
 ## Historique des versions
 
+- Version 0.1
+
+![](images/jira-v0.1.png)
 
 ## Auteurs
 
