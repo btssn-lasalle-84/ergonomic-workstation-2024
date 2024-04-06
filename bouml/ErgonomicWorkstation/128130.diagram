@@ -1,0 +1,56 @@
+format 224
+
+classcanvas 128130 class_ref 128130 // PosteTravail
+  classdiagramsettings member_max_width 0 end
+  xyz 212 115 2000
+end
+classcanvas 128151 class_ref 134551 // IHM
+  classdiagramsettings member_max_width 0 end
+  xyz 70 17 2000
+end
+classcanvas 128258 class_ref 128386 // ProcessusAssemblage
+  classdiagramsettings member_max_width 0 end
+  xyz 456 17 2000
+end
+classcanvas 128386 class_ref 128642 // Bac
+  classdiagramsettings member_max_width 0 end
+  xyz 730 232 2000
+end
+classcanvas 128514 class_ref 128770 // DialogueModule
+  classdiagramsettings member_max_width 0 end
+  xyz 730 57 2000
+end
+classcanvas 128642 class_ref 128898 // Operateur
+  classdiagramsettings member_max_width 0 end
+  xyz 198 223 2000
+end
+classcanvas 128898 class_ref 129026 // Etape
+  classdiagramsettings member_max_width 0 end
+  xyz 500 232 2000
+end
+relationcanvas 130434 relation_ref 135554 // <association>
+  from ref 128130 z 2001 to ref 128642
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130562 relation_ref 135682 // <association>
+  from ref 128130 z 2001 to ref 128258
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130690 relation_ref 135810 // <unidirectional association>
+  from ref 128258 z 2001 stereotype "<<list>>" xyz 523 182 3000 to ref 128898
+  role_a_pos 561 211 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130818 relation_ref 135938 // <unidirectional association>
+  from ref 128898 z 2001 to ref 128386
+  no_role_a no_role_b
+  multiplicity_a_pos 695 272 3000 no_multiplicity_b
+end
+relationcanvas 130946 relation_ref 136066 // <association>
+  from ref 128258 z 2001 to ref 128514
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+end

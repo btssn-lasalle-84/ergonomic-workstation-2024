@@ -1,0 +1,53 @@
+format 224
+
+classcanvas 128002 class_ref 128258 // Opérateur
+  simpleclassdiagramsettings end
+  xyz 10 170 2000
+end
+usecasecanvas 128130 usecase_ref 128002 // Choisir un processus d'assemblage
+  xyzwh 282 32 3005 64 32 label_xy 191 16
+end
+usecasecanvas 128642 usecase_ref 128130 // Réaliser le processus d'assemblage
+  xyzwh 282 190 3005 64 32 label_xy 197 173
+end
+usecasecanvas 128898 usecase_ref 128258 // Visualiser les statistiques de production
+  xyzwh 225 273 3005 64 32 label_xy 128 305
+end
+usecasecanvas 129282 usecase_ref 128514 // Visualiser l'historique
+  xyzwh 282 407 3005 64 32 label_xy 244 441
+end
+usecasecanvas 129794 usecase_ref 128642 // Valider une étape
+  xyzwh 419 79 3005 64 32 label_xy 394 63
+end
+usecasecanvas 130050 usecase_ref 128770 // Dialoguer avec le module de détection
+  xyzwh 628 196 3005 64 32 label_xy 536 228
+end
+usecasecanvas 130306 usecase_ref 128898 // Visualiser une erreur
+  xyzwh 517 290 3010 64 32 label_xy 481 322
+end
+usecasecanvas 131202 usecase_ref 129026 // Arrêter le système d'assistance à tout moment   
+  xyzwh 418 349 3005 64 32 label_xy 294 381
+end
+line 128514 --->
+  from ref 128002 z 3006 to ref 128130
+line 128770 --->
+  from ref 128002 z 3006 to ref 128642
+line 129538 --->
+  from ref 128002 z 2001 to point 122 335
+  line 129666 z 2001 to ref 129282
+simplerelationcanvas 129922 simplerelation_ref 128130
+  from ref 128642 z 3006 stereotype "<<include>>" xyz 339 149.5 3000 to ref 129794
+end
+simplerelationcanvas 130178 simplerelation_ref 128258
+  from ref 128642 z 3006 stereotype "<<include>>" xyz 445.5 207 3000 to ref 130050
+end
+simplerelationcanvas 131842 simplerelation_ref 128642
+  from ref 128642 z 3011 stereotype "<<include>>" xyz 390.5 254 3000 to ref 130306
+end
+simplerelationcanvas 131970 simplerelation_ref 135298
+  from ref 128898 z 3006 stereotype "<<extend>>" xyz 243 246.5 3000 to ref 128642
+end
+simplerelationcanvas 132098 simplerelation_ref 135426
+  from ref 131202 z 3006 stereotype "<<extend>>" xyz 341.5 284.5 3000 to ref 128642
+end
+end
