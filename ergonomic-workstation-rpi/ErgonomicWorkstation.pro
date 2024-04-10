@@ -29,3 +29,9 @@ HEADERS += \
 FORMS +=
 
 CONFIG(release, debug|release):DEFINES+=QT_NO_DEBUG_OUTPUT
+
+COPIES += dossier
+dossier.files = processus-assemblage
+dossier.path = $$OUT_PWD/
+dossier.base = $$PWD/
+
