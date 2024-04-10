@@ -70,6 +70,7 @@ class IHM : public QWidget
     QPushButton*    boutonRetourMenu2; // Depuis Statistique
     QLabel*         titre;
     QLabel*         version;
+    QLabel*         processus1;
     QScrollArea*    fenetreScrollStatistique;
     QScrollArea*    fenetreScrollProcessus;
 

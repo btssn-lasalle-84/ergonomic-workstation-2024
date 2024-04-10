@@ -71,6 +71,7 @@ void IHM::creerFenetreProcessus()
     QVBoxLayout* layoutProcessus = new QVBoxLayout;
     fenetreProcessus             = new QWidget;
     boutonRetourMenu1            = new QPushButton("Menu", fenetreProcessus);
+    fenetres->addWidget(fenetreProcessus);
 
     // Lister les processus d'assemblage
     // QDir racineProcessusAssemblage(QDir::currentPath() + RACINE_PROCESSUS_ASSEMBLAGE);
@@ -92,11 +93,9 @@ void IHM::creerFenetreProcessus()
     }
     qDebug() << Q_FUNC_INFO << "listeProcessusAssemblage" << listeProcessusAssemblage;
 
-    // @todo à remplacer par un système de QLabel
-    fenetreScrollProcessus = new QScrollArea(fenetreProcessus);
-    fenetres->addWidget(fenetreProcessus);
-
-    layoutProcessus->addWidget(fenetreScrollProcessus);
+    // @todo à faire pour tous les processus
+    processus1 = new QLabel(listeProcessusAssemblage.value(1));
+    layoutProcessus->addWidget(processus1);
     layoutProcessus->addWidget(boutonRetourMenu1);
     fenetreProcessus->setLayout(layoutProcessus);
 }
