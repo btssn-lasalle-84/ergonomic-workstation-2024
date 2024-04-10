@@ -29,6 +29,18 @@
  */
 //#define PLEIN_ECRAN_RASPBERRY
 
+/**
+ * @def CHEMIN_SERVEUR_NFS
+ * @brief Pour définir le chemin vers le partage NFS
+ */
+#define CHEMIN_SERVEUR_NFS "."
+
+/**
+ * @def RACINE_PROCESSUS_ASSEMBLAGE
+ * @brief Pour définir la racine des processus d'assemblage
+ */
+#define RACINE_PROCESSUS_ASSEMBLAGE "/processus-assemblage"
+
 class ProcessusAssemblage;
 
 /**
@@ -45,7 +57,8 @@ class IHM : public QWidget
     ~IHM();
 
   private:
-    ProcessusAssemblage* processusAssemblage; //!< association
+    ProcessusAssemblage* processusAssemblage;             //!< association
+    QString              cheminRacineProcessusAssemblage; // test
     // Les ressources IHM
     QStackedWidget* fenetres;
     QWidget*        fenetreMenu;
