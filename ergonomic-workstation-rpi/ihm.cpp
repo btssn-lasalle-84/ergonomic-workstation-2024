@@ -17,7 +17,10 @@
  * fenêtre principale de l'application
  */
 IHM::IHM(QWidget* parent) :
-    QWidget(parent), processusAssemblage(new ProcessusAssemblage(this)), fenetres(nullptr)
+    QWidget(parent), processusAssemblage(new ProcessusAssemblage(this)),
+    cheminRacineProcessusAssemblage(QString(CHEMIN_SERVEUR_NFS) +
+                                    QString(RACINE_PROCESSUS_ASSEMBLAGE)),
+    fenetres(nullptr)
 {
     creerFenetres();
     creerConnexionsBoutonsNavigation();
@@ -68,11 +71,33 @@ void IHM::creerFenetreProcessus()
     QVBoxLayout* layoutProcessus = new QVBoxLayout;
     fenetreProcessus             = new QWidget;
     boutonRetourMenu1            = new QPushButton("Menu", fenetreProcessus);
-    fenetreScrollProcessus       = new QScrollArea(fenetreProcessus);
+
+    // Lister les processus d'assemblage
+    // QDir racineProcessusAssemblage(QDir::currentPath() + RACINE_PROCESSUS_ASSEMBLAGE);
+    QDir        racineProcessusAssemblage(cheminRacineProcessusAssemblage);
+    QStringList listeProcessusAssemblage;
+    qDebug() << Q_FUNC_INFO << "cheminRacineProcessusAssemblage" << cheminRacineProcessusAssemblage;
+    foreach(QFileInfo element, racineProcessusAssemblage.entryInfoList())
+    {
+        if(element.isDir())
+        {
+            if(element.fileName() != "." && element.fileName() != "..")
+            {
+                qDebug() << Q_FUNC_INFO << "absoluteFilePath" << element.absoluteFilePath();
+                qDebug() << Q_FUNC_INFO << "filePath" << element.filePath();
+                qDebug() << Q_FUNC_INFO << "fileName" << element.fileName();
+                listeProcessusAssemblage << element.fileName();
+            }
+        }
+    }
+    qDebug() << Q_FUNC_INFO << "listeProcessusAssemblage" << listeProcessusAssemblage;
+
+    // @todo à remplacer par un système de QLabel
+    fenetreScrollProcessus = new QScrollArea(fenetreProcessus);
     fenetres->addWidget(fenetreProcessus);
+
     layoutProcessus->addWidget(fenetreScrollProcessus);
     layoutProcessus->addWidget(boutonRetourMenu1);
-
     fenetreProcessus->setLayout(layoutProcessus);
 }
 
