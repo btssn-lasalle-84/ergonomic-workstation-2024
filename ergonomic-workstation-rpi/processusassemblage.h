@@ -1,5 +1,6 @@
 #ifndef PROCESSUSASSEMBLAGE_H
 #define PROCESSUSASSEMBLAGE_H
+#define RACINE_PROCESSUS_ASSEMBLAGE "/processus-assemblage"
 
 #include <QObject>
 #include <QList>
@@ -23,7 +24,9 @@ class ProcessusAssemblage : public QObject
 
   public:
     explicit ProcessusAssemblage(QObject* parent = nullptr);
+    ProcessusAssemblage(QString, int);
     ~ProcessusAssemblage();
+    void chargerProcessusAssemblage(const QString&);
 
   signals:
 };

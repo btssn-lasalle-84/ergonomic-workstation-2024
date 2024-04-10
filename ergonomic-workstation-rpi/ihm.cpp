@@ -94,7 +94,7 @@ void IHM::creerFenetreProcessus()
     qDebug() << Q_FUNC_INFO << "listeProcessusAssemblage" << listeProcessusAssemblage;
 
     // @todo à faire pour tous les processus
-    processus1 = new QLabel(listeProcessusAssemblage.value(1));
+    processus1 = new QPushButton(listeProcessusAssemblage.value(2), fenetreProcessus);
     layoutProcessus->addWidget(processus1);
     layoutProcessus->addWidget(boutonRetourMenu1);
     fenetreProcessus->setLayout(layoutProcessus);
@@ -124,6 +124,7 @@ void IHM::afficherFenetrePrincipale()
 
 void IHM::creerConnexionsBoutonsNavigation()
 {
+    connect(processus1, SIGNAL(clicked()), this, SLOT(ouvrirPageProcessus));
     connect(boutonDemarrer, SIGNAL(clicked()), this, SLOT(afficherFenetreProcessus()));
     connect(boutonStatistique, SIGNAL(clicked()), this, SLOT(afficherFenetreStatistique()));
     connect(boutonRetourMenu1, SIGNAL(clicked()), this, SLOT(afficherFenetreMenu()));
@@ -143,4 +144,11 @@ void IHM::afficherFenetreStatistique()
 void IHM::afficherFenetreProcessus()
 {
     fenetres->setCurrentIndex(Fenetre::Processus);
+}
+
+void IHM::ouvrirPageProcessus(QString nom)
+{
+    fenetreProcessus = new QWidget;
+    fenetreProcessus->show();
+    processusAssemblage->chargerProcessusAssemblage(nom);
 }

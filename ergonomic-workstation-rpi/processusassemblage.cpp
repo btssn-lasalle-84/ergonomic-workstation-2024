@@ -3,6 +3,8 @@
 #include "etape.h"
 #include "dialoguemodule.h"
 #include <QDebug>
+#include <QDir>
+#include <QSettings>
 
 ProcessusAssemblage::ProcessusAssemblage(QObject* parent) :
     QObject(parent), posteTravail(new PosteTravail(this)), dialogueModule(new DialogueModule(this)),
@@ -14,4 +16,50 @@ ProcessusAssemblage::ProcessusAssemblage(QObject* parent) :
 ProcessusAssemblage::~ProcessusAssemblage()
 {
     qDebug() << Q_FUNC_INFO;
+}
+
+ProcessusAssemblage::ProcessusAssemblage(QString nom, int nbEtapes) : nom(nom), nbEtapes(nbEtapes)
+{
+}
+
+void ProcessusAssemblage::chargerProcessusAssemblage(const QString& nomProcessusAssemblage)
+{
+    qDebug() << Q_FUNC_INFO << "nomProcessusAssemblage" << nomProcessusAssemblage;
+
+    QString fichierINI = QDir::currentPath() + QString(RACINE_PROCESSUS_ASSEMBLAGE) + QString("/") +
+                         nomProcessusAssemblage + QString("/") + nomProcessusAssemblage +
+                         QString(".ini");
+
+    qDebug() << Q_FUNC_INFO << "fichierINI" << fichierINI;
+    QSettings configurationProcessusAssemblage(fichierINI, QSettings::IniFormat);
+
+    /*
+        [ProcessusAssemblage]
+        nom="Module O-LEDs-BP"
+        etapes=3
+        image=module-oled-bp.png
+        glossaire=true
+     */
+    QString nom      = configurationProcessusAssemblage.value("ProcessusAssemblage/nom").toString();
+    int     nbEtapes = configurationProcessusAssemblage.value("ProcessusAssemblage/etapes").toInt();
+    QString nomImage =
+      configurationProcessusAssemblage.value("ProcessusAssemblage/image").toString();
+    bool existenceGlossaire =
+      configurationProcessusAssemblage.value("ProcessusAssemblage/glossaire").toBool();
+    qDebug() << Q_FUNC_INFO << "nom" << nom << "nbEtapes" << nbEtapes << "nomImage" << nomImage
+             << "existenceGlossaire" << existenceGlossaire;
+
+    for(int i = 1; i <= nbEtapes; i++)
+    {
+        /*
+            [Etape1]
+            nom="Placer le composant Q1, Q2 et Q3"
+            bacs=1
+            image=2n7002.png
+         */
+        QString nomSection = QString("Etape%1").arg(i);
+        QString nom        = configurationProcessusAssemblage.value(nomSection + "/nom").toString();
+        int     nbBacs     = configurationProcessusAssemblage.value(nomSection + "/bacs").toInt();
+        qDebug() << Q_FUNC_INFO << "nom" << nom << "nbBacs" << nbBacs;
+    }
 }
