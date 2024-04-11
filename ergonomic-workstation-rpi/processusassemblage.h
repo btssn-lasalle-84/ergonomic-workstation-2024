@@ -28,8 +28,6 @@ class ProcessusAssemblage : public QObject
     explicit ProcessusAssemblage(QObject* parent = nullptr);
     ~ProcessusAssemblage();
     void chargerProcessusAssemblage(const QString&);
-    void ouvrirFenetreAssemblage();
-
   signals:
 };
 

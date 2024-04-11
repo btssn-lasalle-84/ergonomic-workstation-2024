@@ -7,12 +7,21 @@ class AffichagePageProcessus : public QWidget
 {
     Q_OBJECT
   private:
-    QLabel*      nomModule;
-    QPushButton* boutonAbandon;
+    QWidget*        premiereFenetre;
+    QLabel*         nomModule;
+    QLabel*         operations;
+    QLabel*         photoExpliquative;
+    QPushButton*    boutonAbandon;
+    QStackedWidget* etapes;
+    int             numeroEtape;
+    int             numeroEtapeTotal;
+
+    //@TODO mettre un chronomètre
+    //@TODO rendre des labels clickable pour changer d'étape
 
   public:
     explicit AffichagePageProcessus(QWidget* parent = nullptr);
-
+    ~AffichagePageProcessus();
   public slots:
     void afficher();
 

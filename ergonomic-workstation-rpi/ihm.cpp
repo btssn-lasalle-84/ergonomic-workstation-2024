@@ -94,7 +94,7 @@ void IHM::creerFenetreProcessus()
     }
     qDebug() << Q_FUNC_INFO << "listeProcessusAssemblage" << listeProcessusAssemblage;
 
-    // @todo à faire pour tous les processus
+    // @todo Passer les QButton en QLabel
     processus1 = new QPushButton(listeProcessusAssemblage.value(2), fenetreProcessus);
     layoutProcessus->addWidget(processus1);
     layoutProcessus->addWidget(boutonRetourMenu1);
@@ -106,7 +106,6 @@ void IHM::creerFenetreStatistique()
     QVBoxLayout* layoutStatistique = new QVBoxLayout;
     fenetreStatistique             = new QWidget;
     boutonRetourMenu2              = new QPushButton("Menu", fenetreStatistique);
-    fenetreScrollStatistique       = new QScrollArea(fenetreStatistique);
     fenetres->addWidget(fenetreStatistique);
     layoutStatistique->addWidget(fenetreScrollStatistique);
     layoutStatistique->addWidget(boutonRetourMenu2);
@@ -126,7 +125,6 @@ void IHM::afficherFenetrePrincipale()
 void IHM::creerConnexionsBoutonsNavigation()
 {
     connect(processus1, SIGNAL(clicked()), this, SLOT(ouvrirPageProcessus()));
-    connect(processus1, SIGNAL(clicked()), this, SLOT(quit));
     connect(boutonDemarrer, SIGNAL(clicked()), this, SLOT(afficherFenetreProcessus()));
     connect(boutonStatistique, SIGNAL(clicked()), this, SLOT(afficherFenetreStatistique()));
     connect(boutonRetourMenu1, SIGNAL(clicked()), this, SLOT(afficherFenetreMenu()));

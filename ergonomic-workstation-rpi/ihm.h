@@ -21,7 +21,7 @@
  * @def VERSION_APPLICATION
  * @brief La version de l'application
  */
-#define VERSION_APPLICATION "0.1"
+#define VERSION_APPLICATION "0.2"
 
 /**
  * @def PLEIN_ECRAN_RASPBERRY
