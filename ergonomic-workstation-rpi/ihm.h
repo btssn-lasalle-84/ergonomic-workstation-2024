@@ -42,6 +42,7 @@
 #define RACINE_PROCESSUS_ASSEMBLAGE "/processus-assemblage"
 
 class ProcessusAssemblage;
+class AffichagePageProcessus;
 
 /**
  * @class IHM
@@ -93,12 +94,12 @@ class IHM : public QWidget
     void creerFenetreStatistique();
     void afficherFenetrePrincipale();
     void creerConnexionsBoutonsNavigation();
-    void ouvrirPageProcessus(QString);
 
   private slots:
     void afficherFenetreMenu();
     void afficherFenetreStatistique();
     void afficherFenetreProcessus();
+    void ouvrirPageProcessus();
 };
 
 #endif // IHM_H

@@ -1,5 +1,6 @@
 #include "ihm.h"
 #include "processusassemblage.h"
+#include "affichagepageprocessus.h"
 #include <QDebug>
 
 /**
@@ -124,7 +125,8 @@ void IHM::afficherFenetrePrincipale()
 
 void IHM::creerConnexionsBoutonsNavigation()
 {
-    connect(processus1, SIGNAL(clicked()), this, SLOT(ouvrirPageProcessus));
+    connect(processus1, SIGNAL(clicked()), this, SLOT(ouvrirPageProcessus()));
+    connect(processus1, SIGNAL(clicked()), this, SLOT(quit));
     connect(boutonDemarrer, SIGNAL(clicked()), this, SLOT(afficherFenetreProcessus()));
     connect(boutonStatistique, SIGNAL(clicked()), this, SLOT(afficherFenetreStatistique()));
     connect(boutonRetourMenu1, SIGNAL(clicked()), this, SLOT(afficherFenetreMenu()));
@@ -146,9 +148,9 @@ void IHM::afficherFenetreProcessus()
     fenetres->setCurrentIndex(Fenetre::Processus);
 }
 
-void IHM::ouvrirPageProcessus(QString nom)
+void IHM::ouvrirPageProcessus()
 {
-    fenetreProcessus = new QWidget;
-    fenetreProcessus->show();
-    processusAssemblage->chargerProcessusAssemblage(nom);
+    qDebug() << "Clic sur le bouton pour ouvrir la page de processus";
+    AffichagePageProcessus* pageProcessus = new AffichagePageProcessus;
+    pageProcessus->afficher();
 }

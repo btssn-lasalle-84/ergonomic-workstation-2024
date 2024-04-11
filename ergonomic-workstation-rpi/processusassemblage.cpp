@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QDir>
 #include <QSettings>
+#include <QWidget>
 
 ProcessusAssemblage::ProcessusAssemblage(QObject* parent) :
     QObject(parent), posteTravail(new PosteTravail(this)), dialogueModule(new DialogueModule(this)),
@@ -16,10 +17,6 @@ ProcessusAssemblage::ProcessusAssemblage(QObject* parent) :
 ProcessusAssemblage::~ProcessusAssemblage()
 {
     qDebug() << Q_FUNC_INFO;
-}
-
-ProcessusAssemblage::ProcessusAssemblage(QString nom, int nbEtapes) : nom(nom), nbEtapes(nbEtapes)
-{
 }
 
 void ProcessusAssemblage::chargerProcessusAssemblage(const QString& nomProcessusAssemblage)
