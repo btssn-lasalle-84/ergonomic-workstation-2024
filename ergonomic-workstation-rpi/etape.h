@@ -15,6 +15,8 @@ class Etape
   public:
     explicit Etape();
     ~Etape();
+
+    int getNumero() const;
 };
 
 #endif // ETAPE_H

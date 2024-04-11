@@ -71,9 +71,9 @@ class IHM : public QWidget
     QPushButton*    boutonRetourMenu2; // Depuis Statistique
     QLabel*         titre;
     QLabel*         version;
-    QPushButton*    processus1;
-    QScrollArea*    fenetreScrollStatistique;
-    QScrollArea*    fenetreScrollProcessus;
+    // @todo à transformer en QLabel
+    QVector<QPushButton*> listeProcessus;
+    QComboBox*            listeDeroulanteProcessus;
 
     /**
      * @enum Fenetre
@@ -99,7 +99,8 @@ class IHM : public QWidget
     void afficherFenetreMenu();
     void afficherFenetreStatistique();
     void afficherFenetreProcessus();
-    void ouvrirPageProcessus();
+    void chargerProcessusAssemblage(int numeroProcessus);
+    void abandonnerProcessusAssemblage(QString nomProcessus);
 };
 
 #endif // IHM_H

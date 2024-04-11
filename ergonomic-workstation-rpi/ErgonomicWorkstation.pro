@@ -10,6 +10,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     affichagepageprocessus.cpp \
     bac.cpp \
+    choix.cpp \
     dialoguemodule.cpp \
     etape.cpp \
     ihm.cpp \
@@ -21,6 +22,7 @@ SOURCES += \
 HEADERS += \
     affichagepageprocessus.h \
     bac.h \
+    choix.h \
     dialoguemodule.h \
     etape.h \
     ihm.h \

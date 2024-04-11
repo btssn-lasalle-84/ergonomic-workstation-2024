@@ -1,6 +1,7 @@
 #include "ihm.h"
 #include "processusassemblage.h"
 #include "affichagepageprocessus.h"
+#include "etape.h"
 #include <QDebug>
 
 /**
@@ -23,6 +24,7 @@ IHM::IHM(QWidget* parent) :
                                     QString(RACINE_PROCESSUS_ASSEMBLAGE)),
     fenetres(nullptr)
 {
+    qDebug() << Q_FUNC_INFO;
     creerFenetres();
     creerConnexionsBoutonsNavigation();
     afficherFenetrePrincipale();
@@ -94,9 +96,18 @@ void IHM::creerFenetreProcessus()
     }
     qDebug() << Q_FUNC_INFO << "listeProcessusAssemblage" << listeProcessusAssemblage;
 
-    // @todo Passer les QButton en QLabel
-    processus1 = new QPushButton(listeProcessusAssemblage.value(2), fenetreProcessus);
-    layoutProcessus->addWidget(processus1);
+    listeDeroulanteProcessus = new QComboBox(this);
+    listeDeroulanteProcessus->addItem("");
+    listeProcessus.clear();
+    for(int i = 0; i < listeProcessusAssemblage.size(); ++i)
+    {
+        // @todo à transformer en QLabel
+        listeProcessus.push_back(new QPushButton(listeProcessusAssemblage.at(i), fenetreProcessus));
+        // layoutProcessus->addWidget(listeProcessus.last());
+        listeDeroulanteProcessus->addItem(listeProcessusAssemblage.at(i));
+    }
+
+    layoutProcessus->addWidget(listeDeroulanteProcessus); // pour les tests
     layoutProcessus->addWidget(boutonRetourMenu1);
     fenetreProcessus->setLayout(layoutProcessus);
 }
@@ -107,7 +118,6 @@ void IHM::creerFenetreStatistique()
     fenetreStatistique             = new QWidget;
     boutonRetourMenu2              = new QPushButton("Menu", fenetreStatistique);
     fenetres->addWidget(fenetreStatistique);
-    layoutStatistique->addWidget(fenetreScrollStatistique);
     layoutStatistique->addWidget(boutonRetourMenu2);
 
     fenetreStatistique->setLayout(layoutStatistique);
@@ -124,7 +134,10 @@ void IHM::afficherFenetrePrincipale()
 
 void IHM::creerConnexionsBoutonsNavigation()
 {
-    connect(processus1, SIGNAL(clicked()), this, SLOT(ouvrirPageProcessus()));
+    connect(listeDeroulanteProcessus,
+            SIGNAL(currentIndexChanged(int)),
+            this,
+            SLOT(chargerProcessusAssemblage(int)));
     connect(boutonDemarrer, SIGNAL(clicked()), this, SLOT(afficherFenetreProcessus()));
     connect(boutonStatistique, SIGNAL(clicked()), this, SLOT(afficherFenetreStatistique()));
     connect(boutonRetourMenu1, SIGNAL(clicked()), this, SLOT(afficherFenetreMenu()));
@@ -146,9 +159,24 @@ void IHM::afficherFenetreProcessus()
     fenetres->setCurrentIndex(Fenetre::Processus);
 }
 
-void IHM::ouvrirPageProcessus()
+void IHM::chargerProcessusAssemblage(int numeroProcessus)
 {
-    qDebug() << "Clic sur le bouton pour ouvrir la page de processus";
-    AffichagePageProcessus* pageProcessus = new AffichagePageProcessus;
+    qDebug() << Q_FUNC_INFO << "numeroProcessus" << numeroProcessus;
+    // Test de l'affichage d'une page
+    Etape*                  etape = new Etape;
+    AffichagePageProcessus* pageProcessus =
+      new AffichagePageProcessus(fenetres, listeDeroulanteProcessus->currentText(), 3, etape);
+    connect(pageProcessus,
+            SIGNAL(abandon(QString)),
+            this,
+            SLOT(abandonnerProcessusAssemblage(QString)));
     pageProcessus->afficher();
+}
+
+void IHM::abandonnerProcessusAssemblage(QString nomProcessus)
+{
+    qDebug() << Q_FUNC_INFO << "nomProcessus" << nomProcessus;
+    // @todo gérer l'abandon d'un processus d'assemblage
+    // puis
+    afficherFenetreProcessus();
 }
