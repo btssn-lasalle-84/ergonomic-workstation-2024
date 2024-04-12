@@ -21,7 +21,7 @@
  * @def VERSION_APPLICATION
  * @brief La version de l'application
  */
-#define VERSION_APPLICATION "0.1"
+#define VERSION_APPLICATION "0.2"
 
 /**
  * @def PLEIN_ECRAN_RASPBERRY
@@ -42,6 +42,7 @@
 #define RACINE_PROCESSUS_ASSEMBLAGE "/processus-assemblage"
 
 class ProcessusAssemblage;
+class AffichagePageProcessus;
 
 /**
  * @class IHM
@@ -70,8 +71,9 @@ class IHM : public QWidget
     QPushButton*    boutonRetourMenu2; // Depuis Statistique
     QLabel*         titre;
     QLabel*         version;
-    QScrollArea*    fenetreScrollStatistique;
-    QScrollArea*    fenetreScrollProcessus;
+    // @todo à transformer en QLabel
+    QVector<QPushButton*> listeProcessus;
+    QComboBox*            listeDeroulanteProcessus;
 
     /**
      * @enum Fenetre
@@ -97,6 +99,8 @@ class IHM : public QWidget
     void afficherFenetreMenu();
     void afficherFenetreStatistique();
     void afficherFenetreProcessus();
+    void chargerProcessusAssemblage(int numeroProcessus);
+    void abandonnerProcessusAssemblage(QString nomProcessus);
 };
 
 #endif // IHM_H
