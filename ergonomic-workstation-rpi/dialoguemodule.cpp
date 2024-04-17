@@ -1,4 +1,5 @@
 #include "dialoguemodule.h"
+#include "ihm.h"
 #include <QDebug>
 
 DialogueModule::DialogueModule(QObject* parent) : QObject(parent), portSerie(new QSerialPort(this))
@@ -8,15 +9,15 @@ DialogueModule::DialogueModule(QObject* parent) : QObject(parent), portSerie(new
 
 DialogueModule::~DialogueModule()
 {
-    // @todo appeler arreter()
+    arreter();
     qDebug() << Q_FUNC_INFO;
 }
 
 void DialogueModule::demarrer()
 {
     qDebug() << Q_FUNC_INFO;
-    // @todo appeler configurerPortSerie()
-    // @todo puis appeler ouvrirPortSerie()
+    configurerPortSerie();
+    ouvrirPortSerie();
 }
 
 void DialogueModule::arreter()
@@ -31,7 +32,7 @@ void DialogueModule::configurerPortSerie(QString nomPortSerie)
     qDebug() << Q_FUNC_INFO << "nomPortSerie" << nomPortSerie;
 
     portSerie->setPortName(nomPortSerie);
-    // @todo voir avec l'EC pour le choix du débit
+    // @todo voir avec l'EC pour le choix du débit(9600)
     // portSerie->setBaudRate(QSerialPort::Baud9600);
     portSerie->setBaudRate(QSerialPort::Baud115200);
     portSerie->setDataBits(QSerialPort::Data8);
@@ -73,23 +74,44 @@ void DialogueModule::fermerPortSerie()
 
 bool DialogueModule::verifierTrame(const QByteArray& trame)
 {
-    // @todo vérifier si la trame reçue est valide (au moins si elle commence par '$' et elle se
-    // termine '\n'
-
+    if(trame.at(0) == '$' && trame.at(trame.size() - 1) == '\n')
+    {
+        return true;
+    }
     return false;
 }
 
 void DialogueModule::decoderTrame(QByteArray trame)
 {
-    // @todo retirer '$' et '\n'
+    trame.remove(0, 1);                // retire le '$'
+    trame.remove(trame.size() - 1, 1); // retire le '\n'
 
-    // @todo splitter la trame avec le séparateur de champs
+    QList<QByteArray> champs = trame.split(';');
+    qDebug() << "champs" << champs;
 
-    // @todo si c'est une trame 'E' (encodeur), il faut extraire l'action sous forme d'un int
-
+    // si c'est une trame 'E' (encodeur),
+    if(champs.at(0) == TYPE_TRAME_ENCODEUR)
+    {
+        bool ok;
+        int  typeEncodage =
+          champs.at(1).toInt(&ok, 10); // il faut extraire l'action sous forme d'un int
+        qDebug() << Q_FUNC_INFO << "ok == " << ok << "typeEncodage == " << typeEncodage;
+        switch(typeEncodage)
+        {
+            case 1:
+                connect(portSerie, SIGNAL(encodeurDroite()), this, SLOT(avancerChoix()));
+                break;
+            case 2:
+                connect(portSerie, SIGNAL(encodeurGauche()), this, SLOT(reculerChoix()));
+                break;
+            case 3:
+                connect(portSerie, SIGNAL(encodeurValidation()), this, SLOT(validerChoix()));
+                break;
+        }
+    }
     // @todo puis avec un switch, définir les case TypeEncodage pour émettre les signaux
     // encodeurDroite(), encodeurGauche() ou encodeurValidation() remarque : ces signaux sont
-    // connectés à des lots de l'IHM
+    // connectés à des slots de l'IHM
 }
 
 void DialogueModule::envoyerTrame(QString trame)
@@ -107,23 +129,25 @@ void DialogueModule::recevoirTrame()
         donneesRecues.append(portSerie->readAll());
     }
     qDebug() << Q_FUNC_INFO << "donneesRecues" << donneesRecues;
-
-    // @todo si la trame est valdie (appel de la méthode verifierTrame())
-    // @todo décoder la trame (appel de la méthoder decoderTrame())
+    // si la trame est valide
+    if(verifierTrame(donneesRecues) == true)
+    {
+        decoderTrame(donneesRecues); // décoder la trame
+    }
 }
 
 void DialogueModule::gererErreur(QSerialPort::SerialPortError erreur)
 {
     qDebug() << Q_FUNC_INFO << "erreur" << erreur << "isOpen" << portSerie->isOpen();
     // Erreur à l'ouverture : QSerialPort::DeviceNotFoundError
-    // @todo il faudra emettre un signal erreurOuvertureModule() pourque l'IHM affiche une boîte de
-    // dialogue d'erreur
+    // @todo il faudra emettre un signal erreurOuvertureModule() pourque l'IHM affiche une boîte
+    // de dialogue d'erreur
 
     // Erreur en cours d'exécution si on envoie une trame : QSerialPort::ResourceError
     if(erreur == QSerialPort::ResourceError)
     {
         fermerPortSerie();
-        // @todo il faudra emettre un signal erreurDialogueModule() pourque l'IHM affiche une boîte
-        // de dialogue d'erreur de communication
+        // @todo il faudra emettre un signal erreurDialogueModule() pourque l'IHM affiche une
+        // boîte de dialogue d'erreur de communication
     }
 }

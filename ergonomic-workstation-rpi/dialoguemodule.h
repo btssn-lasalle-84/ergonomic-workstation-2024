@@ -17,6 +17,8 @@
  */
 #define TYPE_TRAME_ENCODEUR QByteArray("E")
 
+class IHM;
+
 class DialogueModule : public QObject
 {
     Q_OBJECT
