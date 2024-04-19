@@ -140,7 +140,7 @@ void DialogueModule::gererErreur(QSerialPort::SerialPortError erreur)
 {
     qDebug() << Q_FUNC_INFO << "erreur" << erreur << "isOpen" << portSerie->isOpen();
     // Erreur à l'ouverture : QSerialPort::DeviceNotFoundError
-    // @todo il faudra emettre un signal erreurOuvertureModule() pourque l'IHM affiche une boîte
+    // @todo il faudra emettre un signal erreurOuvertureModule() pour que l'IHM affiche une boîte
     // de dialogue d'erreur
 
     // Erreur en cours d'exécution si on envoie une trame : QSerialPort::ResourceError
@@ -149,5 +149,6 @@ void DialogueModule::gererErreur(QSerialPort::SerialPortError erreur)
         fermerPortSerie();
         // @todo il faudra emettre un signal erreurDialogueModule() pourque l'IHM affiche une
         // boîte de dialogue d'erreur de communication
+        connect(ihm, SIGNAL(erreurDialogueModule()), this, SLOT(gererErreur(erreur)));
     }
 }
