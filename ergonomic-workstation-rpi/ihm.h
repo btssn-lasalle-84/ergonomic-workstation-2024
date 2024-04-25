@@ -76,6 +76,7 @@ class IHM : public QWidget
     QPushButton* boutonRetourMenu2; // Depuis Statistique
     QLabel*      titre;
     QLabel*      version;
+    QLabel*      connexionPosteDeTravail;
     // @todo à transformer en QLabel
     QVector<QPushButton*> listeProcessus;
     QComboBox*            listeDeroulanteProcessus;

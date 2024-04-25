@@ -66,6 +66,7 @@ void IHM::creerFenetreMenu()
     QPushButton* boutonStatistique = new QPushButton("Statistiques", fenetreMenu);
     boutonsFenetreMenu.push_back(boutonStatistique);
 
+
     titre   = new QLabel(fenetreMenu);
     version = new QLabel(fenetreMenu);
     titre->setText(NOM_APPLICATION);
@@ -82,14 +83,15 @@ void IHM::creerFenetreMenu()
 
 void IHM::creerFenetreProcessus()
 {
-    QVBoxLayout* layoutProcessus = new QVBoxLayout;
-    fenetreProcessus             = new QWidget;
-    boutonRetourMenu1            = new QPushButton("Menu", fenetreProcessus);
+    QVBoxLayout* layoutProcessus    = new QVBoxLayout;
+    fenetreProcessus                = new QWidget;
+    boutonRetourMenu1               = new QPushButton("Menu", fenetreProcessus);
     fenetres->addWidget(fenetreProcessus);
+    QLabel* connexionPosteDeTravail = new QLabel("Connexion", fenetreProcessus)
 
     // Lister les processus d'assemblage
     // QDir racineProcessusAssemblage(QDir::currentPath() + RACINE_PROCESSUS_ASSEMBLAGE);
-    QDir        racineProcessusAssemblage(cheminRacineProcessusAssemblage);
+    QDir racineProcessusAssemblage(cheminRacineProcessusAssemblage);
     QStringList listeProcessusAssemblage;
     qDebug() << Q_FUNC_INFO << "cheminRacineProcessusAssemblage" << cheminRacineProcessusAssemblage;
     foreach(QFileInfo element, racineProcessusAssemblage.entryInfoList())
@@ -242,3 +244,4 @@ void IHM::validerChoix()
     // on simule un clic sur le bouton sélectionné
     boutonsFenetreMenu[choixBoutonsFenetreMenu]->clicked();
 }
+
