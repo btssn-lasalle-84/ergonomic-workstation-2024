@@ -66,7 +66,6 @@ void IHM::creerFenetreMenu()
     QPushButton* boutonStatistique = new QPushButton("Statistiques", fenetreMenu);
     boutonsFenetreMenu.push_back(boutonStatistique);
 
-
     titre   = new QLabel(fenetreMenu);
     version = new QLabel(fenetreMenu);
     titre->setText(NOM_APPLICATION);
@@ -83,15 +82,15 @@ void IHM::creerFenetreMenu()
 
 void IHM::creerFenetreProcessus()
 {
-    QVBoxLayout* layoutProcessus    = new QVBoxLayout;
-    fenetreProcessus                = new QWidget;
-    boutonRetourMenu1               = new QPushButton("Menu", fenetreProcessus);
+    QVBoxLayout* layoutProcessus = new QVBoxLayout;
+    fenetreProcessus             = new QWidget;
+    boutonRetourMenu1            = new QPushButton("Menu", fenetreProcessus);
     fenetres->addWidget(fenetreProcessus);
-    QLabel* connexionPosteDeTravail = new QLabel("Connexion", fenetreProcessus)
+    connexionPosteDeTravail = new QLabel("Non connecté", fenetreProcessus);
 
     // Lister les processus d'assemblage
     // QDir racineProcessusAssemblage(QDir::currentPath() + RACINE_PROCESSUS_ASSEMBLAGE);
-    QDir racineProcessusAssemblage(cheminRacineProcessusAssemblage);
+    QDir        racineProcessusAssemblage(cheminRacineProcessusAssemblage);
     QStringList listeProcessusAssemblage;
     qDebug() << Q_FUNC_INFO << "cheminRacineProcessusAssemblage" << cheminRacineProcessusAssemblage;
     foreach(QFileInfo element, racineProcessusAssemblage.entryInfoList())
@@ -115,11 +114,13 @@ void IHM::creerFenetreProcessus()
     for(int i = 0; i < listeProcessusAssemblage.size(); ++i)
     {
         // @todo à transformer en QLabel
-        listeProcessus.push_back(new QPushButton(listeProcessusAssemblage.at(i), fenetreProcessus));
+        // listeProcessus.push_back(new QPushButton(listeProcessusAssemblage.at(i),
+        // fenetreProcessus));
         // layoutProcessus->addWidget(listeProcessus.last());
         listeDeroulanteProcessus->addItem(listeProcessusAssemblage.at(i));
     }
 
+    layoutProcessus->addWidget(connexionPosteDeTravail);
     layoutProcessus->addWidget(listeDeroulanteProcessus); // pour les tests
     layoutProcessus->addWidget(boutonRetourMenu1);
     fenetreProcessus->setLayout(layoutProcessus);
@@ -167,6 +168,22 @@ void IHM::creerConnexionsBoutonsNavigation()
     connect(dialogueModule, SIGNAL(encodeurDroite()), this, SLOT(avancerChoix()));
     connect(dialogueModule, SIGNAL(encodeurGauche()), this, SLOT(reculerChoix()));
     connect(dialogueModule, SIGNAL(encodeurValidation()), this, SLOT(validerChoix()));
+    connect(dialogueModule,
+            SIGNAL(moduleConnecte()),
+            this,
+            SLOT(afficherConnexionPosteDeTravail()));
+    connect(dialogueModule,
+            SIGNAL(moduleDeconnecte()),
+            this,
+            SLOT(afficherDeconnexionPosteDeTravail()));
+    connect(dialogueModule,
+            SIGNAL(erreurOuvertureModule()),
+            this,
+            SLOT(afficherErreurOuverturePosteDeTravail()));
+    connect(dialogueModule,
+            SIGNAL(erreurDialogueModule()),
+            this,
+            SLOT(afficherErreurDialoguePosteDeTravail()));
 }
 
 void IHM::creerConnexionsGUI()
@@ -180,6 +197,7 @@ void IHM::creerConnexionsGUI()
 
 void IHM::initialiserDialogueModule()
 {
+    connexionPosteDeTravail->setText("Non connecté");
     dialogueModule->demarrer();
 }
 
@@ -220,6 +238,30 @@ void IHM::abandonnerProcessusAssemblage(QString nomProcessus)
     afficherFenetreProcessus();
 }
 
+void IHM::afficherConnexionPosteDeTravail()
+{
+    // @todo Afficher le message de connexion
+    connexionPosteDeTravail->setText("Connecté");
+}
+
+void IHM::afficherDeconnexionPosteDeTravail()
+{
+    // @todo Afficher le message de déconnexion
+    connexionPosteDeTravail->setText("");
+}
+
+void IHM::afficherErreurOuverturePosteDeTravail()
+{
+    // @todo Afficher le message d'erreur
+    connexionPosteDeTravail->setText("");
+}
+
+void IHM::afficherErreurDialoguePosteDeTravail()
+{
+    // @todo Afficher le message d'erreur
+    connexionPosteDeTravail->setText("");
+}
+
 void IHM::avancerChoix()
 {
     choixBoutonsFenetreMenu =
@@ -244,4 +286,3 @@ void IHM::validerChoix()
     // on simule un clic sur le bouton sélectionné
     boutonsFenetreMenu[choixBoutonsFenetreMenu]->clicked();
 }
-

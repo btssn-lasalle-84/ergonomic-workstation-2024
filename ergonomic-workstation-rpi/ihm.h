@@ -122,6 +122,10 @@ class IHM : public QWidget
     void abandonnerProcessusAssemblage(QString nomProcessus);
 
   public slots:
+    void afficherConnexionPosteDeTravail();
+    void afficherDeconnexionPosteDeTravail();
+    void afficherErreurOuverturePosteDeTravail();
+    void afficherErreurDialoguePosteDeTravail();
     // déclenchés par l'encodeur du module EC
     void avancerChoix();
     void reculerChoix();

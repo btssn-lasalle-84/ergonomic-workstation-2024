@@ -69,6 +69,8 @@ class DialogueModule : public QObject
     void encodeurDroite();
     void encodeurGauche();
     void encodeurValidation();
+    void erreurOuvertureModule();
+    void erreurDialogueModule();
 
   public slots:
     void recevoirTrame();
