@@ -118,6 +118,12 @@ void DialogueModule::envoyerTrame(QString trame)
 {
     // @todo si portSerie est ouvert, alors ajouter le '\n' à la trame puis l'envoyer avec la
     // méthode write remarque : il faut utiliser trame.toLatin1() dans l'appel write()
+    if(portSerie->open(QIODevice::WriteOnly))
+    {
+        portSerie->write(trame.toLatin1());
+        portSerie->write("\n");
+    }
+
 }
 
 void DialogueModule::recevoirTrame()
@@ -142,6 +148,7 @@ void DialogueModule::gererErreur(QSerialPort::SerialPortError erreur)
     // Erreur à l'ouverture : QSerialPort::DeviceNotFoundError
     // @todo il faudra emettre un signal erreurOuvertureModule() pour que l'IHM affiche une boîte
     // de dialogue d'erreur
+    connect(ihm, SIGNAL(erreurOuvertureModule()), this, SLOT(gererErreur(erreur))
 
     // Erreur en cours d'exécution si on envoie une trame : QSerialPort::ResourceError
     if(erreur == QSerialPort::ResourceError)
