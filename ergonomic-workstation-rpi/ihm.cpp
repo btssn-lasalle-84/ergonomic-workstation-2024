@@ -2,6 +2,7 @@
 #include "processusassemblage.h"
 #include "affichagepageprocessus.h"
 #include "etape.h"
+#include "dialoguemodule.h"
 #include <QDebug>
 
 /**
@@ -20,19 +21,23 @@
  */
 IHM::IHM(QWidget* parent) :
     QWidget(parent), processusAssemblage(new ProcessusAssemblage(this)),
+    dialogueModule(new DialogueModule(this)),
     cheminRacineProcessusAssemblage(QString(CHEMIN_SERVEUR_NFS) +
                                     QString(RACINE_PROCESSUS_ASSEMBLAGE)),
-    fenetres(nullptr)
+    choixBoutonsFenetreMenu(ActionFenetreMenu::ActionDemarrer), fenetres(nullptr)
 {
     qDebug() << Q_FUNC_INFO;
     creerFenetres();
     creerConnexionsBoutonsNavigation();
+    creerConnexionsGUI();
     afficherFenetrePrincipale();
+    initialiserDialogueModule();
     qDebug() << Q_FUNC_INFO;
 }
 
 IHM::~IHM()
 {
+    dialogueModule->arreter();
     qDebug() << Q_FUNC_INFO;
 }
 
@@ -53,10 +58,16 @@ void IHM::creerFenetreMenu()
     QVBoxLayout* layoutMenu        = new QVBoxLayout;
     QVBoxLayout* layoutBoutonsMenu = new QVBoxLayout;
     fenetreMenu                    = new QWidget;
-    boutonStatistique              = new QPushButton("Statistiques", fenetreMenu);
-    boutonDemarrer = new QPushButton("Commencer un processus d'assemblage", fenetreMenu);
-    titre          = new QLabel(fenetreMenu);
-    version        = new QLabel(fenetreMenu);
+    // les boutons de cette fenêtre
+    QPushButton* boutonDemarrer =
+      new QPushButton("Commencer un processus d'assemblage", fenetreMenu);
+    boutonsFenetreMenu.push_back(boutonDemarrer);
+    boutonDemarrer->setFocus();
+    QPushButton* boutonStatistique = new QPushButton("Statistiques", fenetreMenu);
+    boutonsFenetreMenu.push_back(boutonStatistique);
+
+    titre   = new QLabel(fenetreMenu);
+    version = new QLabel(fenetreMenu);
     titre->setText(NOM_APPLICATION);
     version->setText(QString("v ") + VERSION_APPLICATION);
     fenetres->addWidget(fenetreMenu);
@@ -75,6 +86,7 @@ void IHM::creerFenetreProcessus()
     fenetreProcessus             = new QWidget;
     boutonRetourMenu1            = new QPushButton("Menu", fenetreProcessus);
     fenetres->addWidget(fenetreProcessus);
+    connexionPosteDeTravail = new QLabel("Non connecté", fenetreProcessus);
 
     // Lister les processus d'assemblage
     // QDir racineProcessusAssemblage(QDir::currentPath() + RACINE_PROCESSUS_ASSEMBLAGE);
@@ -102,11 +114,13 @@ void IHM::creerFenetreProcessus()
     for(int i = 0; i < listeProcessusAssemblage.size(); ++i)
     {
         // @todo à transformer en QLabel
-        listeProcessus.push_back(new QPushButton(listeProcessusAssemblage.at(i), fenetreProcessus));
+        // listeProcessus.push_back(new QPushButton(listeProcessusAssemblage.at(i),
+        // fenetreProcessus));
         // layoutProcessus->addWidget(listeProcessus.last());
         listeDeroulanteProcessus->addItem(listeProcessusAssemblage.at(i));
     }
 
+    layoutProcessus->addWidget(connexionPosteDeTravail);
     layoutProcessus->addWidget(listeDeroulanteProcessus); // pour les tests
     layoutProcessus->addWidget(boutonRetourMenu1);
     fenetreProcessus->setLayout(layoutProcessus);
@@ -134,14 +148,57 @@ void IHM::afficherFenetrePrincipale()
 
 void IHM::creerConnexionsBoutonsNavigation()
 {
+    // Pour la fenêtre Fenetre::Menu
+    connect(boutonsFenetreMenu[ActionFenetreMenu::ActionDemarrer],
+            SIGNAL(clicked()),
+            this,
+            SLOT(afficherFenetreProcessus()));
+    connect(boutonsFenetreMenu[ActionFenetreMenu::ActionStatistique],
+            SIGNAL(clicked()),
+            this,
+            SLOT(afficherFenetreStatistique()));
+
+    // Pour la fenêtre Fenetre::Statistique
+    connect(boutonRetourMenu2, SIGNAL(clicked()), this, SLOT(afficherFenetreMenu()));
+
+    // Pour la fenêtre Fenetre::Processus
+    connect(boutonRetourMenu1, SIGNAL(clicked()), this, SLOT(afficherFenetreMenu()));
+
+    // Pour le dialogue avec le module poste de travail
+    connect(dialogueModule, SIGNAL(encodeurDroite()), this, SLOT(avancerChoix()));
+    connect(dialogueModule, SIGNAL(encodeurGauche()), this, SLOT(reculerChoix()));
+    connect(dialogueModule, SIGNAL(encodeurValidation()), this, SLOT(validerChoix()));
+    connect(dialogueModule,
+            SIGNAL(moduleConnecte()),
+            this,
+            SLOT(afficherConnexionPosteDeTravail()));
+    connect(dialogueModule,
+            SIGNAL(moduleDeconnecte()),
+            this,
+            SLOT(afficherDeconnexionPosteDeTravail()));
+    connect(dialogueModule,
+            SIGNAL(erreurOuvertureModule()),
+            this,
+            SLOT(afficherErreurOuverturePosteDeTravail()));
+    connect(dialogueModule,
+            SIGNAL(erreurDialogueModule()),
+            this,
+            SLOT(afficherErreurDialoguePosteDeTravail()));
+}
+
+void IHM::creerConnexionsGUI()
+{
+    // Pour la GUI
     connect(listeDeroulanteProcessus,
             SIGNAL(currentIndexChanged(int)),
             this,
             SLOT(chargerProcessusAssemblage(int)));
-    connect(boutonDemarrer, SIGNAL(clicked()), this, SLOT(afficherFenetreProcessus()));
-    connect(boutonStatistique, SIGNAL(clicked()), this, SLOT(afficherFenetreStatistique()));
-    connect(boutonRetourMenu1, SIGNAL(clicked()), this, SLOT(afficherFenetreMenu()));
-    connect(boutonRetourMenu2, SIGNAL(clicked()), this, SLOT(afficherFenetreMenu()));
+}
+
+void IHM::initialiserDialogueModule()
+{
+    connexionPosteDeTravail->setText("Non connecté");
+    dialogueModule->demarrer();
 }
 
 void IHM::afficherFenetreMenu()
@@ -179,4 +236,53 @@ void IHM::abandonnerProcessusAssemblage(QString nomProcessus)
     // @todo gérer l'abandon d'un processus d'assemblage
     // puis
     afficherFenetreProcessus();
+}
+
+void IHM::afficherConnexionPosteDeTravail()
+{
+    // @todo Afficher le message de connexion
+    connexionPosteDeTravail->setText("Connecté");
+}
+
+void IHM::afficherDeconnexionPosteDeTravail()
+{
+    // @todo Afficher le message de déconnexion
+    connexionPosteDeTravail->setText("");
+}
+
+void IHM::afficherErreurOuverturePosteDeTravail()
+{
+    // @todo Afficher le message d'erreur
+    connexionPosteDeTravail->setText("");
+}
+
+void IHM::afficherErreurDialoguePosteDeTravail()
+{
+    // @todo Afficher le message d'erreur
+    connexionPosteDeTravail->setText("");
+}
+
+void IHM::avancerChoix()
+{
+    choixBoutonsFenetreMenu =
+      (choixBoutonsFenetreMenu + 1) % ActionFenetreMenu::NbActionsFenetreMenu;
+    boutonsFenetreMenu[choixBoutonsFenetreMenu]->setFocus();
+    qDebug() << Q_FUNC_INFO << "choixBoutonsFenetreMenu" << choixBoutonsFenetreMenu;
+}
+
+void IHM::reculerChoix()
+{
+    choixBoutonsFenetreMenu =
+      (choixBoutonsFenetreMenu - 1) % ActionFenetreMenu::NbActionsFenetreMenu;
+    if(choixBoutonsFenetreMenu == -1)
+        choixBoutonsFenetreMenu = ActionFenetreMenu::NbActionsFenetreMenu - 1;
+    boutonsFenetreMenu[choixBoutonsFenetreMenu]->setFocus();
+    qDebug() << Q_FUNC_INFO << "choixBoutonsFenetreMenu" << choixBoutonsFenetreMenu;
+}
+
+void IHM::validerChoix()
+{
+    qDebug() << Q_FUNC_INFO << "choixBoutonsFenetreMenu" << choixBoutonsFenetreMenu;
+    // on simule un clic sur le bouton sélectionné
+    boutonsFenetreMenu[choixBoutonsFenetreMenu]->clicked();
 }
