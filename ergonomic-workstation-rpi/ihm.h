@@ -6,7 +6,7 @@
  *
  * @brief Déclaration de la classe IHM
  * @author Gabain AVRIL
- * @version 0.1
+ * @version 0.2
  */
 
 #include <QtWidgets>
