@@ -1,8 +1,10 @@
 #ifndef PROCESSUSASSEMBLAGE_H
 #define PROCESSUSASSEMBLAGE_H
+#define RACINE_PROCESSUS_ASSEMBLAGE "/processus-assemblage"
 
 #include <QObject>
 #include <QList>
+#include <QWidget>
 
 class PosteTravail;
 class Etape;
@@ -16,6 +18,7 @@ class ProcessusAssemblage : public QObject
     QList<Etape*>   etapes;
     DialogueModule* dialogueModule;
     QString         nom;
+    QDialog*        dialog;
     int             tempsMoyen;
     int             nbPieces;
     int             nbPiecesDifferentes;
@@ -24,7 +27,7 @@ class ProcessusAssemblage : public QObject
   public:
     explicit ProcessusAssemblage(QObject* parent = nullptr);
     ~ProcessusAssemblage();
-
+    void chargerProcessusAssemblage(const QString&);
   signals:
 };
 

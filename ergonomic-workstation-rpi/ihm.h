@@ -6,10 +6,11 @@
  *
  * @brief Déclaration de la classe IHM
  * @author Gabain AVRIL
- * @version 0.1
+ * @version 0.2
  */
 
 #include <QtWidgets>
+#include <QVector>
 
 /**
  * @def NOM_APPLICATION
@@ -21,7 +22,7 @@
  * @def VERSION_APPLICATION
  * @brief La version de l'application
  */
-#define VERSION_APPLICATION "0.1"
+#define VERSION_APPLICATION "0.2"
 
 /**
  * @def PLEIN_ECRAN_RASPBERRY
@@ -29,7 +30,21 @@
  */
 //#define PLEIN_ECRAN_RASPBERRY
 
+/**
+ * @def CHEMIN_SERVEUR_NFS
+ * @brief Pour définir le chemin vers le partage NFS
+ */
+#define CHEMIN_SERVEUR_NFS "."
+
+/**
+ * @def RACINE_PROCESSUS_ASSEMBLAGE
+ * @brief Pour définir la racine des processus d'assemblage
+ */
+#define RACINE_PROCESSUS_ASSEMBLAGE "/processus-assemblage"
+
 class ProcessusAssemblage;
+class AffichagePageProcessus;
+class DialogueModule;
 
 /**
  * @class IHM
@@ -46,19 +61,25 @@ class IHM : public QWidget
 
   private:
     ProcessusAssemblage* processusAssemblage; //!< association
+    DialogueModule*      dialogueModule;
+    QString              cheminRacineProcessusAssemblage;
+    int choixBoutonsFenetreMenu; //!< le numéro de boutons sélectionnables par l'encodeur dans la
+                                 //!< fenêtre Menu
     // Les ressources IHM
     QStackedWidget* fenetres;
     QWidget*        fenetreMenu;
     QWidget*        fenetreStatistique;
     QWidget*        fenetreProcessus;
-    QPushButton*    boutonDemarrer;
-    QPushButton*    boutonStatistique;
-    QPushButton*    boutonRetourMenu1; // Depuis Processus
-    QPushButton*    boutonRetourMenu2; // Depuis Statistique
-    QLabel*         titre;
-    QLabel*         version;
-    QScrollArea*    fenetreScrollStatistique;
-    QScrollArea*    fenetreScrollProcessus;
+    QVector<QPushButton*>
+      boutonsFenetreMenu; //!< les boutons sélectionnables par l'encodeur dans la fenêtre Menu
+    QPushButton* boutonRetourMenu1; // Depuis Processus
+    QPushButton* boutonRetourMenu2; // Depuis Statistique
+    QLabel*      titre;
+    QLabel*      version;
+    QLabel*      connexionPosteDeTravail;
+    // @todo à transformer en QLabel
+    QVector<QPushButton*> listeProcessus;
+    QComboBox*            listeDeroulanteProcessus;
 
     /**
      * @enum Fenetre
@@ -72,6 +93,17 @@ class IHM : public QWidget
         Processus,
         NbFenetres
     };
+    /**
+     * @enum ActionFenetreMenu
+     * @brief Définit les actions des boutons sélectionnables dans la fenêtre Menu
+     *
+     */
+    enum ActionFenetreMenu
+    {
+        ActionDemarrer = 0,
+        ActionStatistique,
+        NbActionsFenetreMenu
+    };
 
     void creerFenetres();
     void creerFenetreMenu();
@@ -79,11 +111,25 @@ class IHM : public QWidget
     void creerFenetreStatistique();
     void afficherFenetrePrincipale();
     void creerConnexionsBoutonsNavigation();
+    void creerConnexionsGUI();
+    void initialiserDialogueModule();
 
   private slots:
     void afficherFenetreMenu();
     void afficherFenetreStatistique();
     void afficherFenetreProcessus();
+    void chargerProcessusAssemblage(int numeroProcessus);
+    void abandonnerProcessusAssemblage(QString nomProcessus);
+
+  public slots:
+    void afficherConnexionPosteDeTravail();
+    void afficherDeconnexionPosteDeTravail();
+    void afficherErreurOuverturePosteDeTravail();
+    void afficherErreurDialoguePosteDeTravail();
+    // déclenchés par l'encodeur du module EC
+    void avancerChoix();
+    void reculerChoix();
+    void validerChoix();
 };
 
 #endif // IHM_H
