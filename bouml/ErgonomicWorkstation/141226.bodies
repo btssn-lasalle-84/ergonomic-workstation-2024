@@ -1,0 +1,76 @@
+class AffichagePageProcessus
+!!!142122.cpp!!!	creerConnexionsBoutonsNavigation() : void
+    connect(boutonAbandon, SIGNAL(clicked(int)), this, SLOT(abandonner()));
+!!!142250.cpp!!!	AffichagePageProcessus(inout fenetres : QStackedWidget, in nomProcessus : QString, in nbEtapes : int, inout etape : Etape)
+    qDebug() << Q_FUNC_INFO;
+    // ajoute une page
+    page = new QWidget(this);
+    fenetres->addWidget(page);
+
+    // les widgets
+    this->numerotationEtapes =
+      new QLabel(QString::number(etape->getNumero()) + QString("/") + QString::number(nbEtapes),
+                 this);
+    this->nomProcessus          = new QLabel(nomProcessus, this);
+    this->chronometre           = new QLabel("00:00", this);
+    this->nomOperation          = new QLabel("Opération", this);
+    this->commentairesOperation = new QLabel("...", this);
+    this->photoOperation        = new QLabel("[photo]", this);
+    for(int i = 0; i < NB_BACS_MAX; ++i)
+    {
+        bacs.push_back(new QLabel(QString("Bac ") + QString::number(i + 1), this));
+    }
+    this->boutonEtapeSuivante = new Choix("->", 0, this);      // choix 0
+    this->boutonAbandon       = new Choix("Abandon", 1, this); // choix 1
+    this->boutonAbandon->setCouleur(150, 0, 150);
+    creerConnexionsBoutonsNavigation();
+
+    // les layouts
+    QVBoxLayout* layoutPage      = new QVBoxLayout;
+    QHBoxLayout* layoutHeader    = new QHBoxLayout;
+    QHBoxLayout* layoutOperation = new QHBoxLayout;
+    QHBoxLayout* layoutContenu   = new QHBoxLayout;
+    QHBoxLayout* layoutBacs      = new QHBoxLayout;
+    QHBoxLayout* layoutFooter    = new QHBoxLayout;
+
+    // agencement des layouts
+    layoutPage->addLayout(layoutHeader);
+    layoutPage->addLayout(layoutOperation);
+    layoutPage->addLayout(layoutContenu);
+    layoutPage->addLayout(layoutBacs);
+    layoutPage->addLayout(layoutFooter);
+
+    // personnalisation des layouts
+    layoutHeader->setAlignment(Qt::AlignCenter);
+    layoutOperation->setAlignment(Qt::AlignCenter);
+    layoutContenu->setAlignment(Qt::AlignCenter);
+    layoutBacs->setAlignment(Qt::AlignCenter);
+    layoutFooter->setAlignment(Qt::AlignCenter);
+
+    // placement des widgets
+    layoutHeader->addWidget(this->numerotationEtapes);
+    layoutHeader->addStretch();
+    layoutHeader->addWidget(this->nomProcessus);
+    layoutHeader->addStretch();
+    layoutHeader->addWidget(this->chronometre);
+    layoutOperation->addWidget(this->nomOperation);
+    layoutContenu->addWidget(this->commentairesOperation);
+    layoutContenu->addWidget(this->photoOperation);
+    layoutBacs->addStretch();
+    for(int i = 0; i < NB_BACS_MAX; ++i)
+    {
+        layoutBacs->addWidget(bacs[i]);
+        layoutBacs->addStretch();
+    }
+    layoutFooter->addWidget(this->boutonAbandon);
+    layoutFooter->addStretch();
+    layoutFooter->addWidget(this->boutonEtapeSuivante);
+
+    // fixe le layout
+    page->setLayout(layoutPage);
+!!!142378.cpp!!!	~AffichagePageProcessus()
+    qDebug() << Q_FUNC_INFO;
+!!!142506.cpp!!!	afficher() : void
+    fenetres->setCurrentWidget(page);
+!!!142634.cpp!!!	abandonner() : void
+    emit abandon(this->nomProcessus->text());
