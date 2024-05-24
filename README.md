@@ -24,6 +24,8 @@ Il s'agit de digitaliser un poste de travail afin de guider l’opérateur pas �
 
 ## Fonctionnalités
 
+![](images/uc.png)
+
 La table ergonomique devra être capable de proposer plusieurs processus d'assemblage et d'accompagner l'opérateur durant le  processus d'assemblage.
 
 |Tâche|Priorité|Itération|
@@ -43,16 +45,34 @@ https://btssn-lasalle-84.github.io/ergonomic-workstation-2024/
 
 ## Diagramme de classes
 
-![](images/classes-v0.1.png)
+![](images/classes-v0.2.png)
 
 ## Protocole
 
+Format : `$[TYPE];[DONNEE]\n`
+
+Type de trame : `‘E’` (encodeur)
+
+Donnée :
+
+- `‘1’` pour droite
+- `‘2’` pour gauche
+- `‘3’` pour validation
+
+Exemples :
+
+- `$E;2\n` l'encodeur a été” déplacé d’un “cran” vers la gauche 
+- `$E;3\n` appui sur l’encodeur
 
 ## Screenshots
 
-![](images/screenshot-v0.1.png)
+![](images/screenshot-v0.2.gif)
 
 ## Historique des versions
+
+- Version 0.2
+
+![](images/jira-v0.2.png)
 
 - Version 0.1
 
