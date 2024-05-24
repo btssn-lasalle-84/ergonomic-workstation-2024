@@ -10,7 +10,7 @@
  *
  * @brief Définition de la classe IHM
  * @author Gabain AVRIL
- * @version 0.1
+ * @version 0.2
  */
 
 /**
