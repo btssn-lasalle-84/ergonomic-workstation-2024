@@ -17,20 +17,24 @@ class ProcessusAssemblage : public QObject
     PosteTravail*   posteTravail;
     QList<Etape*>   etapes;
     DialogueModule* dialogueModule;
-    QString         nomProcessus;
+    QString         nom;
+    QString         nomOperation;
     QDialog*        dialog;
     int             tempsMoyen;
     int             nbPieces;
     int             nbPiecesDifferentes;
     int             nbEtapes;
+    int             nbBacs;
 
   public:
     explicit ProcessusAssemblage(QObject* parent = nullptr);
     ~ProcessusAssemblage();
     void    chargerProcessusAssemblage(const QString&);
-    QString getNom() const;
-    int     getNbEtapes() const;
+    QString getNom();
+    QString getNomOperation();
+    int     getNbEtapes();
     int     getNbPieces();
+    int     getNbBacs();
   signals:
 };
 

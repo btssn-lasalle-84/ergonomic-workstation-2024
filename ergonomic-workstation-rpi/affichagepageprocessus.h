@@ -6,6 +6,7 @@
 
 #define NB_BACS_MAX 6
 
+class ProcessusAssemblage;
 class Etape;
 class Choix;
 
@@ -13,6 +14,7 @@ class AffichagePageProcessus : public QWidget
 {
     Q_OBJECT
   private:
+    ProcessusAssemblage* processusAssemblage;
     QStackedWidget*  fenetres;
     QWidget*         page;
     QLabel*          numerotationEtapes;
@@ -34,7 +36,8 @@ class AffichagePageProcessus : public QWidget
     explicit AffichagePageProcessus(QStackedWidget* fenetres,
                                     QString         nomProcessus,
                                     int             nbEtapes,
-                                    Etape*          etape);
+                                    Etape*          etape,
+                                    ProcessusAssemblage* processus);
     ~AffichagePageProcessus();
 
   public slots:

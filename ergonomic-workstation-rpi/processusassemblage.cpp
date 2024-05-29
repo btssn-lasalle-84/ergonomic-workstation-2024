@@ -21,8 +21,6 @@ ProcessusAssemblage::~ProcessusAssemblage()
 
 void ProcessusAssemblage::chargerProcessusAssemblage(const QString& nomProcessusAssemblage)
 {
-    qDebug() << Q_FUNC_INFO << "nomProcessusAssemblage" << nomProcessusAssemblage;
-
     QString fichierINI = QDir::currentPath() + QString(RACINE_PROCESSUS_ASSEMBLAGE) + QString("/") +
                          nomProcessusAssemblage + QString("/") + nomProcessusAssemblage +
                          QString(".ini");
@@ -37,11 +35,9 @@ void ProcessusAssemblage::chargerProcessusAssemblage(const QString& nomProcessus
         image=module-oled-bp.png
         glossaire=true
      */
-    QString nomProcessus =
-      configurationProcessusAssemblage.value("ProcessusAssemblage/nom").toString();
-    int     nbEtapes = configurationProcessusAssemblage.value("ProcessusAssemblage/etapes").toInt();
-    QString nomImage =
-      configurationProcessusAssemblage.value("ProcessusAssemblage/image").toString();
+    nom = configurationProcessusAssemblage.value("ProcessusAssemblage/nom").toString();
+    nbEtapes = configurationProcessusAssemblage.value("ProcessusAssemblage/etapes").toInt();
+    QString  nomImage = configurationProcessusAssemblage.value("ProcessusAssemblage/image").toString();
     bool existenceGlossaire =
       configurationProcessusAssemblage.value("ProcessusAssemblage/glossaire").toBool();
     qDebug() << Q_FUNC_INFO << "nom" << nom << "nbEtapes" << nbEtapes << "nomImage" << nomImage
@@ -56,20 +52,28 @@ void ProcessusAssemblage::chargerProcessusAssemblage(const QString& nomProcessus
             image=2n7002.png
          */
         QString nomSection = QString("Etape%1").arg(i);
-        QString nom        = configurationProcessusAssemblage.value(nomSection + "/nom").toString();
-        int     nbBacs     = configurationProcessusAssemblage.value(nomSection + "/bacs").toInt();
-        qDebug() << Q_FUNC_INFO << "nom" << nom << "nbBacs" << nbBacs;
+        nomOperation       = configurationProcessusAssemblage.value(nomSection + "/nom").toString();
+        nbBacs             = configurationProcessusAssemblage.value(nomSection + "/bacs").toInt();
+        qDebug() << Q_FUNC_INFO << "nomOperation" << nomOperation << "nbBacs" << nbBacs;
     }
 }
 
-QString ProcessusAssemblage::getNom() const
+QString ProcessusAssemblage::getNom()
 {
-    qDebug() << Q_FUNC_INFO << "méthode exéctutée";
-    return this->nom;
-    qDebug() << "nom" << nom;
+    return nom;
 }
 
-int ProcessusAssemblage::getNbEtapes() const
+int ProcessusAssemblage::getNbEtapes()
 {
     return nbEtapes;
+}
+
+int ProcessusAssemblage::getNbBacs()
+{
+    return nbBacs;
+}
+
+QString ProcessusAssemblage::getNomOperation()
+{
+    return nomOperation;
 }

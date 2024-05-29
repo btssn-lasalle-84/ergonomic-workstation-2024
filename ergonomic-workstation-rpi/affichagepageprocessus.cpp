@@ -1,4 +1,5 @@
 #include "affichagepageprocessus.h"
+#include "processusassemblage.h"
 #include "etape.h"
 #include "choix.h"
 #include <QDebug>
@@ -15,22 +16,22 @@
 AffichagePageProcessus::AffichagePageProcessus(QStackedWidget* fenetres,
                                                QString         nomProcessus,
                                                int             nbEtapes,
-                                               Etape*          etape) :
+                                               Etape*          etape,
+                                               ProcessusAssemblage* processus) :
     QWidget(fenetres),
-    fenetres(fenetres), etape(etape), nbEtapes(nbEtapes), choixBouton(0)
+    fenetres(fenetres), etape(etape), nbEtapes(nbEtapes), processusAssemblage(processus), choixBouton(0)
 {
     qDebug() << Q_FUNC_INFO;
     // ajoute une page
     page = new QWidget(this);
     fenetres->addWidget(page);
-
     // les widgets
     this->numerotationEtapes =
       new QLabel(QString::number(etape->getNumero()) + QString("/") + QString::number(nbEtapes),
                  this);
     this->nomProcessus          = new QLabel(nomProcessus, this);
     this->chronometre           = new QLabel("00:00", this);
-    this->nomOperation          = new QLabel("Opération", this);
+    this->nomOperation          = new QLabel(processus->getNomOperation(), this);
     this->commentairesOperation = new QLabel("...", this);
     this->photoOperation        = new QLabel("[photo]", this);
     for(int i = 0; i < NB_BACS_MAX; ++i)

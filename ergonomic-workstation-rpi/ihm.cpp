@@ -228,7 +228,7 @@ void IHM::chargerProcessusAssemblage(int numeroProcessus)
     qDebug() << Q_FUNC_INFO << "Nombre d'étapes :" << nbEtapes;
 
     AffichagePageProcessus* pageProcessus =
-      new AffichagePageProcessus(fenetres, nom, processusAssemblage->getNbEtapes(), etape);
+      new AffichagePageProcessus(fenetres, nom, processusAssemblage->getNbEtapes(), etape, processusAssemblage);
     pageProcessus->afficher();
 }
 
