@@ -37,7 +37,8 @@ void ProcessusAssemblage::chargerProcessusAssemblage(const QString& nomProcessus
         image=module-oled-bp.png
         glossaire=true
      */
-    QString nom      = configurationProcessusAssemblage.value("ProcessusAssemblage/nom").toString();
+    QString nomProcessus =
+      configurationProcessusAssemblage.value("ProcessusAssemblage/nom").toString();
     int     nbEtapes = configurationProcessusAssemblage.value("ProcessusAssemblage/etapes").toInt();
     QString nomImage =
       configurationProcessusAssemblage.value("ProcessusAssemblage/image").toString();
@@ -59,4 +60,16 @@ void ProcessusAssemblage::chargerProcessusAssemblage(const QString& nomProcessus
         int     nbBacs     = configurationProcessusAssemblage.value(nomSection + "/bacs").toInt();
         qDebug() << Q_FUNC_INFO << "nom" << nom << "nbBacs" << nbBacs;
     }
+}
+
+QString ProcessusAssemblage::getNom() const
+{
+    qDebug() << Q_FUNC_INFO << "méthode exéctutée";
+    return this->nom;
+    qDebug() << "nom" << nom;
+}
+
+int ProcessusAssemblage::getNbEtapes() const
+{
+    return nbEtapes;
 }
