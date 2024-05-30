@@ -20,6 +20,7 @@ class Etape
 
     int     getNumero() const;
     QString getNom() const;
+    int     getNbBacs() const;
 };
 
 #endif // ETAPE_H

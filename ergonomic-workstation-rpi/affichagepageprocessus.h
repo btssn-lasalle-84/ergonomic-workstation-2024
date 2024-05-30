@@ -6,44 +6,62 @@
 
 #define NB_BACS_MAX 6
 
-class Etape;
-class Bac;
 class ProcessusAssemblage;
 class Etape;
-class Choix;
+class Bac;
+class DialogueModule;
 
 class AffichagePageProcessus : public QWidget
 {
     Q_OBJECT
   private:
     ProcessusAssemblage* processusAssemblage;
+    DialogueModule*      dialogueModule;
     Etape*               etape;
+    int                  numeroEtapeCourante;
     int                  nbEtapes;
     // GUI
-    QStackedWidget*  fenetres;
-    QWidget*         page;
-    QLabel*          numerotationEtapes;
-    QLabel*          nomProcessus;
-    QLabel*          chronometre;
-    QLabel*          nomOperation;
-    QLabel*          commentairesOperation;
-    QLabel*          photoOperation;
-    QVector<QLabel*> bacs;
-    Choix*           boutonEtapeSuivante;
-    Choix*           boutonAbandon;
-    int              choixBouton;
+    QStackedWidget*       fenetres;
+    QWidget*              page;
+    QLabel*               numerotationEtapes;
+    QLabel*               nomProcessus;
+    QLabel*               chronometre;
+    QLabel*               nomOperation;
+    QLabel*               commentairesOperation;
+    QLabel*               photoOperation;
+    QVector<QLabel*>      bacs;
+    QVector<QPushButton*> boutonsPageProcessus;
+    QPushButton*          boutonEtapeSuivante;
+    QPushButton*          boutonAbandon;
+    int                   choixBouton;
+
+    /**
+     * @enum ActionPageProcessus
+     * @brief Définit les actions des boutons sélectionnables dans cette fenêtre
+     *
+     */
+    enum ActionPageProcessus
+    {
+        // @todo définir les actions des boutons sélectionnables dans cette fenêtre
+        NbActionsPageProcessus
+    };
 
     void creerConnexionsBoutonsNavigation();
 
   public:
     explicit AffichagePageProcessus(QStackedWidget*      fenetres,
                                     ProcessusAssemblage* processus,
-                                    Etape*               etape);
+                                    DialogueModule*      dialogueModule);
     ~AffichagePageProcessus();
 
   public slots:
     void afficher();
+    void afficherEtape();
     void abandonner();
+    // déclenchés par l'encodeur du module EC
+    void avancerChoix();
+    void reculerChoix();
+    void validerChoix();
 
   signals:
     void abandon(QString nomProcessus);

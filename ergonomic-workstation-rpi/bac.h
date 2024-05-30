@@ -13,6 +13,7 @@ class Bac
 
   public:
     Bac(int idBac, QString typeDePiece, int nbPieces, QString nomImagePiece);
+    ~Bac();
 };
 
 #endif // BAC_H

@@ -1,7 +1,6 @@
 #include "ihm.h"
 #include "processusassemblage.h"
 #include "affichagepageprocessus.h"
-#include "etape.h"
 #include "dialoguemodule.h"
 #include <QDebug>
 
@@ -215,25 +214,39 @@ void IHM::afficherFenetreStatistique()
 
 void IHM::afficherFenetreProcessus()
 {
+    listeDeroulanteProcessus->setCurrentIndex(0);
     fenetres->setCurrentIndex(Fenetre::Processus);
     qDebug() << Q_FUNC_INFO << "fenetre" << fenetres->indexOf(fenetreProcessus);
 }
 
 void IHM::chargerProcessusAssemblage(int numeroProcessus)
 {
+    if(listeDeroulanteProcessus->currentIndex() == 0)
+        return;
     processusAssemblage->chargerProcessusAssemblage(listeDeroulanteProcessus->currentText());
     qDebug() << Q_FUNC_INFO << "numeroProcessus" << numeroProcessus;
     qDebug() << Q_FUNC_INFO << "nomProcessus" << processusAssemblage->getNom();
     qDebug() << Q_FUNC_INFO << "nbEtapes" << processusAssemblage->getNbEtapes();
 
-    AffichagePageProcessus* pageProcessus =
-      new AffichagePageProcessus(fenetres, processusAssemblage, etape);
-    pageProcessus->afficher();
+    if(processusAssemblage->getNbEtapes() > 0)
+    {
+        pageProcessus = new AffichagePageProcessus(fenetres, processusAssemblage, dialogueModule);
+        connect(pageProcessus,
+                SIGNAL(abandon(QString)),
+                this,
+                SLOT(abandonnerProcessusAssemblage(QString)));
+        pageProcessus->afficher();
+    }
 }
 
 void IHM::abandonnerProcessusAssemblage(QString nomProcessus)
 {
     qDebug() << Q_FUNC_INFO << "nomProcessus" << nomProcessus;
+    disconnect(pageProcessus,
+               SIGNAL(abandon(QString)),
+               this,
+               SLOT(abandonnerProcessusAssemblage(QString)));
+    delete pageProcessus;
     // @todo gérer l'abandon d'un processus d'assemblage
     // puis
     afficherFenetreProcessus();

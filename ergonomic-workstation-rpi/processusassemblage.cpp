@@ -1,8 +1,6 @@
 #include "processusassemblage.h"
 #include "postetravail.h"
 #include "etape.h"
-#include "dialoguemodule.h"
-#include "etape.h"
 #include "bac.h"
 #include <QDebug>
 #include <QDir>
@@ -10,8 +8,8 @@
 #include <QWidget>
 
 ProcessusAssemblage::ProcessusAssemblage(QObject* parent) :
-    QObject(parent), posteTravail(new PosteTravail(this)), dialogueModule(new DialogueModule(this)),
-    nom(""), tempsMoyen(0), nbPieces(0), nbPiecesDifferentes(0), nbEtapes(0)
+    QObject(parent), posteTravail(new PosteTravail(this)), nom(""), tempsMoyen(0), nbPieces(0),
+    nbPiecesDifferentes(0), nbEtapes(0)
 {
     qDebug() << Q_FUNC_INFO;
 }
@@ -47,6 +45,7 @@ void ProcessusAssemblage::chargerProcessusAssemblage(const QString& nomProcessus
              << "existenceGlossaire" << existenceGlossaire;
 
     // Parcourir les étapes du processus
+    etapes.clear();
     for(int i = 1; i <= nbEtapes; i++)
     {
         /*
@@ -56,11 +55,12 @@ void ProcessusAssemblage::chargerProcessusAssemblage(const QString& nomProcessus
             bacs=1
             image=2n7002.png
          */
-        QString nomSection = QString("Etape%1").arg(i);
-        nomOperation       = configurationProcessusAssemblage.value(nomSection + "/nom").toString();
-        int nbBacs         = configurationProcessusAssemblage.value(nomSection + "/bacs").toInt();
-        qDebug() << Q_FUNC_INFO << "nomOperation" << nomOperation << "nbBacs" << nbBacs
-                 << "nomSection" << nomSection;
+        QString nomSectionEtape = QString("Etape%1").arg(i);
+        QString nomEtape =
+          configurationProcessusAssemblage.value(nomSectionEtape + "/nom").toString();
+        int nbBacs = configurationProcessusAssemblage.value(nomSectionEtape + "/bacs").toInt();
+        qDebug() << Q_FUNC_INFO << "nomSectionEtape" << nomSectionEtape << "nomEtape" << nomEtape
+                 << "nbBacs" << nbBacs;
         for(int j = 1; j <= nbBacs; j++)
         {
             QString nomSectionBac = QString("Bac%1.%2").arg(i).arg(j);
@@ -70,18 +70,13 @@ void ProcessusAssemblage::chargerProcessusAssemblage(const QString& nomProcessus
             int nbPieces = configurationProcessusAssemblage.value(nomSectionBac + "/nb").toInt();
             QString nomImagePiece =
               configurationProcessusAssemblage.value(nomSectionBac + "/image").toString();
-
+            qDebug() << Q_FUNC_INFO << "nomSectionBac" << nomSectionBac;
             bacUtilise.push_back(new Bac(idBac, nomPiece, nbPieces, nomImagePiece));
-            qDebug() << Q_FUNC_INFO << "nomSectionBac" << nomSectionBac << "idBac" << idBac
-                     << "nomPiece" << nomPiece << "nomImagePiece" << nomImagePiece << "bacUtilise"
-                     << bacUtilise;
         }
         etapes.push_back(new Etape(i, nom, nomImage, bacUtilise));
-        qDebug() << Q_FUNC_INFO << "etape" << i << "Etape" << etapes;
-
         bacUtilise.clear();
-        // @todo instancier les objets Etape et les ajouter à la QList etapes
     }
+    qDebug() << Q_FUNC_INFO << "nbEtapes chargées" << etapes.size();
 }
 
 QString ProcessusAssemblage::getNom() const
@@ -97,11 +92,6 @@ int ProcessusAssemblage::getNbEtapes() const
 int ProcessusAssemblage::getNbBacs() const
 {
     return nbBacs;
-}
-
-QString ProcessusAssemblage::getNomOperation() const
-{
-    return nomOperation;
 }
 
 QString ProcessusAssemblage::getNomImage() const

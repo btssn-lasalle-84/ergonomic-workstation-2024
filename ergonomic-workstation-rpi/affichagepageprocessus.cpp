@@ -1,9 +1,8 @@
 #include "affichagepageprocessus.h"
 #include "processusassemblage.h"
 #include "etape.h"
-#include "choix.h"
-#include "etape.h"
 #include "bac.h"
+#include "dialoguemodule.h"
 #include <QDebug>
 
 /**
@@ -15,32 +14,35 @@
  */
 AffichagePageProcessus::AffichagePageProcessus(QStackedWidget*      fenetres,
                                                ProcessusAssemblage* processus,
-                                               Etape*               etape) :
+                                               DialogueModule*      dialogueModule) :
     QWidget(fenetres),
-    processusAssemblage(processus), nbEtapes(processusAssemblage->getNbEtapes()),
-    fenetres(fenetres), choixBouton(0), etape(etape)
+    processusAssemblage(processus), dialogueModule(dialogueModule), etape(nullptr),
+    numeroEtapeCourante(0), nbEtapes(processusAssemblage->getNbEtapes()), fenetres(fenetres),
+    choixBouton(0)
 {
     qDebug() << Q_FUNC_INFO;
     // ajoute une page
     page = new QWidget(this);
     fenetres->addWidget(page);
-    qDebug() << Q_FUNC_INFO << "fenetre" << fenetres->indexOf(page);
     // les widgets
-    this->numerotationEtapes =
-      new QLabel(QString::number(1) + QString("/") + QString::number(nbEtapes), this);
-    this->nomProcessus = new QLabel(processusAssemblage->getNom(), this);
-    this->chronometre  = new QLabel("00:00", this);
-    this->nomOperation = new QLabel(processus->getEtapes().at(1)->getNom(), this);
-    qDebug() << Q_FUNC_INFO << "nomOperation" << nomOperation;
-    this->commentairesOperation = new QLabel("...", this);
-    this->photoOperation        = new QLabel("[photo]", this);
+    this->numerotationEtapes    = new QLabel("", this);
+    this->nomProcessus          = new QLabel(processusAssemblage->getNom(), this);
+    this->chronometre           = new QLabel("00:00", this);
+    this->nomOperation          = new QLabel("", this);
+    this->commentairesOperation = new QLabel("", this);
+    this->photoOperation        = new QLabel("", this);
     for(int i = 0; i < NB_BACS_MAX; ++i)
     {
         bacs.push_back(new QLabel(QString("Bac ") + QString::number(i + 1), this));
     }
-    this->boutonEtapeSuivante = new Choix("->", 0, this);      // choix 0
-    this->boutonAbandon       = new Choix("Abandon", 1, this); // choix 1
-    this->boutonAbandon->setCouleur(150, 0, 150);
+    for(int i = 0; i < bacs.size(); ++i)
+    {
+        bacs[i]->setVisible(false);
+    }
+    this->boutonEtapeSuivante = new QPushButton("->", this); // choix 0
+    boutonsPageProcessus.push_back(boutonEtapeSuivante);
+    this->boutonAbandon = new QPushButton("Abandon", this); // choix 1
+    boutonsPageProcessus.push_back(boutonAbandon);
     creerConnexionsBoutonsNavigation();
 
     // les layouts
@@ -86,6 +88,11 @@ AffichagePageProcessus::AffichagePageProcessus(QStackedWidget*      fenetres,
 
     // fixe le layout
     page->setLayout(layoutPage);
+
+    // récupère l'étape courante
+    etape = processusAssemblage->getEtapes().at(numeroEtapeCourante);
+    // et l'affiche
+    afficherEtape();
 }
 
 AffichagePageProcessus::~AffichagePageProcessus()
@@ -98,6 +105,21 @@ void AffichagePageProcessus::afficher()
     fenetres->setCurrentWidget(page);
 }
 
+void AffichagePageProcessus::afficherEtape()
+{
+    // @todo mettre à jour les widgets de la page pour l'affichage de l'étape en cours
+    // exemple :
+    this->numerotationEtapes->setText(QString::number(etape->getNumero()) + QString("/") +
+                                      QString::number(nbEtapes));
+    this->nomOperation          = new QLabel(etape->getNom());
+    this->commentairesOperation = new QLabel("...");
+    this->photoOperation        = new QLabel("[photo]");
+    for(int i = 0; i < etape->getNbBacs(); ++i)
+    {
+        bacs[i]->setVisible(true);
+    }
+}
+
 void AffichagePageProcessus::abandonner()
 {
     emit abandon(this->nomProcessus->text());
@@ -105,5 +127,24 @@ void AffichagePageProcessus::abandonner()
 
 void AffichagePageProcessus::creerConnexionsBoutonsNavigation()
 {
-    connect(boutonAbandon, SIGNAL(clicked(int)), this, SLOT(abandonner()));
+    // @todo pour les boutons boutonsPageProcessus
+    connect(boutonAbandon, SIGNAL(clicked()), this, SLOT(abandonner()));
+}
+
+void AffichagePageProcessus::avancerChoix()
+{
+    // @todo choixBouton suivant
+    qDebug() << Q_FUNC_INFO << "choixBouton" << choixBouton;
+}
+
+void AffichagePageProcessus::reculerChoix()
+{
+    // @todo choixBouton précédent
+    qDebug() << Q_FUNC_INFO << "choixBouton" << choixBouton;
+}
+
+void AffichagePageProcessus::validerChoix()
+{
+    qDebug() << Q_FUNC_INFO << "choixBouton" << choixBouton;
+    // @todo simuler un clic sur le bouton sélectionné pour déclencher le slot correspondant
 }

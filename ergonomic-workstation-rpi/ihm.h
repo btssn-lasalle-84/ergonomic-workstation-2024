@@ -63,26 +63,24 @@ class IHM : public QWidget
   private:
     ProcessusAssemblage* processusAssemblage; //!< association
     DialogueModule*      dialogueModule;
-    Etape*               etape;
     QString              cheminRacineProcessusAssemblage;
     int choixBoutonsFenetreMenu; //!< le numéro de boutons sélectionnables par l'encodeur dans la
                                  //!< fenêtre Menu
+    AffichagePageProcessus* pageProcessus;
     // Les ressources IHM
     QStackedWidget* fenetres;
     QWidget*        fenetreMenu;
     QWidget*        fenetreStatistique;
     QWidget*        fenetreProcessus;
     QVector<QPushButton*>
-                 boutonsFenetreMenu; //!< les boutons sélectionnables par l'encodeur dans la fenêtre Menu
-    QPushButton* boutonRetourMenu1; // Depuis Processus
-    QPushButton* boutonRetourMenu2; // Depuis Statistique
-    QLabel*      titre;
-    QLabel*      version;
-    QLabel*      connexionPosteDeTravail;
-    // @todo à transformer en QLabel
+      boutonsFenetreMenu; //!< les boutons sélectionnables par l'encodeur dans la fenêtre Menu
+    QPushButton*          boutonRetourMenu1; // Depuis Processus
+    QPushButton*          boutonRetourMenu2; // Depuis Statistique
+    QLabel*               titre;
+    QLabel*               version;
+    QLabel*               connexionPosteDeTravail;
     QVector<QPushButton*> listeProcessus;
     QComboBox*            listeDeroulanteProcessus;
-    QString               nom;
 
     /**
      * @enum Fenetre

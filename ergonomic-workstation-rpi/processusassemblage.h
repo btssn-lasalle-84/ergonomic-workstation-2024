@@ -4,10 +4,7 @@
 
 #include <QObject>
 #include <QList>
-#include <QWidget>
 
-class Bac;
-class Etape;
 class PosteTravail;
 class Etape;
 class DialogueModule;
@@ -16,17 +13,15 @@ class ProcessusAssemblage : public QObject
 {
     Q_OBJECT
   private:
-    PosteTravail*   posteTravail;
-    QList<Etape*>   etapes;
-    DialogueModule* dialogueModule;
-    QString         nom;
-    QString         nomOperation;
-    QString         nomImage;
-    int             tempsMoyen;
-    int             nbPieces;
-    int             nbPiecesDifferentes;
-    int             nbEtapes;
-    int             nbBacs;
+    PosteTravail* posteTravail;
+    QList<Etape*> etapes;
+    QString       nom;
+    QString       nomImage;
+    int           tempsMoyen;
+    int           nbPieces;
+    int           nbPiecesDifferentes;
+    int           nbEtapes;
+    int           nbBacs;
 
   public:
     explicit ProcessusAssemblage(QObject* parent = nullptr);
