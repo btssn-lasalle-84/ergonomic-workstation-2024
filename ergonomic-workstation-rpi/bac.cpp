@@ -1,5 +1,5 @@
 #include "bac.h"
 
-Bac::Bac() : idBac(-1), typeDePiece()
+Bac::Bac(int idBac, QString typeDePiece) : idBac(-1), typeDePiece()
 {
 }

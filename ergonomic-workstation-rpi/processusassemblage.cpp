@@ -2,6 +2,8 @@
 #include "postetravail.h"
 #include "etape.h"
 #include "dialoguemodule.h"
+#include "etape.h"
+#include "bac.h"
 #include <QDebug>
 #include <QDir>
 #include <QSettings>
@@ -59,24 +61,6 @@ void ProcessusAssemblage::chargerProcessusAssemblage(const QString& nomProcessus
         nbBacs             = configurationProcessusAssemblage.value(nomSection + "/bacs").toInt();
         qDebug() << Q_FUNC_INFO << "nomOperation" << nomOperation << "nbBacs" << nbBacs
                  << "nomSection" << nomSection;
-        // @todo pour chaque étape, parcourir les bacs pour les instancier et les ajouter à un
-        /*
-            Exemple de bacs pour une étape :
-            [Etape2]
-            ...
-            [Bac2.1]
-            id=2
-            piece="1k"
-            nb=3
-            image=resistance.png
-            [Bac2.2]
-            id=3
-            piece="4,7k"
-            nb=3
-            image=resistance.png
-         */
-        // QVector, puis
-        // @todo instancier les objets Etape et les ajouter à la QList etapes
         for(int j = 1; j <= nbBacs; j++)
         {
             QString nomSectionBac = QString("Bac%1.%2").arg(i).arg(j);
@@ -86,11 +70,16 @@ void ProcessusAssemblage::chargerProcessusAssemblage(const QString& nomProcessus
             nomImagePiece =
               configurationProcessusAssemblage.value(nomSectionBac + "/image").toString();
 
-            bacUtilise.push_back(idBac);
+            bacUtilise.push_back(new Bac(idBac, nomPiece));
             qDebug() << Q_FUNC_INFO << "nomSectionBac" << nomSectionBac << "idBac" << idBac
                      << "nomPiece" << nomPiece << "nomImagePiece" << nomImagePiece << "bacUtilise"
                      << bacUtilise;
         }
+        // @todo instancier les objets Etape et les ajouter à la QList etapes
+        etapes.push_back(new Etape(i, bacUtilise));
+        qDebug() << Q_FUNC_INFO << "nbEtape" << i << "bacUtilise" << bacUtilise;
+
+        bacUtilise.clear();
     }
 }
 

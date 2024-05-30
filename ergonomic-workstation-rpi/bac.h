@@ -10,7 +10,7 @@ class Bac
     QString typeDePiece;
 
   public:
-    Bac();
+    Bac(int idBac, QString typeDePiece);
 };
 
 #endif // BAC_H

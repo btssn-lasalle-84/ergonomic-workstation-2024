@@ -6,6 +6,8 @@
 #include <QList>
 #include <QWidget>
 
+class Bac;
+class Etape;
 class PosteTravail;
 class Etape;
 class DialogueModule;
@@ -22,7 +24,7 @@ class ProcessusAssemblage : public QObject
     QString         nomPiece;
     QString         nomImagePiece;
     QDialog*        dialog;
-    QVector<int>    bacUtilise;
+    QVector<Bac*>   bacUtilise;
     int             tempsMoyen;
     int             nbPieces;
     int             nbPiecesDifferentes;
