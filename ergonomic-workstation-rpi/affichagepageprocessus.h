@@ -17,6 +17,7 @@ class AffichagePageProcessus : public QWidget
     Q_OBJECT
   private:
     ProcessusAssemblage* processusAssemblage;
+    Etape*               etape;
     int                  nbEtapes;
     // GUI
     QStackedWidget*  fenetres;

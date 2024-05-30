@@ -204,16 +204,19 @@ void IHM::initialiserDialogueModule()
 void IHM::afficherFenetreMenu()
 {
     fenetres->setCurrentIndex(Fenetre::Menu);
+    qDebug() << Q_FUNC_INFO << "fenetre" << fenetres->indexOf(fenetreMenu);
 }
 
 void IHM::afficherFenetreStatistique()
 {
     fenetres->setCurrentIndex(Fenetre::Statistique);
+    qDebug() << Q_FUNC_INFO << "fenetre" << fenetres->indexOf(fenetreStatistique);
 }
 
 void IHM::afficherFenetreProcessus()
 {
     fenetres->setCurrentIndex(Fenetre::Processus);
+    qDebug() << Q_FUNC_INFO << "fenetre" << fenetres->indexOf(fenetreProcessus);
 }
 
 void IHM::chargerProcessusAssemblage(int numeroProcessus)

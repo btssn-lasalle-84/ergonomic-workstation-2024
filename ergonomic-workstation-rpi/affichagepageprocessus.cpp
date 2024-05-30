@@ -18,18 +18,20 @@ AffichagePageProcessus::AffichagePageProcessus(QStackedWidget*      fenetres,
                                                Etape*               etape) :
     QWidget(fenetres),
     processusAssemblage(processus), nbEtapes(processusAssemblage->getNbEtapes()),
-    fenetres(fenetres), choixBouton(0)
+    fenetres(fenetres), choixBouton(0), etape(etape)
 {
     qDebug() << Q_FUNC_INFO;
     // ajoute une page
     page = new QWidget(this);
     fenetres->addWidget(page);
+    qDebug() << Q_FUNC_INFO << "fenetre" << fenetres->indexOf(page);
     // les widgets
     this->numerotationEtapes =
       new QLabel(QString::number(1) + QString("/") + QString::number(nbEtapes), this);
-    this->nomProcessus          = new QLabel(processusAssemblage->getNom(), this);
-    this->chronometre           = new QLabel("00:00", this);
-    this->nomOperation          = new QLabel(processus->getNomOperation(), this);
+    this->nomProcessus = new QLabel(processusAssemblage->getNom(), this);
+    this->chronometre  = new QLabel("00:00", this);
+    this->nomOperation = new QLabel(processus->getEtapes().at(1)->getNom(), this);
+    qDebug() << Q_FUNC_INFO << "nomOperation" << nomOperation;
     this->commentairesOperation = new QLabel("...", this);
     this->photoOperation        = new QLabel("[photo]", this);
     for(int i = 0; i < NB_BACS_MAX; ++i)

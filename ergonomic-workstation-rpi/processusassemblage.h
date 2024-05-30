@@ -22,7 +22,6 @@ class ProcessusAssemblage : public QObject
     QString         nom;
     QString         nomOperation;
     QString         nomImage;
-    QDialog*        dialog;
     int             tempsMoyen;
     int             nbPieces;
     int             nbPiecesDifferentes;
@@ -32,13 +31,14 @@ class ProcessusAssemblage : public QObject
   public:
     explicit ProcessusAssemblage(QObject* parent = nullptr);
     ~ProcessusAssemblage();
-    void    chargerProcessusAssemblage(const QString&);
-    QString getNom() const;
-    QString getNomOperation() const;
-    QString getNomImage() const;
-    int     getNbEtapes() const;
-    int     getNbPieces() const;
-    int     getNbBacs() const;
+    void          chargerProcessusAssemblage(const QString&);
+    QString       getNom() const;
+    QString       getNomOperation() const;
+    QString       getNomImage() const;
+    int           getNbEtapes() const;
+    int           getNbPieces() const;
+    int           getNbBacs() const;
+    QList<Etape*> getEtapes() const;
 
   signals:
 };

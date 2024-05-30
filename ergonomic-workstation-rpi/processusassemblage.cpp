@@ -71,12 +71,12 @@ void ProcessusAssemblage::chargerProcessusAssemblage(const QString& nomProcessus
             QString nomImagePiece =
               configurationProcessusAssemblage.value(nomSectionBac + "/image").toString();
 
-            bacUtilise.push_back(new Bac(idBac, nomPiece, nbPieces, nomImage));
+            bacUtilise.push_back(new Bac(idBac, nomPiece, nbPieces, nomImagePiece));
             qDebug() << Q_FUNC_INFO << "nomSectionBac" << nomSectionBac << "idBac" << idBac
                      << "nomPiece" << nomPiece << "nomImagePiece" << nomImagePiece << "bacUtilise"
                      << bacUtilise;
         }
-        etapes.push_back(new Etape(i, bacUtilise));
+        etapes.push_back(new Etape(i, nom, nomImage, bacUtilise));
         qDebug() << Q_FUNC_INFO << "etape" << i << "Etape" << etapes;
 
         bacUtilise.clear();
@@ -107,4 +107,9 @@ QString ProcessusAssemblage::getNomOperation() const
 QString ProcessusAssemblage::getNomImage() const
 {
     return nomImage;
+}
+
+QList<Etape*> ProcessusAssemblage::getEtapes() const
+{
+    return etapes;
 }
