@@ -13,7 +13,7 @@ class Etape
     bool          valide;
 
   public:
-    explicit Etape();
+    explicit Etape(int numero, QVector<Bac*> bacs);
     ~Etape();
 
     int getNumero() const;

@@ -9,17 +9,13 @@
  * @details Gère l'affichage pour une étape du processus d'assemblage
  * @fn AffichagePageProcessus::AffichagePageProcessus
  * @param fenetres la page à ajouter à fenetres
- * @param nomProcessus le nom du processus d'assemblage
- * @param nbEtapes le nombre d'étapes total pour le processus d'assemblage
- * @param etape l'Etape à afficher
+ * @param processus le processus d'assemblage
  */
-AffichagePageProcessus::AffichagePageProcessus(QStackedWidget* fenetres,
-                                               QString         nomProcessus,
-                                               int             nbEtapes,
-                                               Etape*          etape,
+AffichagePageProcessus::AffichagePageProcessus(QStackedWidget*      fenetres,
                                                ProcessusAssemblage* processus) :
     QWidget(fenetres),
-    fenetres(fenetres), etape(etape), nbEtapes(nbEtapes), processusAssemblage(processus), choixBouton(0)
+    processusAssemblage(processus), nbEtapes(processusAssemblage->getNbEtapes()),
+    fenetres(fenetres), choixBouton(0)
 {
     qDebug() << Q_FUNC_INFO;
     // ajoute une page
@@ -27,9 +23,8 @@ AffichagePageProcessus::AffichagePageProcessus(QStackedWidget* fenetres,
     fenetres->addWidget(page);
     // les widgets
     this->numerotationEtapes =
-      new QLabel(QString::number(etape->getNumero()) + QString("/") + QString::number(nbEtapes),
-                 this);
-    this->nomProcessus          = new QLabel(nomProcessus, this);
+      new QLabel(QString::number(1) + QString("/") + QString::number(nbEtapes), this);
+    this->nomProcessus          = new QLabel(processusAssemblage->getNom(), this);
     this->chronometre           = new QLabel("00:00", this);
     this->nomOperation          = new QLabel(processus->getNomOperation(), this);
     this->commentairesOperation = new QLabel("...", this);

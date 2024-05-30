@@ -15,6 +15,8 @@ class AffichagePageProcessus : public QWidget
     Q_OBJECT
   private:
     ProcessusAssemblage* processusAssemblage;
+    int                  nbEtapes;
+    // GUI
     QStackedWidget*  fenetres;
     QWidget*         page;
     QLabel*          numerotationEtapes;
@@ -26,18 +28,12 @@ class AffichagePageProcessus : public QWidget
     QVector<QLabel*> bacs;
     Choix*           boutonEtapeSuivante;
     Choix*           boutonAbandon;
-    Etape*           etape;
-    int              nbEtapes;
     int              choixBouton;
 
     void creerConnexionsBoutonsNavigation();
 
   public:
-    explicit AffichagePageProcessus(QStackedWidget* fenetres,
-                                    QString         nomProcessus,
-                                    int             nbEtapes,
-                                    Etape*          etape,
-                                    ProcessusAssemblage* processus);
+    explicit AffichagePageProcessus(QStackedWidget* fenetres, ProcessusAssemblage* processus);
     ~AffichagePageProcessus();
 
   public slots:

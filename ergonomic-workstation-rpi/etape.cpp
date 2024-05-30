@@ -1,6 +1,6 @@
 #include "etape.h"
 
-Etape::Etape() : numero(1), valide(false)
+Etape::Etape(int numero, QVector<Bac*> bacs) : numero(numero), bacs(bacs), valide(false)
 {
 }
 

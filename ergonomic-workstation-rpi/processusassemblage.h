@@ -30,11 +30,11 @@ class ProcessusAssemblage : public QObject
     explicit ProcessusAssemblage(QObject* parent = nullptr);
     ~ProcessusAssemblage();
     void    chargerProcessusAssemblage(const QString&);
-    QString getNom();
-    QString getNomOperation();
-    int     getNbEtapes();
-    int     getNbPieces();
-    int     getNbBacs();
+    QString getNom() const;
+    QString getNomOperation() const;
+    int     getNbEtapes() const;
+    int     getNbPieces() const;
+    int     getNbBacs() const;
   signals:
 };
 

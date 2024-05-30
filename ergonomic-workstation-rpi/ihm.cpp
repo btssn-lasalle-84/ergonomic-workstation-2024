@@ -218,17 +218,13 @@ void IHM::afficherFenetreProcessus()
 
 void IHM::chargerProcessusAssemblage(int numeroProcessus)
 {
-    qDebug() << Q_FUNC_INFO << "numeroProcessus" << numeroProcessus;
-    Etape* etape = new Etape;
     processusAssemblage->chargerProcessusAssemblage(listeDeroulanteProcessus->currentText());
-    QString nom      = processusAssemblage->getNom();
-    int     nbEtapes = processusAssemblage->getNbEtapes();
-
-    qDebug() << Q_FUNC_INFO << "Nom du processus :" << nom;
-    qDebug() << Q_FUNC_INFO << "Nombre d'étapes :" << nbEtapes;
+    qDebug() << Q_FUNC_INFO << "numeroProcessus" << numeroProcessus;
+    qDebug() << Q_FUNC_INFO << "nomProcessus" << processusAssemblage->getNom();
+    qDebug() << Q_FUNC_INFO << "nbEtapes" << processusAssemblage->getNbEtapes();
 
     AffichagePageProcessus* pageProcessus =
-      new AffichagePageProcessus(fenetres, nom, processusAssemblage->getNbEtapes(), etape, processusAssemblage);
+      new AffichagePageProcessus(fenetres, processusAssemblage);
     pageProcessus->afficher();
 }
 
