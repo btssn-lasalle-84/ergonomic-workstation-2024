@@ -42,6 +42,7 @@
  */
 #define RACINE_PROCESSUS_ASSEMBLAGE "/processus-assemblage"
 
+class Etape;
 class ProcessusAssemblage;
 class AffichagePageProcessus;
 class DialogueModule;
@@ -62,6 +63,7 @@ class IHM : public QWidget
   private:
     ProcessusAssemblage* processusAssemblage; //!< association
     DialogueModule*      dialogueModule;
+    Etape*               etape;
     QString              cheminRacineProcessusAssemblage;
     int choixBoutonsFenetreMenu; //!< le numéro de boutons sélectionnables par l'encodeur dans la
                                  //!< fenêtre Menu

@@ -6,6 +6,8 @@
 
 #define NB_BACS_MAX 6
 
+class Etape;
+class Bac;
 class ProcessusAssemblage;
 class Etape;
 class Choix;
@@ -33,7 +35,9 @@ class AffichagePageProcessus : public QWidget
     void creerConnexionsBoutonsNavigation();
 
   public:
-    explicit AffichagePageProcessus(QStackedWidget* fenetres, ProcessusAssemblage* processus);
+    explicit AffichagePageProcessus(QStackedWidget*      fenetres,
+                                    ProcessusAssemblage* processus,
+                                    Etape*               etape);
     ~AffichagePageProcessus();
 
   public slots:

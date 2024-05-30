@@ -2,6 +2,8 @@
 #include "processusassemblage.h"
 #include "etape.h"
 #include "choix.h"
+#include "etape.h"
+#include "bac.h"
 #include <QDebug>
 
 /**
@@ -12,7 +14,8 @@
  * @param processus le processus d'assemblage
  */
 AffichagePageProcessus::AffichagePageProcessus(QStackedWidget*      fenetres,
-                                               ProcessusAssemblage* processus) :
+                                               ProcessusAssemblage* processus,
+                                               Etape*               etape) :
     QWidget(fenetres),
     processusAssemblage(processus), nbEtapes(processusAssemblage->getNbEtapes()),
     fenetres(fenetres), choixBouton(0)
