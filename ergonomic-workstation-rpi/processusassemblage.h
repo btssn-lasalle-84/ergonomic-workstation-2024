@@ -19,12 +19,16 @@ class ProcessusAssemblage : public QObject
     DialogueModule* dialogueModule;
     QString         nom;
     QString         nomOperation;
+    QString         nomPiece;
+    QString         nomImagePiece;
     QDialog*        dialog;
+    QVector<int>    bacUtilise;
     int             tempsMoyen;
     int             nbPieces;
     int             nbPiecesDifferentes;
     int             nbEtapes;
     int             nbBacs;
+    int             idBac;
 
   public:
     explicit ProcessusAssemblage(QObject* parent = nullptr);

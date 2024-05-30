@@ -57,7 +57,8 @@ void ProcessusAssemblage::chargerProcessusAssemblage(const QString& nomProcessus
         QString nomSection = QString("Etape%1").arg(i);
         nomOperation       = configurationProcessusAssemblage.value(nomSection + "/nom").toString();
         nbBacs             = configurationProcessusAssemblage.value(nomSection + "/bacs").toInt();
-        qDebug() << Q_FUNC_INFO << "nomOperation" << nomOperation << "nbBacs" << nbBacs;
+        qDebug() << Q_FUNC_INFO << "nomOperation" << nomOperation << "nbBacs" << nbBacs
+                 << "nomSection" << nomSection;
         // @todo pour chaque étape, parcourir les bacs pour les instancier et les ajouter à un
         /*
             Exemple de bacs pour une étape :
@@ -76,6 +77,20 @@ void ProcessusAssemblage::chargerProcessusAssemblage(const QString& nomProcessus
          */
         // QVector, puis
         // @todo instancier les objets Etape et les ajouter à la QList etapes
+        for(int j = 1; j <= nbBacs; j++)
+        {
+            QString nomSectionBac = QString("Bac%1.%2").arg(i).arg(j);
+            idBac    = configurationProcessusAssemblage.value(nomSectionBac + "/id").toInt();
+            nomPiece = configurationProcessusAssemblage.value(nomSectionBac + "/piece").toString();
+            nbPieces = configurationProcessusAssemblage.value(nomSectionBac + "/nb").toInt();
+            nomImagePiece =
+              configurationProcessusAssemblage.value(nomSectionBac + "/image").toString();
+
+            bacUtilise.push_back(idBac);
+            qDebug() << Q_FUNC_INFO << "nomSectionBac" << nomSectionBac << "idBac" << idBac
+                     << "nomPiece" << nomPiece << "nomImagePiece" << nomImagePiece << "bacUtilise"
+                     << bacUtilise;
+        }
     }
 }
 
@@ -98,3 +113,6 @@ QString ProcessusAssemblage::getNomOperation() const
 {
     return nomOperation;
 }
+// QString ProcessusAssemblage::getNomImage()
+//{
+//}
