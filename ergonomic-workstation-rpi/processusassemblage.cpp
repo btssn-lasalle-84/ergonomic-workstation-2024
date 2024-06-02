@@ -58,9 +58,11 @@ void ProcessusAssemblage::chargerProcessusAssemblage(const QString& nomProcessus
         QString nomSectionEtape = QString("Etape%1").arg(i);
         QString nomEtape =
           configurationProcessusAssemblage.value(nomSectionEtape + "/nom").toString();
+        QString nomImageEtape =
+          configurationProcessusAssemblage.value(nomSectionEtape + "/image").toString();
         int nbBacs = configurationProcessusAssemblage.value(nomSectionEtape + "/bacs").toInt();
         qDebug() << Q_FUNC_INFO << "nomSectionEtape" << nomSectionEtape << "nomEtape" << nomEtape
-                 << "nbBacs" << nbBacs;
+                 << "nbBacs" << nbBacs << "nomImageEtape" << nomImageEtape;
         for(int j = 1; j <= nbBacs; j++)
         {
             QString nomSectionBac = QString("Bac%1.%2").arg(i).arg(j);
@@ -73,7 +75,7 @@ void ProcessusAssemblage::chargerProcessusAssemblage(const QString& nomProcessus
             qDebug() << Q_FUNC_INFO << "nomSectionBac" << nomSectionBac;
             bacUtilise.push_back(new Bac(idBac, nomPiece, nbPieces, nomImagePiece));
         }
-        etapes.push_back(new Etape(i, nom, nomImage, bacUtilise));
+        etapes.push_back(new Etape(i, nomEtape, nomImageEtape, bacUtilise));
         bacUtilise.clear();
     }
     qDebug() << Q_FUNC_INFO << "nbEtapes chargées" << etapes.size();

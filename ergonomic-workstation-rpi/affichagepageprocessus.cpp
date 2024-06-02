@@ -39,7 +39,7 @@ AffichagePageProcessus::AffichagePageProcessus(QStackedWidget*      fenetres,
     {
         bacs[i]->setVisible(false);
     }
-    this->boutonEtapeSuivante = new QPushButton("->", this); // choix 0
+    this->boutonEtapeSuivante = new QPushButton("Suivant", this); // choix 0
     boutonsPageProcessus.push_back(boutonEtapeSuivante);
     this->boutonAbandon = new QPushButton("Abandon", this); // choix 1
     boutonsPageProcessus.push_back(boutonAbandon);
@@ -111,9 +111,9 @@ void AffichagePageProcessus::afficherEtape()
     // exemple :
     this->numerotationEtapes->setText(QString::number(etape->getNumero()) + QString("/") +
                                       QString::number(nbEtapes));
-    this->nomOperation          = new QLabel(etape->getNom());
-    this->commentairesOperation = new QLabel("...");
-    this->photoOperation        = new QLabel("[photo]");
+    this->nomOperation->setText(etape->getNom());
+    this->commentairesOperation->setText("...");
+    this->photoOperation->setText("[photo]");
     for(int i = 0; i < etape->getNbBacs(); ++i)
     {
         bacs[i]->setVisible(true);

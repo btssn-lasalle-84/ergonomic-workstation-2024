@@ -32,6 +32,8 @@ HEADERS += \
 
 FORMS +=
 
+RESOURCES += ressources.qrc
+
 CONFIG(release, debug|release):DEFINES+=QT_NO_DEBUG_OUTPUT
 
 COPIES += dossier
