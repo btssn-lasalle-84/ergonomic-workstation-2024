@@ -25,10 +25,11 @@ AffichagePageProcessus::AffichagePageProcessus(QStackedWidget*      fenetres,
     page = new QWidget(this);
     fenetres->addWidget(page);
     // les widgets
-    this->numerotationEtapes    = new QLabel("", this);
-    this->nomProcessus          = new QLabel(processusAssemblage->getNom(), this);
-    this->chronometre           = new QLabel("00:00", this);
-    this->nomOperation          = new QLabel("", this);
+    this->numerotationEtapes = new QLabel("", this);
+    this->nomProcessus       = new QLabel(processusAssemblage->getNom(), this);
+    this->chronometre        = new QLabel("00:00", this);
+    this->nomOperation       = new QLabel("", this);
+    // @todo transformer le QLabel en QTextBrowser pour commentairesOperation
     this->commentairesOperation = new QLabel("", this);
     this->photoOperation        = new QLabel("", this);
     for(int i = 0; i < NB_BACS_MAX; ++i)
@@ -112,7 +113,10 @@ void AffichagePageProcessus::afficherEtape()
     this->numerotationEtapes->setText(QString::number(etape->getNumero()) + QString("/") +
                                       QString::number(nbEtapes));
     this->nomOperation->setText(etape->getNom());
+    // @todo si le fichier etapeX.html existe (QFileInfo::exists()) alors l'afficher avec
+    // setSource()
     this->commentairesOperation->setText("...");
+    // @todo à remplacer par un setPixmap(QPixmap(...))
     this->photoOperation->setText("[photo]");
     for(int i = 0; i < etape->getNbBacs(); ++i)
     {

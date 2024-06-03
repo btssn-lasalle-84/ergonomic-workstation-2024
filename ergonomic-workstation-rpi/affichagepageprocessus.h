@@ -21,12 +21,13 @@ class AffichagePageProcessus : public QWidget
     int                  numeroEtapeCourante;
     int                  nbEtapes;
     // GUI
-    QStackedWidget*       fenetres;
-    QWidget*              page;
-    QLabel*               numerotationEtapes;
-    QLabel*               nomProcessus;
-    QLabel*               chronometre;
-    QLabel*               nomOperation;
+    QStackedWidget* fenetres;
+    QWidget*        page;
+    QLabel*         numerotationEtapes;
+    QLabel*         nomProcessus;
+    QLabel*         chronometre;
+    QLabel*         nomOperation;
+    // @todo transformer le QLabel en QTextBrowser pour commentairesOperation
     QLabel*               commentairesOperation;
     QLabel*               photoOperation;
     QVector<QLabel*>      bacs;

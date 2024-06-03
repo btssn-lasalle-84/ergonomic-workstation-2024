@@ -21,6 +21,7 @@ ProcessusAssemblage::~ProcessusAssemblage()
 
 void ProcessusAssemblage::chargerProcessusAssemblage(const QString& nomProcessusAssemblage)
 {
+    // @todo initialiser l'attribut avec le chemin vers le processus d'assemblage
     QString fichierINI = QDir::currentPath() + QString(RACINE_PROCESSUS_ASSEMBLAGE) + QString("/") +
                          nomProcessusAssemblage + QString("/") + nomProcessusAssemblage +
                          QString(".ini");

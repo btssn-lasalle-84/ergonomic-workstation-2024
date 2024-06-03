@@ -17,19 +17,21 @@ class ProcessusAssemblage : public QObject
     QList<Etape*> etapes;
     QString       nom;
     QString       nomImage;
-    int           tempsMoyen;
-    int           nbPieces;
-    int           nbPiecesDifferentes;
-    int           nbEtapes;
-    int           nbBacs;
+    // @todo ajouter un attribut pour le chemin vers le processus d'assemblage
+    int tempsMoyen;
+    int nbPieces;
+    int nbPiecesDifferentes;
+    int nbEtapes;
+    int nbBacs;
 
   public:
     explicit ProcessusAssemblage(QObject* parent = nullptr);
     ~ProcessusAssemblage();
-    void          chargerProcessusAssemblage(const QString&);
-    QString       getNom() const;
-    QString       getNomOperation() const;
-    QString       getNomImage() const;
+    void    chargerProcessusAssemblage(const QString&);
+    QString getNom() const;
+    QString getNomOperation() const;
+    QString getNomImage() const;
+    // @todo ajouter l'accesseur get pour le chemin vers le processus d'assemblage
     int           getNbEtapes() const;
     int           getNbPieces() const;
     int           getNbBacs() const;

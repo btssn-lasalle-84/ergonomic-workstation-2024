@@ -8,10 +8,10 @@ class Bac;
 class Etape
 {
   private:
+    int           numero;
     QString       nom;
     QString       nomImage;
     QVector<Bac*> bacs;
-    int           numero;
     bool          valide;
 
   public:
@@ -20,7 +20,9 @@ class Etape
 
     int     getNumero() const;
     QString getNom() const;
-    int     getNbBacs() const;
+    // @todo ajouter l'accesseur get pour l'attribut nomImage
+    // @todo ajouter l'accesseur get pour l'attribut bacs
+    int getNbBacs() const;
 };
 
 #endif // ETAPE_H
