@@ -32,7 +32,4 @@ QString Etape::getNomImage() const
     return nomImage;
 }
 
-// int Etape::getBacs() const
-//{
-//    return bacs.idBac;
-//}
+

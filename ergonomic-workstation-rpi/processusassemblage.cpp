@@ -106,3 +106,8 @@ QList<Etape*> ProcessusAssemblage::getEtapes() const
 {
     return etapes;
 }
+
+QString ProcessusAssemblage::getRacine() const
+{
+    return RACINE_PROCESSUS_ASSEMBLAGE;
+}

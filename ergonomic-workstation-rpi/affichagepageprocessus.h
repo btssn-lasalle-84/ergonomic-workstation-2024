@@ -6,9 +6,6 @@
 
 #define NB_BACS_MAX 6
 
-#define RACINE_PROCESSUS_ASSEMBLAGE "/processus-assemblage"
-#define CHEMIN_SERVEUR_NFS          "."
-
 class ProcessusAssemblage;
 class Etape;
 class Bac;

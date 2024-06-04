@@ -36,6 +36,7 @@ class ProcessusAssemblage : public QObject
     int           getNbPieces() const;
     int           getNbBacs() const;
     QList<Etape*> getEtapes() const;
+    QString       getRacine() const;
 
   signals:
 };
