@@ -18,7 +18,8 @@ AffichagePageProcessus::AffichagePageProcessus(QStackedWidget*      fenetres,
     QWidget(fenetres),
     processusAssemblage(processus), dialogueModule(dialogueModule), etape(nullptr),
     numeroEtapeCourante(0), nbEtapes(processusAssemblage->getNbEtapes()), fenetres(fenetres),
-    choixBouton(0)
+    choixBouton(0), cheminRacineProcessusAssemblage(QString(CHEMIN_SERVEUR_NFS) +
+                                                    QString(RACINE_PROCESSUS_ASSEMBLAGE))
 {
     qDebug() << Q_FUNC_INFO;
     // ajoute une page
@@ -30,7 +31,7 @@ AffichagePageProcessus::AffichagePageProcessus(QStackedWidget*      fenetres,
     this->chronometre        = new QLabel("00:00", this);
     this->nomOperation       = new QLabel("", this);
     // @todo transformer le QLabel en QTextBrowser pour commentairesOperation
-    this->commentairesOperation = new QLabel("", this);
+    this->commentairesOperation = new QTextBrowser(this);
     this->photoOperation        = new QLabel("", this);
     for(int i = 0; i < NB_BACS_MAX; ++i)
     {
@@ -115,13 +116,24 @@ void AffichagePageProcessus::afficherEtape()
     this->nomOperation->setText(etape->getNom());
     // @todo si le fichier etapeX.html existe (QFileInfo::exists()) alors l'afficher avec
     // setSource()
-    this->commentairesOperation->setText("...");
+
+    QDir      racineProcessusAssemblage(cheminRacineProcessusAssemblage);
+    QFileInfo element, racineProcessusAssemblage.entryInfoList();
+    QFileInfo fichierHTML = "/processus-assembalge/" + element.fileName() + "/etape" +
+                            QString::number(etape->getNumero()) + ".html";
+    if(fichierHTML.exists())
+    {
+        this->commentairesOperation->setSource(
+          QUrl::fromLocalFile("/processus-assemblage/" + processusAssemblage->getNom() + "/etape" +
+                              QString::number(etape->getNumero()) + ".html"));
+    }
     // @todo à remplacer par un setPixmap(QPixmap(...))
-    this->photoOperation->setText("[photo]");
+    this->photoOperation->setPixmap(QPixmap(etape->getNomImage()));
     for(int i = 0; i < etape->getNbBacs(); ++i)
     {
         bacs[i]->setVisible(true);
     }
+    qDebug() << Q_FUNC_INFO << "fichierHTML" << fichierHTML;
 }
 
 void AffichagePageProcessus::abandonner()
@@ -129,10 +141,15 @@ void AffichagePageProcessus::abandonner()
     emit abandon(this->nomProcessus->text());
 }
 
+void AffichagePageProcessus::etapeSuivante()
+{
+}
+
 void AffichagePageProcessus::creerConnexionsBoutonsNavigation()
 {
     // @todo pour les boutons boutonsPageProcessus
     connect(boutonAbandon, SIGNAL(clicked()), this, SLOT(abandonner()));
+    connect(boutonEtapeSuivante, SIGNAL(clicked()), this, SLOT(etapeSuivante()));
 }
 
 void AffichagePageProcessus::avancerChoix()

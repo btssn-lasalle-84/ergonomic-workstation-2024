@@ -22,7 +22,9 @@ class Etape
     QString getNom() const;
     // @todo ajouter l'accesseur get pour l'attribut nomImage
     // @todo ajouter l'accesseur get pour l'attribut bacs
-    int getNbBacs() const;
+    // int     getBacs() const;
+    int     getNbBacs() const;
+    QString getNomImage() const;
 };
 
 #endif // ETAPE_H

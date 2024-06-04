@@ -26,3 +26,13 @@ int Etape::getNbBacs() const
 {
     return bacs.size();
 }
+
+QString Etape::getNomImage() const
+{
+    return nomImage;
+}
+
+// int Etape::getBacs() const
+//{
+//    return bacs.idBac;
+//}

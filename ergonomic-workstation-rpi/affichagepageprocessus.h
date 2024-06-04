@@ -6,6 +6,9 @@
 
 #define NB_BACS_MAX 6
 
+#define RACINE_PROCESSUS_ASSEMBLAGE "/processus-assemblage"
+#define CHEMIN_SERVEUR_NFS          "."
+
 class ProcessusAssemblage;
 class Etape;
 class Bac;
@@ -28,13 +31,14 @@ class AffichagePageProcessus : public QWidget
     QLabel*         chronometre;
     QLabel*         nomOperation;
     // @todo transformer le QLabel en QTextBrowser pour commentairesOperation
-    QLabel*               commentairesOperation;
+    QTextBrowser*         commentairesOperation;
     QLabel*               photoOperation;
     QVector<QLabel*>      bacs;
     QVector<QPushButton*> boutonsPageProcessus;
     QPushButton*          boutonEtapeSuivante;
     QPushButton*          boutonAbandon;
     int                   choixBouton;
+    QString               cheminRacineProcessusAssemblage;
 
     /**
      * @enum ActionPageProcessus
@@ -59,6 +63,7 @@ class AffichagePageProcessus : public QWidget
     void afficher();
     void afficherEtape();
     void abandonner();
+    void etapeSuivante();
     // déclenchés par l'encodeur du module EC
     void avancerChoix();
     void reculerChoix();
