@@ -235,6 +235,10 @@ void IHM::chargerProcessusAssemblage(int numeroProcessus)
                 SIGNAL(abandon(QString)),
                 this,
                 SLOT(abandonnerProcessusAssemblage(QString)));
+        connect(pageProcessus,
+                SIGNAL(fini(QString)),
+                this,
+                SLOT(terminerProcessusAssemblage(QString)));
         pageProcessus->afficher();
     }
 }
@@ -252,9 +256,20 @@ void IHM::abandonnerProcessusAssemblage(QString nomProcessus)
     afficherFenetreProcessus();
 }
 
+void IHM::terminerProcessusAssemblage(QString nomProcessus)
+{
+    disconnect(pageProcessus,
+               SIGNAL(fini(QString)),
+               this,
+               SLOT(terminerProcessusAssemblage(QString)));
+    delete pageProcessus;
+    // @todo gérer la fin d'un processus d'assemblage
+    // puis
+    afficherFenetreProcessus();
+}
+
 void IHM::afficherConnexionPosteDeTravail()
 {
-    // @todo Afficher le message de connexion
     connexionPosteDeTravail->setText("Connecté");
 }
 

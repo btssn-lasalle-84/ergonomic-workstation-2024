@@ -73,7 +73,7 @@ class IHM : public QWidget
     QWidget*        fenetreStatistique;
     QWidget*        fenetreProcessus;
     QVector<QPushButton*>
-      boutonsFenetreMenu; //!< les boutons sélectionnables par l'encodeur dans la fenêtre Menu
+                          boutonsFenetreMenu; //!< les boutons sélectionnables par l'encodeur dans la fenêtre Menu
     QPushButton*          boutonRetourMenu1; // Depuis Processus
     QPushButton*          boutonRetourMenu2; // Depuis Statistique
     QLabel*               titre;
@@ -121,7 +121,7 @@ class IHM : public QWidget
     void afficherFenetreProcessus();
     void chargerProcessusAssemblage(int numeroProcessus);
     void abandonnerProcessusAssemblage(QString nomProcessus);
-
+    void terminerProcessusAssemblage(QString QString);
   public slots:
     void afficherConnexionPosteDeTravail();
     void afficherDeconnexionPosteDeTravail();

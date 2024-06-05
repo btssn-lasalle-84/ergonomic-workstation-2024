@@ -34,7 +34,7 @@ class AffichagePageProcessus : public QWidget
     QVector<QPushButton*> boutonsPageProcessus;
     QPushButton*          boutonEtapeSuivante;
     QPushButton*          boutonAbandon;
-    int                   choixBouton;
+    int                   choixBoutonsPageProcessus;
 
     /**
      * @enum ActionPageProcessus

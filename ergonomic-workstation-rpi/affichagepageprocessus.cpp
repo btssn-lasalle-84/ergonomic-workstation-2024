@@ -18,7 +18,7 @@ AffichagePageProcessus::AffichagePageProcessus(QStackedWidget*      fenetres,
     QWidget(fenetres),
     processusAssemblage(processus), dialogueModule(dialogueModule), etape(nullptr),
     numeroEtapeCourante(0), nbEtapes(processusAssemblage->getNbEtapes()), fenetres(fenetres),
-    choixBouton(0)
+    choixBoutonsPageProcessus(0)
 {
     qDebug() << Q_FUNC_INFO;
     // ajoute une page
@@ -104,8 +104,15 @@ void AffichagePageProcessus::afficher()
 
 void AffichagePageProcessus::afficherEtape()
 {
-    // @todo fin de processus ?
-
+    if((numeroEtapeCourante + 1) == nbEtapes)
+    {
+        this->boutonEtapeSuivante->setText("Terminer");
+    }
+    else if(numeroEtapeCourante == nbEtapes)
+    {
+        emit fini(this->nomProcessus->text());
+        return;
+    }
     // récupère l'étape courante
     etape = processusAssemblage->getEtapes().at(numeroEtapeCourante);
 
@@ -126,7 +133,10 @@ void AffichagePageProcessus::afficherEtape()
         bacs[i]->setVisible(true);
     }
 
-    // @todo prochaine étape ?
+    if((numeroEtapeCourante + 1) <= nbEtapes)
+    {
+        ++numeroEtapeCourante;
+    }
 }
 
 void AffichagePageProcessus::abandonner()
@@ -136,6 +146,9 @@ void AffichagePageProcessus::abandonner()
 
 void AffichagePageProcessus::creerConnexionsBoutonsNavigation()
 {
+    connect(dialogueModule, SIGNAL(encodeurDroite()), this, SLOT(avancerChoix()));
+    connect(dialogueModule, SIGNAL(encodeurGauche()), this, SLOT(reculerChoix()));
+    connect(dialogueModule, SIGNAL(encodeurValidation()), this, SLOT(validerChoix()));
     connect(boutonsPageProcessus[ActionPageProcessus::ActionSuivant],
             SIGNAL(clicked()),
             this,
@@ -148,18 +161,25 @@ void AffichagePageProcessus::creerConnexionsBoutonsNavigation()
 
 void AffichagePageProcessus::avancerChoix()
 {
-    // @todo choixBouton suivant
-    qDebug() << Q_FUNC_INFO << "choixBouton" << choixBouton;
+    choixBoutonsPageProcessus =
+      (choixBoutonsPageProcessus + 1) % ActionPageProcessus::NbActionsPageProcessus;
+    boutonsPageProcessus[choixBoutonsPageProcessus]->setFocus();
+    qDebug() << Q_FUNC_INFO << "choixBouton" << choixBoutonsPageProcessus;
 }
 
 void AffichagePageProcessus::reculerChoix()
 {
-    // @todo choixBouton précédent
-    qDebug() << Q_FUNC_INFO << "choixBouton" << choixBouton;
+    choixBoutonsPageProcessus =
+      (choixBoutonsPageProcessus - 1) % ActionPageProcessus::NbActionsPageProcessus;
+    if(choixBoutonsPageProcessus == -1)
+        choixBoutonsPageProcessus = ActionPageProcessus::NbActionsPageProcessus - 1;
+    boutonsPageProcessus[choixBoutonsPageProcessus]->setFocus();
+    qDebug() << Q_FUNC_INFO << "choixBouton" << choixBoutonsPageProcessus;
 }
 
 void AffichagePageProcessus::validerChoix()
 {
-    qDebug() << Q_FUNC_INFO << "choixBouton" << choixBouton;
+    qDebug() << Q_FUNC_INFO << "choixBouton" << choixBoutonsPageProcessus;
     // @todo simuler un clic sur le bouton sélectionné pour déclencher le slot correspondant
+    boutonsPageProcessus[choixBoutonsPageProcessus]->clicked();
 }
