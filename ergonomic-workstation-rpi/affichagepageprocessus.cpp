@@ -80,11 +80,11 @@ AffichagePageProcessus::AffichagePageProcessus(QStackedWidget*      fenetres,
     layoutOperation->addWidget(this->nomOperation);
     layoutContenu->addWidget(this->commentairesOperation);
     layoutContenu->addWidget(this->photoOperation);
-    layoutBacs->addStretch();
+    // layoutBacs->addStretch();
     for(int i = 0; i < NB_BACS_MAX; ++i)
     {
         layoutBacs->addWidget(encadrementsBacs[i]);
-        layoutBacs->addStretch();
+        // layoutBacs->addStretch();
     }
     layoutFooter->addWidget(this->boutonAbandon);
     layoutFooter->addStretch();
@@ -217,10 +217,16 @@ void AffichagePageProcessus::validerChoix()
 void AffichagePageProcessus::creerBacs()
 {
     // les QFrame pour les bacs
+    int margeCotes = (qApp->primaryScreen()->availableSize().width() * 0.1);
+    int largeurBac = (qApp->primaryScreen()->availableSize().width() - margeCotes) / NB_BACS_MAX;
     for(int i = 0; i < NB_BACS_MAX; ++i)
     {
         QFrame* frame = new QFrame(this);
         frame->setObjectName(QString("bac") + QString::number(i + 1));
+        frame->setMinimumWidth(largeurBac);
+        QSizePolicy sizePolicy = frame->sizePolicy();
+        sizePolicy.setHorizontalPolicy(QSizePolicy::Minimum);
+        frame->setSizePolicy(sizePolicy);
         encadrementsBacs.push_back(frame);
     }
 
@@ -233,18 +239,17 @@ void AffichagePageProcessus::creerBacs()
 
     for(int i = 0; i < NB_BACS_MAX; ++i)
     {
-        piecesBacs.push_back(new QLabel(QString("") + QString::number(i + 1), encadrementsBacs[i]));
+        piecesBacs.push_back(new QLabel("", encadrementsBacs[i]));
     }
 
     for(int i = 0; i < NB_BACS_MAX; ++i)
     {
-        nbPiecesBacs.push_back(
-          new QLabel(QString("") + QString::number(i + 1), encadrementsBacs[i]));
+        nbPiecesBacs.push_back(new QLabel("", encadrementsBacs[i]));
     }
 
     for(int i = 0; i < NB_BACS_MAX; ++i)
     {
-        imagesBacs.push_back(new QLabel(QString("") + QString::number(i + 1), encadrementsBacs[i]));
+        imagesBacs.push_back(new QLabel("", encadrementsBacs[i]));
     }
 
     for(int i = 0; i < NB_BACS_MAX; ++i)

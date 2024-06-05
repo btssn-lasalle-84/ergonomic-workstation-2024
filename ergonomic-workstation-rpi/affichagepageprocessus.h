@@ -62,6 +62,8 @@ class AffichagePageProcessus : public QWidget
     void creerConnexionsBoutonsNavigation();
     void creerConnexionEncodeur();
     void creerDeconnexionEncodeur();
+    void creerBacs();
+    void cacherBacs();
 
   public:
     explicit AffichagePageProcessus(QStackedWidget*      fenetres,
@@ -73,8 +75,6 @@ class AffichagePageProcessus : public QWidget
     void afficher();
     void afficherEtape();
     void abandonner();
-    void creerBacs();
-    void cacherBacs();
     // déclenchés par l'encodeur du module EC
     void avancerChoix();
     void reculerChoix();

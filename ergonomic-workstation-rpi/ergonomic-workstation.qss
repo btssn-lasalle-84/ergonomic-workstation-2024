@@ -84,3 +84,12 @@ QTextBrowser
     font-size: 30px;
     font-weight: 800;
 }
+
+QFrame#bac1,QFrame#bac2,QFrame#bac3,QFrame#bac4,QFrame#bac5,QFrame#bac6,QFrame#bac7,QFrame#bac8
+{
+    border: 2px solid grey;
+    background-color: grey;
+    border-radius: 8px;
+    padding: 0px;
+    margin: 25px;
+}
