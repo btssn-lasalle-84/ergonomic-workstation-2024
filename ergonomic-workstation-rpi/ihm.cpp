@@ -68,10 +68,18 @@ void IHM::creerFenetreMenu()
     titre   = new QLabel(fenetreMenu);
     version = new QLabel(fenetreMenu);
     titre->setText(NOM_APPLICATION);
+    titre->setObjectName("titre");
+    titre->setAlignment(Qt::AlignCenter);
     version->setText(QString("v ") + VERSION_APPLICATION);
+    version->setObjectName("version");
+    version->setAlignment(Qt::AlignCenter);
+    titre->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    version->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     fenetres->addWidget(fenetreMenu);
+    layoutMenu->addStretch();
     layoutMenu->addWidget(titre);
     layoutMenu->addWidget(version);
+    layoutMenu->addStretch();
     layoutBoutonsMenu->addWidget(boutonDemarrer);
     layoutBoutonsMenu->addWidget(boutonStatistique);
     layoutMenu->addLayout(layoutBoutonsMenu);

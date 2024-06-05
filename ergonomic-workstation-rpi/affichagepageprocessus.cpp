@@ -135,7 +135,7 @@ void AffichagePageProcessus::afficherEtape()
     }
     this->photoOperation->setPixmap(
       QPixmap(processusAssemblage->getChemin() + QString(REPERTOIRE_IMAGES) + etape->getNomImage())
-        .scaled(QSize(250, 600), Qt::KeepAspectRatio));
+        .scaled(QSize(LARGEUR_IMAGE_OPERATION, HAUTEUR_PHOTO_OPERATION), Qt::KeepAspectRatio));
     cacherBacs();
     for(int i = 0; i < etape->getNbBacs(); ++i)
     {
@@ -145,10 +145,10 @@ void AffichagePageProcessus::afficherEtape()
         piecesBacs[numeroBac - 1]->setText(etape->getBac(i)->getTypeDePiece());
         nbPiecesBacs[numeroBac - 1]->setText("x" +
                                              QString::number(etape->getBac(i)->getNbPieces()));
-        imagesBacs[numeroBac - 1]->setPixmap(QPixmap(processusAssemblage->getChemin() +
-                                                     QString(REPERTOIRE_IMAGES) +
-                                                     etape->getBac(i)->getNomImagePiece())
-                                               .scaled(QSize(50, 50), Qt::KeepAspectRatio));
+        imagesBacs[numeroBac - 1]->setPixmap(
+          QPixmap(processusAssemblage->getChemin() + QString(REPERTOIRE_IMAGES) +
+                  etape->getBac(i)->getNomImagePiece())
+            .scaled(QSize(LARGEUR_IMAGE_COMPOSANT, HAUTEUR_IMAGE_COMPOSANT), Qt::KeepAspectRatio));
         bacs[i]->setVisible(true);
     }
 
