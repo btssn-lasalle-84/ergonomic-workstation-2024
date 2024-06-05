@@ -5,7 +5,7 @@
 #include <QDebug>
 #include <QDir>
 #include <QSettings>
-#include <QWidget>
+#include <QTextCodec>
 
 ProcessusAssemblage::ProcessusAssemblage(QObject* parent) :
     QObject(parent), posteTravail(new PosteTravail(this)), nom(""), tempsMoyen(0), nbPieces(0),
@@ -28,6 +28,7 @@ void ProcessusAssemblage::chargerProcessusAssemblage(const QString& nomProcessus
     qDebug() << Q_FUNC_INFO << "fichierINI" << fichierINI;
 
     QSettings configurationProcessusAssemblage(fichierINI, QSettings::IniFormat);
+    configurationProcessusAssemblage.setIniCodec(QTextCodec::codecForName("UTF-8"));
 
     /*
         [ProcessusAssemblage]

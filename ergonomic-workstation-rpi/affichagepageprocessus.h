@@ -4,7 +4,7 @@
 #include <QtWidgets>
 #include <QVector>
 
-#define NB_BACS_MAX       6
+#define NB_BACS_MAX       8
 #define REPERTOIRE_IMAGES "images/"
 
 class ProcessusAssemblage;
@@ -35,6 +35,12 @@ class AffichagePageProcessus : public QWidget
     QPushButton*          boutonEtapeSuivante;
     QPushButton*          boutonAbandon;
     int                   choixBoutonsPageProcessus;
+    QVector<QVBoxLayout*> layoutsBacs;
+    QVector<QFrame*>      encadrementsBacs;
+    QVector<QLabel*>      numerosBacs;
+    QVector<QLabel*>      piecesBacs;
+    QVector<QLabel*>      nbPiecesBacs;
+    QVector<QLabel*>      imagesBacs;
 
     /**
      * @enum ActionPageProcessus
@@ -49,6 +55,8 @@ class AffichagePageProcessus : public QWidget
     };
 
     void creerConnexionsBoutonsNavigation();
+    void creerConnexionEncodeur();
+    void creerDeconnexionEncodeur();
 
   public:
     explicit AffichagePageProcessus(QStackedWidget*      fenetres,
@@ -60,6 +68,8 @@ class AffichagePageProcessus : public QWidget
     void afficher();
     void afficherEtape();
     void abandonner();
+    void creerBacs();
+    void cacherBacs();
     // déclenchés par l'encodeur du module EC
     void avancerChoix();
     void reculerChoix();

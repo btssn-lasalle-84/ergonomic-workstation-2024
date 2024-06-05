@@ -1,7 +1,7 @@
 QWidget
 {
     background-color: #515151;
-    padding: 20px;
+    padding: 10px;
 }
 
 QLabel
@@ -9,7 +9,7 @@ QLabel
     border: 2px solid grey;
     border-radius: 8px;
     color: #dddddd;
-    font-size: 48px;
+    font-size: 24px;
     font-weight: 800;
 }
 
@@ -23,6 +23,15 @@ QPushButton
 }
 
 QPushButton:hover:!pressed
+{
+    border: 2px solid #dd0000;
+    border-radius: 8px;
+    color: #dd0000;
+    font-size: 48px;
+    font-weight: 800;
+}
+
+QPushButton:focus
 {
     border: 2px solid #dd0000;
     border-radius: 8px;
@@ -46,4 +55,12 @@ QComboBox
 QComboBox::item:hover
 {
     background-color: wheat;
+}
+
+QPixMap
+{
+    border: 2px solid grey;
+    border-radius: 8px;
+    color: #dddddd;
+    max-height: 20px;
 }

@@ -18,7 +18,7 @@ AffichagePageProcessus::AffichagePageProcessus(QStackedWidget*      fenetres,
     QWidget(fenetres),
     processusAssemblage(processus), dialogueModule(dialogueModule), etape(nullptr),
     numeroEtapeCourante(0), nbEtapes(processusAssemblage->getNbEtapes()), fenetres(fenetres),
-    choixBoutonsPageProcessus(0)
+    choixBoutonsPageProcessus(ActionPageProcessus::ActionSuivant)
 {
     qDebug() << Q_FUNC_INFO;
     // ajoute une page
@@ -39,11 +39,15 @@ AffichagePageProcessus::AffichagePageProcessus(QStackedWidget*      fenetres,
     {
         bacs[i]->setVisible(false);
     }
+    creerBacs();
     this->boutonEtapeSuivante = new QPushButton("Suivant", this); // choix 0
     boutonsPageProcessus.push_back(boutonEtapeSuivante);
+    this->boutonEtapeSuivante->setFocus();
     this->boutonAbandon = new QPushButton("Abandon", this); // choix 1
     boutonsPageProcessus.push_back(boutonAbandon);
+
     creerConnexionsBoutonsNavigation();
+    creerConnexionEncodeur();
 
     // les layouts
     QVBoxLayout* layoutPage      = new QVBoxLayout;
@@ -55,8 +59,8 @@ AffichagePageProcessus::AffichagePageProcessus(QStackedWidget*      fenetres,
 
     // agencement des layouts
     layoutPage->addLayout(layoutHeader);
-    layoutPage->addLayout(layoutOperation);
     layoutPage->addLayout(layoutContenu);
+    layoutPage->addLayout(layoutOperation);
     layoutPage->addLayout(layoutBacs);
     layoutPage->addLayout(layoutFooter);
 
@@ -79,7 +83,7 @@ AffichagePageProcessus::AffichagePageProcessus(QStackedWidget*      fenetres,
     layoutBacs->addStretch();
     for(int i = 0; i < NB_BACS_MAX; ++i)
     {
-        layoutBacs->addWidget(bacs[i]);
+        layoutBacs->addWidget(encadrementsBacs[i]);
         layoutBacs->addStretch();
     }
     layoutFooter->addWidget(this->boutonAbandon);
@@ -94,6 +98,7 @@ AffichagePageProcessus::AffichagePageProcessus(QStackedWidget*      fenetres,
 
 AffichagePageProcessus::~AffichagePageProcessus()
 {
+    creerDeconnexionEncodeur();
     qDebug() << Q_FUNC_INFO;
 }
 
@@ -116,6 +121,8 @@ void AffichagePageProcessus::afficherEtape()
     // récupère l'étape courante
     etape = processusAssemblage->getEtapes().at(numeroEtapeCourante);
 
+    // @todo envoyer l'étape au poste de travail
+
     // et l'affiche
     this->numerotationEtapes->setText(QString::number(etape->getNumero()) + QString("/") +
                                       QString::number(nbEtapes));
@@ -126,10 +133,22 @@ void AffichagePageProcessus::afficherEtape()
     {
         this->commentairesOperation->setSource(fichierHTML);
     }
-    this->photoOperation->setPixmap(QPixmap(processusAssemblage->getChemin() +
-                                            QString(REPERTOIRE_IMAGES) + etape->getNomImage()));
+    this->photoOperation->setPixmap(
+      QPixmap(processusAssemblage->getChemin() + QString(REPERTOIRE_IMAGES) + etape->getNomImage())
+        .scaled(QSize(250, 600), Qt::KeepAspectRatio));
+    cacherBacs();
     for(int i = 0; i < etape->getNbBacs(); ++i)
     {
+        int numeroBac = etape->getBac(i)->getIdBac();
+        encadrementsBacs[numeroBac - 1]->setVisible(true);
+        numerosBacs[numeroBac - 1]->setStyleSheet("color: #11b518;");
+        piecesBacs[numeroBac - 1]->setText(etape->getBac(i)->getTypeDePiece());
+        nbPiecesBacs[numeroBac - 1]->setText("x" +
+                                             QString::number(etape->getBac(i)->getNbPieces()));
+        imagesBacs[numeroBac - 1]->setPixmap(QPixmap(processusAssemblage->getChemin() +
+                                                     QString(REPERTOIRE_IMAGES) +
+                                                     etape->getBac(i)->getNomImagePiece())
+                                               .scaled(QSize(50, 50), Qt::KeepAspectRatio));
         bacs[i]->setVisible(true);
     }
 
@@ -146,9 +165,6 @@ void AffichagePageProcessus::abandonner()
 
 void AffichagePageProcessus::creerConnexionsBoutonsNavigation()
 {
-    connect(dialogueModule, SIGNAL(encodeurDroite()), this, SLOT(avancerChoix()));
-    connect(dialogueModule, SIGNAL(encodeurGauche()), this, SLOT(reculerChoix()));
-    connect(dialogueModule, SIGNAL(encodeurValidation()), this, SLOT(validerChoix()));
     connect(boutonsPageProcessus[ActionPageProcessus::ActionSuivant],
             SIGNAL(clicked()),
             this,
@@ -157,6 +173,20 @@ void AffichagePageProcessus::creerConnexionsBoutonsNavigation()
             SIGNAL(clicked()),
             this,
             SLOT(abandonner()));
+}
+
+void AffichagePageProcessus::creerConnexionEncodeur()
+{
+    connect(dialogueModule, SIGNAL(encodeurDroite()), this, SLOT(avancerChoix()));
+    connect(dialogueModule, SIGNAL(encodeurGauche()), this, SLOT(reculerChoix()));
+    connect(dialogueModule, SIGNAL(encodeurValidation()), this, SLOT(validerChoix()));
+}
+
+void AffichagePageProcessus::creerDeconnexionEncodeur()
+{
+    disconnect(dialogueModule, SIGNAL(encodeurDroite()), this, SLOT(avancerChoix()));
+    disconnect(dialogueModule, SIGNAL(encodeurGauche()), this, SLOT(reculerChoix()));
+    disconnect(dialogueModule, SIGNAL(encodeurValidation()), this, SLOT(validerChoix()));
 }
 
 void AffichagePageProcessus::avancerChoix()
@@ -182,4 +212,71 @@ void AffichagePageProcessus::validerChoix()
     qDebug() << Q_FUNC_INFO << "choixBouton" << choixBoutonsPageProcessus;
     // @todo simuler un clic sur le bouton sélectionné pour déclencher le slot correspondant
     boutonsPageProcessus[choixBoutonsPageProcessus]->clicked();
+}
+
+void AffichagePageProcessus::creerBacs()
+{
+    // les QFrame pour les bacs
+    for(int i = 0; i < NB_BACS_MAX; ++i)
+    {
+        QFrame* frame = new QFrame(this);
+        frame->setObjectName(QString("bac") + QString::number(i + 1));
+        encadrementsBacs.push_back(frame);
+    }
+
+    // les QLabel pour les bacs
+    for(int i = 0; i < NB_BACS_MAX; ++i)
+    {
+        numerosBacs.push_back(
+          new QLabel(QString("Bac ") + QString::number(i + 1), encadrementsBacs[i]));
+    }
+
+    for(int i = 0; i < NB_BACS_MAX; ++i)
+    {
+        piecesBacs.push_back(new QLabel(QString("") + QString::number(i + 1), encadrementsBacs[i]));
+    }
+
+    for(int i = 0; i < NB_BACS_MAX; ++i)
+    {
+        nbPiecesBacs.push_back(
+          new QLabel(QString("") + QString::number(i + 1), encadrementsBacs[i]));
+    }
+
+    for(int i = 0; i < NB_BACS_MAX; ++i)
+    {
+        imagesBacs.push_back(new QLabel(QString("") + QString::number(i + 1), encadrementsBacs[i]));
+    }
+
+    for(int i = 0; i < NB_BACS_MAX; ++i)
+    {
+        numerosBacs[i]->setAlignment(Qt::AlignCenter);
+        piecesBacs[i]->setAlignment(Qt::AlignCenter);
+        nbPiecesBacs[i]->setAlignment(Qt::AlignCenter);
+        imagesBacs[i]->setAlignment(Qt::AlignCenter);
+    }
+
+    // les QVBoxLayout pour les bacs
+    for(int i = 0; i < NB_BACS_MAX; ++i)
+    {
+        QVBoxLayout* layoutBac = new QVBoxLayout;
+        layoutBac->addWidget(numerosBacs[i]);
+        layoutBac->addWidget(piecesBacs[i]);
+        layoutBac->addWidget(nbPiecesBacs[i]);
+        layoutBac->addWidget(imagesBacs[i]);
+        encadrementsBacs[i]->setLayout(layoutBac);
+        layoutsBacs.push_back(layoutBac);
+    }
+
+    cacherBacs();
+}
+
+void AffichagePageProcessus::cacherBacs()
+{
+    for(int i = 0; i < NB_BACS_MAX; ++i)
+    {
+        QSizePolicy sizePolicy = encadrementsBacs[i]->sizePolicy();
+        sizePolicy.setRetainSizeWhenHidden(true);
+        encadrementsBacs[i]->setSizePolicy(sizePolicy);
+        encadrementsBacs[i]->setVisible(false);
+    }
 }

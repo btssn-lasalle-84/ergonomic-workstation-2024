@@ -112,6 +112,8 @@ class IHM : public QWidget
     void creerFenetreStatistique();
     void afficherFenetrePrincipale();
     void creerConnexionsBoutonsNavigation();
+    void creerConnexionEncodeur();
+    void creerDeconnexionEncodeur();
     void creerConnexionsGUI();
     void initialiserDialogueModule();
 

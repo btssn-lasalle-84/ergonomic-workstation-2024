@@ -164,9 +164,6 @@ void IHM::creerConnexionsBoutonsNavigation()
     connect(boutonRetourMenu1, SIGNAL(clicked()), this, SLOT(afficherFenetreMenu()));
 
     // Pour le dialogue avec le module poste de travail
-    connect(dialogueModule, SIGNAL(encodeurDroite()), this, SLOT(avancerChoix()));
-    connect(dialogueModule, SIGNAL(encodeurGauche()), this, SLOT(reculerChoix()));
-    connect(dialogueModule, SIGNAL(encodeurValidation()), this, SLOT(validerChoix()));
     connect(dialogueModule,
             SIGNAL(moduleConnecte()),
             this,
@@ -183,6 +180,20 @@ void IHM::creerConnexionsBoutonsNavigation()
             SIGNAL(erreurDialogueModule()),
             this,
             SLOT(afficherErreurDialoguePosteDeTravail()));
+}
+
+void IHM::creerConnexionEncodeur()
+{
+    connect(dialogueModule, SIGNAL(encodeurDroite()), this, SLOT(avancerChoix()));
+    connect(dialogueModule, SIGNAL(encodeurGauche()), this, SLOT(reculerChoix()));
+    connect(dialogueModule, SIGNAL(encodeurValidation()), this, SLOT(validerChoix()));
+}
+
+void IHM::creerDeconnexionEncodeur()
+{
+    disconnect(dialogueModule, SIGNAL(encodeurDroite()), this, SLOT(avancerChoix()));
+    disconnect(dialogueModule, SIGNAL(encodeurGauche()), this, SLOT(reculerChoix()));
+    disconnect(dialogueModule, SIGNAL(encodeurValidation()), this, SLOT(validerChoix()));
 }
 
 void IHM::creerConnexionsGUI()
@@ -202,18 +213,21 @@ void IHM::initialiserDialogueModule()
 
 void IHM::afficherFenetreMenu()
 {
+    creerConnexionEncodeur();
     fenetres->setCurrentIndex(Fenetre::Menu);
     qDebug() << Q_FUNC_INFO << "fenetre" << fenetres->indexOf(fenetreMenu);
 }
 
 void IHM::afficherFenetreStatistique()
 {
+    creerDeconnexionEncodeur();
     fenetres->setCurrentIndex(Fenetre::Statistique);
     qDebug() << Q_FUNC_INFO << "fenetre" << fenetres->indexOf(fenetreStatistique);
 }
 
 void IHM::afficherFenetreProcessus()
 {
+    creerDeconnexionEncodeur();
     listeDeroulanteProcessus->setCurrentIndex(0);
     fenetres->setCurrentIndex(Fenetre::Processus);
     qDebug() << Q_FUNC_INFO << "fenetre" << fenetres->indexOf(fenetreProcessus);

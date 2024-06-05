@@ -12,3 +12,23 @@ Bac::~Bac()
 {
     qDebug() << Q_FUNC_INFO;
 }
+
+int Bac::getIdBac() const
+{
+    return idBac;
+}
+
+QString Bac::getTypeDePiece() const
+{
+    return typeDePiece;
+}
+
+int Bac::getNbPieces() const
+{
+    return nbPieces;
+}
+
+QString Bac::getNomImagePiece() const
+{
+    return nomImagePiece;
+}
