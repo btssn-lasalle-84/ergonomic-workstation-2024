@@ -21,12 +21,12 @@ ProcessusAssemblage::~ProcessusAssemblage()
 
 void ProcessusAssemblage::chargerProcessusAssemblage(const QString& nomProcessusAssemblage)
 {
-    // @todo initialiser l'attribut avec le chemin vers le processus d'assemblage
-    QString fichierINI = QDir::currentPath() + QString(RACINE_PROCESSUS_ASSEMBLAGE) + QString("/") +
-                         nomProcessusAssemblage + QString("/") + nomProcessusAssemblage +
-                         QString(".ini");
-
+    chemin = QDir::currentPath() + QString(RACINE_PROCESSUS_ASSEMBLAGE) + QString("/") +
+             nomProcessusAssemblage + QString("/");
+    qDebug() << Q_FUNC_INFO << "chemin" << chemin;
+    QString fichierINI = chemin + nomProcessusAssemblage + QString(".ini");
     qDebug() << Q_FUNC_INFO << "fichierINI" << fichierINI;
+
     QSettings configurationProcessusAssemblage(fichierINI, QSettings::IniFormat);
 
     /*
@@ -87,9 +87,24 @@ QString ProcessusAssemblage::getNom() const
     return nom;
 }
 
+QString ProcessusAssemblage::getNomImage() const
+{
+    return nomImage;
+}
+
+QString ProcessusAssemblage::getChemin() const
+{
+    return chemin;
+}
+
 int ProcessusAssemblage::getNbEtapes() const
 {
     return nbEtapes;
+}
+
+int ProcessusAssemblage::getNbPieces() const
+{
+    return nbPieces;
 }
 
 int ProcessusAssemblage::getNbBacs() const
@@ -97,17 +112,7 @@ int ProcessusAssemblage::getNbBacs() const
     return nbBacs;
 }
 
-QString ProcessusAssemblage::getNomImage() const
-{
-    return nomImage;
-}
-
 QList<Etape*> ProcessusAssemblage::getEtapes() const
 {
     return etapes;
-}
-
-QString ProcessusAssemblage::getRacine() const
-{
-    return RACINE_PROCESSUS_ASSEMBLAGE;
 }

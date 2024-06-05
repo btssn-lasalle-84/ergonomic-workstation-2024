@@ -18,11 +18,12 @@ class Etape
     explicit Etape(int numero, QString nom, QString nomImage, QVector<Bac*> bacs);
     ~Etape();
 
-    int     getNumero() const;
-    QString getNom() const;
-    // @todo ajouter l'accesseur get pour l'attribut bacs
-    int     getNbBacs() const;
-    QString getNomImage() const;
+    int           getNumero() const;
+    QString       getNom() const;
+    QString       getNomImage() const;
+    Bac*          getBac(int numeroBac) const;
+    int           getNbBacs() const;
+    QVector<Bac*> getBacs() const;
 };
 
 #endif // ETAPE_H

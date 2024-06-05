@@ -25,10 +25,10 @@ AffichagePageProcessus::AffichagePageProcessus(QStackedWidget*      fenetres,
     page = new QWidget(this);
     fenetres->addWidget(page);
     // les widgets
-    this->numerotationEtapes = new QLabel("", this);
-    this->nomProcessus       = new QLabel(processusAssemblage->getNom(), this);
-    this->chronometre        = new QLabel("00:00", this);
-    this->nomOperation       = new QLabel("", this);
+    this->numerotationEtapes    = new QLabel("", this);
+    this->nomProcessus          = new QLabel(processusAssemblage->getNom(), this);
+    this->chronometre           = new QLabel("00:00", this);
+    this->nomOperation          = new QLabel("", this);
     this->commentairesOperation = new QTextBrowser(this);
     this->photoOperation        = new QLabel("", this);
     for(int i = 0; i < NB_BACS_MAX; ++i)
@@ -89,9 +89,6 @@ AffichagePageProcessus::AffichagePageProcessus(QStackedWidget*      fenetres,
     // fixe le layout
     page->setLayout(layoutPage);
 
-    // récupère l'étape courante
-    etape = processusAssemblage->getEtapes().at(numeroEtapeCourante);
-    // et l'affiche
     afficherEtape();
 }
 
@@ -107,27 +104,29 @@ void AffichagePageProcessus::afficher()
 
 void AffichagePageProcessus::afficherEtape()
 {
-    // @todo mettre à jour les widgets de la page pour l'affichage de l'étape en cours
-    // exemple :
+    // @todo fin de processus ?
+
+    // récupère l'étape courante
+    etape = processusAssemblage->getEtapes().at(numeroEtapeCourante);
+
+    // et l'affiche
     this->numerotationEtapes->setText(QString::number(etape->getNumero()) + QString("/") +
                                       QString::number(nbEtapes));
     this->nomOperation->setText(etape->getNom());
-    // @todo si le fichier etapeX.html existe (QFileInfo::exists()) alors l'afficher avec
-    // setSource()
-
-    QFileInfo fichierHTML = processusAssemblage->getRacine() +  + "/etape" +
-                            QString::number(etape->getNumero()) + ".html";
-    if(fichierHTML.exists())
+    QString fichierHTML = processusAssemblage->getChemin() + QString("etape") +
+                          QString::number(etape->getNumero()) + QString(".html");
+    if(QFileInfo::exists(fichierHTML))
     {
-        this->commentairesOperation->setSource(QUrl::fromLocalFile(fichierHTML.absoluteFilePath()));
+        this->commentairesOperation->setSource(fichierHTML);
     }
-    // @todo à remplacer par un setPixmap(QPixmap(...))
-    this->photoOperation->setPixmap(QPixmap("images/" + etape->getNomImage()));
+    this->photoOperation->setPixmap(QPixmap(processusAssemblage->getChemin() +
+                                            QString(REPERTOIRE_IMAGES) + etape->getNomImage()));
     for(int i = 0; i < etape->getNbBacs(); ++i)
     {
         bacs[i]->setVisible(true);
     }
-    qDebug() << Q_FUNC_INFO << "fichierHTML" << fichierHTML;
+
+    // @todo prochaine étape ?
 }
 
 void AffichagePageProcessus::abandonner()
@@ -137,8 +136,14 @@ void AffichagePageProcessus::abandonner()
 
 void AffichagePageProcessus::creerConnexionsBoutonsNavigation()
 {
-    // @todo pour les boutons boutonsPageProcessus
-    connect(boutonAbandon, SIGNAL(clicked()), this, SLOT(abandonner()));
+    connect(boutonsPageProcessus[ActionPageProcessus::ActionSuivant],
+            SIGNAL(clicked()),
+            this,
+            SLOT(afficherEtape()));
+    connect(boutonsPageProcessus[ActionPageProcessus::ActionAbandon],
+            SIGNAL(clicked()),
+            this,
+            SLOT(abandonner()));
 }
 
 void AffichagePageProcessus::avancerChoix()

@@ -22,14 +22,25 @@ QString Etape::getNom() const
     return nom;
 }
 
-int Etape::getNbBacs() const
-{
-    return bacs.size();
-}
-
 QString Etape::getNomImage() const
 {
     return nomImage;
 }
 
+Bac* Etape::getBac(int numeroBac) const
+{
+    if(numeroBac >= 0 && numeroBac < bacs.size())
+    {
+        return bacs[numeroBac];
+    }
+}
 
+int Etape::getNbBacs() const
+{
+    return bacs.size();
+}
+
+QVector<Bac*> Etape::getBacs() const
+{
+    return bacs;
+}

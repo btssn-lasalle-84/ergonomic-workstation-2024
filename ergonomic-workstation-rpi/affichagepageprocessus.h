@@ -4,7 +4,8 @@
 #include <QtWidgets>
 #include <QVector>
 
-#define NB_BACS_MAX 6
+#define NB_BACS_MAX       6
+#define REPERTOIRE_IMAGES "images/"
 
 class ProcessusAssemblage;
 class Etape;
@@ -21,13 +22,12 @@ class AffichagePageProcessus : public QWidget
     int                  numeroEtapeCourante;
     int                  nbEtapes;
     // GUI
-    QStackedWidget* fenetres;
-    QWidget*        page;
-    QLabel*         numerotationEtapes;
-    QLabel*         nomProcessus;
-    QLabel*         chronometre;
-    QLabel*         nomOperation;
-    // @todo transformer le QLabel en QTextBrowser pour commentairesOperation
+    QStackedWidget*       fenetres;
+    QWidget*              page;
+    QLabel*               numerotationEtapes;
+    QLabel*               nomProcessus;
+    QLabel*               chronometre;
+    QLabel*               nomOperation;
     QTextBrowser*         commentairesOperation;
     QLabel*               photoOperation;
     QVector<QLabel*>      bacs;
@@ -35,7 +35,6 @@ class AffichagePageProcessus : public QWidget
     QPushButton*          boutonEtapeSuivante;
     QPushButton*          boutonAbandon;
     int                   choixBouton;
-    QString               cheminRacineProcessusAssemblage;
 
     /**
      * @enum ActionPageProcessus
@@ -44,7 +43,8 @@ class AffichagePageProcessus : public QWidget
      */
     enum ActionPageProcessus
     {
-        // @todo définir les actions des boutons sélectionnables dans cette fenêtre
+        ActionSuivant = 0,
+        ActionAbandon,
         NbActionsPageProcessus
     };
 
@@ -60,7 +60,6 @@ class AffichagePageProcessus : public QWidget
     void afficher();
     void afficherEtape();
     void abandonner();
-    void etapeSuivante();
     // déclenchés par l'encodeur du module EC
     void avancerChoix();
     void reculerChoix();
@@ -68,6 +67,7 @@ class AffichagePageProcessus : public QWidget
 
   signals:
     void abandon(QString nomProcessus);
+    void fini(QString nomProcessus);
 };
 
 #endif // AFFICHAGEPAGEPROCESSUS_H
