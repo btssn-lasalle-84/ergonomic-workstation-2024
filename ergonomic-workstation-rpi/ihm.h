@@ -22,7 +22,7 @@
  * @def VERSION_APPLICATION
  * @brief La version de l'application
  */
-#define VERSION_APPLICATION "0.2"
+#define VERSION_APPLICATION "1.0"
 
 /**
  * @def PLEIN_ECRAN_RASPBERRY
@@ -66,6 +66,10 @@ class IHM : public QWidget
     QString              cheminRacineProcessusAssemblage;
     int choixBoutonsFenetreMenu; //!< le numéro de boutons sélectionnables par l'encodeur dans la
                                  //!< fenêtre Menu
+    int choixBoutonsFenetreStatistique; //!< le numéro de boutons sélectionnables par l'encodeur
+                                        //!< dans la fenêtre Statistique
+    int choixBoutonsFenetreProcessus; //!< le numéro de boutons sélectionnables par l'encodeur dans
+                                      //!< la fenêtre Processus
     AffichagePageProcessus* pageProcessus;
     // Les ressources IHM
     QStackedWidget* fenetres;
@@ -74,14 +78,15 @@ class IHM : public QWidget
     QWidget*        fenetreProcessus;
     QVector<QPushButton*>
                           boutonsFenetreMenu; //!< les boutons sélectionnables par l'encodeur dans la fenêtre Menu
+    QVector<QPushButton*> boutonsFenetreStatistique;
+    QVector<QPushButton*> boutonsFenetreProcessus;
     QPushButton*          boutonRetourMenu1; // Depuis Processus
     QPushButton*          boutonRetourMenu2; // Depuis Statistique
     QLabel*               titre;
     QLabel*               version;
     QLabel*               connexionPosteDeTravail;
-    QVector<QPushButton*> listeProcessus;
-    QComboBox*            listeDeroulanteProcessus;
-
+    QStringList           listeProcessusAssemblage;
+    QComboBox             toto;
     /**
      * @enum Fenetre
      * @brief Définit les différentes fenêtres de l'IHM
@@ -106,14 +111,26 @@ class IHM : public QWidget
         NbActionsFenetreMenu
     };
 
+    enum ActionFenetreStatistique
+    {
+        ActionFSMenu = 0,
+        NbActionsFenetreStatistique
+    };
+
+    enum ActionFenetreProcessus
+    {
+        ActionFPMenu = 0,
+        ActionProcessus
+    };
+
     void creerFenetres();
     void creerFenetreMenu();
     void creerFenetreProcessus();
     void creerFenetreStatistique();
     void afficherFenetrePrincipale();
     void creerConnexionsBoutonsNavigation();
-    void creerConnexionEncodeur();
-    void creerDeconnexionEncodeur();
+    void creerConnexionEncodeurMenu();
+    void creerDeconnexionEncodeurMenu();
     void creerConnexionsGUI();
     void initialiserDialogueModule();
 
@@ -133,6 +150,8 @@ class IHM : public QWidget
     void avancerChoix();
     void reculerChoix();
     void validerChoix();
+
+  signals:
 };
 
 #endif // IHM_H
