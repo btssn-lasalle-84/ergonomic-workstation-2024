@@ -1,6 +1,6 @@
 QWidget
 {
-    background-color: #515151;
+    background-color: #384454;
     padding: 10px;
 }
 
@@ -61,12 +61,12 @@ QPushButton:focus
 
 QComboBox
 {
-    selection-color: #dd0000;
-    selection-background-color: #6666cc;
+    selection-color: #E1A624;
+    selection-background-color: #384454;
     border: 2px solid grey;
     border-radius: 8px;
     padding: 20px;
-    color: #dddddd;
+    color: #D4D3DC;
     font-size: 48px;
     font-weight: 800;
 }

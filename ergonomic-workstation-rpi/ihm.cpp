@@ -128,7 +128,9 @@ void IHM::creerFenetreProcessus()
     }
 
     layoutProcessus->addWidget(connexionPosteDeTravail);
+    layoutProcessus->addStretch();
     layoutProcessus->addWidget(listeDeroulanteProcessus); // pour les tests
+    layoutProcessus->addStretch();
     layoutProcessus->addWidget(boutonRetourMenu1);
     fenetreProcessus->setLayout(layoutProcessus);
 }
