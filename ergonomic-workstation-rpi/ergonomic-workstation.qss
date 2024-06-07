@@ -59,18 +59,6 @@ QPushButton:focus
     font-weight: 800;
 }
 
-QComboBox
-{
-    selection-color: #E1A624;
-    selection-background-color: #384454;
-    border: 2px solid grey;
-    border-radius: 8px;
-    padding: 20px;
-    color: #D4D3DC;
-    font-size: 48px;
-    font-weight: 800;
-}
-
 QComboBox::item:hover
 {
     background-color: wheat;
