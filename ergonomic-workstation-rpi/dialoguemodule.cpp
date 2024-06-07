@@ -9,7 +9,8 @@ DialogueModule::DialogueModule(QObject* parent) : QObject(parent), portSerie(new
 
 DialogueModule::~DialogueModule()
 {
-    arreter();
+    if(portSerie != nullptr)
+        portSerie->close();
     qDebug() << Q_FUNC_INFO;
 }
 

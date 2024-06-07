@@ -1,0 +1,95 @@
+QWidget
+{
+    background-color: #384454;
+    padding: 10px;
+}
+
+QLabel
+{
+    border: 2px solid grey;
+    border-radius: 8px;
+    color: #AD956B;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+QWidget#titre
+{
+    border: 0px solid white;
+    font-size: 60px;
+    font-weight: 800;
+    text-align: center;
+    color: #AD956B;
+}
+
+QWidget#version
+{
+ border: 0px solid white;
+    font-size: 60px;
+    font-weight: 800;
+    text-align: center;
+    color: #AD956B;
+}
+
+QPushButton
+{
+    background-color: #317AC1;
+    border: 2px solid grey;
+    border-radius: 8px;
+    color: #dddddd;
+    font-size: 48px;
+    font-weight: 800;
+}
+
+QPushButton:hover:!pressed
+{
+    border: 2px solid #E1A624;
+    border-radius: 8px;
+    color: #E1A624;
+    font-size: 48px;
+    font-weight: 800;
+}
+
+QPushButton:focus
+{
+    border: 2px solid #E1A624;
+    border-radius: 8px;
+    color: #E1A624;
+    font-size: 48px;
+    font-weight: 800;
+}
+
+QComboBox
+{
+    selection-color: #E1A624;
+    selection-background-color: #384454;
+    border: 2px solid grey;
+    border-radius: 8px;
+    padding: 20px;
+    color: #D4D3DC;
+    font-size: 48px;
+    font-weight: 800;
+}
+
+QComboBox::item:hover
+{
+    background-color: wheat;
+}
+
+QTextBrowser
+{
+    border: 2px solid grey;
+    border-radius: 8px;
+    color: #dddddd;
+    font-size: 30px;
+    font-weight: 800;
+}
+
+QFrame#bac1,QFrame#bac2,QFrame#bac3,QFrame#bac4,QFrame#bac5,QFrame#bac6,QFrame#bac7,QFrame#bac8
+{
+    border: 2px solid grey;
+    background-color: grey;
+    border-radius: 8px;
+    padding: 0px;
+    margin: 25px;
+}
