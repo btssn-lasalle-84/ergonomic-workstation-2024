@@ -1,0 +1,281 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Projet ergonomic-workstation:  Fichier source de dialoguemodule.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="customdoxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Projet ergonomic-workstation
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">BTS SNIR LaSalle Avignon 2024</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('dialoguemodule_8cpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">dialoguemodule.cpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="dialoguemodule_8cpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="dialoguemodule_8h.html">dialoguemodule.h</a>&quot;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ihm_8h.html">ihm.h</a>&quot;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;QDebug&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="class_dialogue_module.html#a16fc78877646f1fca08f3181d43956f6">    5</a></span>&#160;<a class="code" href="class_dialogue_module.html#a16fc78877646f1fca08f3181d43956f6">DialogueModule::DialogueModule</a>(<a class="code" href="class_q_object.html">QObject</a>* parent) : <a class="code" href="class_q_object.html">QObject</a>(parent), portSerie(new QSerialPort(this))</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    qDebug() &lt;&lt; Q_FUNC_INFO;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;}</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="class_dialogue_module.html#aba929af39ab27331e2f6f4775259013b">   10</a></span>&#160;<a class="code" href="class_dialogue_module.html#aba929af39ab27331e2f6f4775259013b">DialogueModule::~DialogueModule</a>()</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="class_dialogue_module.html#a33c6d0032e25b931ba485e9ab2ead825">portSerie</a> != <span class="keyword">nullptr</span>)</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <a class="code" href="class_dialogue_module.html#a33c6d0032e25b931ba485e9ab2ead825">portSerie</a>-&gt;close();</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    qDebug() &lt;&lt; Q_FUNC_INFO;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;}</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="class_dialogue_module.html#a7ac0349ba2b1255c43e7c6361497616f">   17</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_dialogue_module.html#a7ac0349ba2b1255c43e7c6361497616f">DialogueModule::demarrer</a>()</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    qDebug() &lt;&lt; Q_FUNC_INFO;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="class_dialogue_module.html#a39b7a6f79304221d6dbb03ad8d31581e">configurerPortSerie</a>();</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="class_dialogue_module.html#a0162f06313a7d27696725c68e2f7a596">ouvrirPortSerie</a>();</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;}</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="class_dialogue_module.html#a1f8be1a99a8c10215969864ce20e157f">   24</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_dialogue_module.html#a1f8be1a99a8c10215969864ce20e157f">DialogueModule::arreter</a>()</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;{</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    qDebug() &lt;&lt; Q_FUNC_INFO;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="class_dialogue_module.html#a3f32977edf854d06930fdfa255f7ed05">fermerPortSerie</a>();</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;}</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="class_dialogue_module.html#a39b7a6f79304221d6dbb03ad8d31581e">   30</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_dialogue_module.html#a39b7a6f79304221d6dbb03ad8d31581e">DialogueModule::configurerPortSerie</a>(QString nomPortSerie)</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;{</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    qDebug() &lt;&lt; Q_FUNC_INFO &lt;&lt; <span class="stringliteral">&quot;nomPortSerie&quot;</span> &lt;&lt; nomPortSerie;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="class_dialogue_module.html#a33c6d0032e25b931ba485e9ab2ead825">portSerie</a>-&gt;setPortName(nomPortSerie);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="comment">// @todo voir avec l&#39;EC pour le choix du débit(9600)</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">// portSerie-&gt;setBaudRate(QSerialPort::Baud9600);</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="class_dialogue_module.html#a33c6d0032e25b931ba485e9ab2ead825">portSerie</a>-&gt;setBaudRate(QSerialPort::Baud115200);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="class_dialogue_module.html#a33c6d0032e25b931ba485e9ab2ead825">portSerie</a>-&gt;setDataBits(QSerialPort::Data8);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="class_dialogue_module.html#a33c6d0032e25b931ba485e9ab2ead825">portSerie</a>-&gt;setParity(QSerialPort::NoParity);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="class_dialogue_module.html#a33c6d0032e25b931ba485e9ab2ead825">portSerie</a>-&gt;setStopBits(QSerialPort::OneStop);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="class_dialogue_module.html#a33c6d0032e25b931ba485e9ab2ead825">portSerie</a>-&gt;setFlowControl(QSerialPort::NoFlowControl);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;}</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="class_dialogue_module.html#a0162f06313a7d27696725c68e2f7a596">   44</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_dialogue_module.html#a0162f06313a7d27696725c68e2f7a596">DialogueModule::ouvrirPortSerie</a>()</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="class_dialogue_module.html#a33c6d0032e25b931ba485e9ab2ead825">portSerie</a>-&gt;open(QIODevice::ReadWrite))</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        qDebug() &lt;&lt; Q_FUNC_INFO;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        connect(<a class="code" href="class_dialogue_module.html#a33c6d0032e25b931ba485e9ab2ead825">portSerie</a>, SIGNAL(readyRead()), <span class="keyword">this</span>, SLOT(<a class="code" href="class_dialogue_module.html#a598640eeacda9182735c8fea0f0b5d88">recevoirTrame</a>()));</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        connect(<a class="code" href="class_dialogue_module.html#a33c6d0032e25b931ba485e9ab2ead825">portSerie</a>,</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                SIGNAL(error(QSerialPort::SerialPortError)),</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                <span class="keyword">this</span>,</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                SLOT(<a class="code" href="class_dialogue_module.html#adb8d62c269b60f95fbc52339c531092d">gererErreur</a>(QSerialPort::SerialPortError)));</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        emit <a class="code" href="class_dialogue_module.html#a81c40e90b34816aa797001172a37b3dd">moduleConnecte</a>();</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    }</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        qDebug() &lt;&lt; Q_FUNC_INFO &lt;&lt; <span class="stringliteral">&quot;erreur&quot;</span> &lt;&lt; <a class="code" href="class_dialogue_module.html#a33c6d0032e25b931ba485e9ab2ead825">portSerie</a>-&gt;error();</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    }</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;}</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="class_dialogue_module.html#a3f32977edf854d06930fdfa255f7ed05">   62</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_dialogue_module.html#a3f32977edf854d06930fdfa255f7ed05">DialogueModule::fermerPortSerie</a>()</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;{</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="class_dialogue_module.html#a33c6d0032e25b931ba485e9ab2ead825">portSerie</a>-&gt;isOpen())</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <a class="code" href="class_dialogue_module.html#a33c6d0032e25b931ba485e9ab2ead825">portSerie</a>-&gt;close();</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        emit <a class="code" href="class_dialogue_module.html#a6717470f66e86ec580924d3a3baafff3">moduleDeconnecte</a>();</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    }</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;}</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="class_dialogue_module.html#a6c45b9a14aa97d38434ee68bbdc84b12">   71</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="class_dialogue_module.html#a6c45b9a14aa97d38434ee68bbdc84b12">DialogueModule::verifierTrame</a>(<span class="keyword">const</span> QByteArray&amp; trame)</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;{</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordflow">if</span>(trame.at(0) == <span class="charliteral">&#39;$&#39;</span> &amp;&amp; trame.at(trame.size() - 1) == <span class="charliteral">&#39;\n&#39;</span>)</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    {</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    }</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;}</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="class_dialogue_module.html#a5953211a80d6038c4c659e322313bba0">   80</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_dialogue_module.html#a5953211a80d6038c4c659e322313bba0">DialogueModule::decoderTrame</a>(QByteArray trame)</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;{</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    trame.remove(0, 1);                <span class="comment">// retire le &#39;$&#39;</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    trame.remove(trame.size() - 1, 1); <span class="comment">// retire le &#39;\n&#39;</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    QList&lt;QByteArray&gt; champs = trame.split(<span class="charliteral">&#39;;&#39;</span>);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    qDebug() &lt;&lt; <span class="stringliteral">&quot;champs&quot;</span> &lt;&lt; champs;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="comment">// une trame &#39;E&#39; (encodeur) ?</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordflow">if</span>(champs.at(0) == <a class="code" href="dialoguemodule_8h.html#a95e606786cfab236c19ec0761aad78f6">TYPE_TRAME_ENCODEUR</a>)</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    {</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keywordtype">bool</span> ok = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keywordtype">int</span>  typeEncodage =</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;          champs.at(<a class="code" href="class_dialogue_module.html#af61163015bfdd7e15d97842b460c66e0aa5795e2af409019a850f39e6e2f18676">ACTION</a>).toInt(&amp;ok, 10); <span class="comment">// il faut extraire l&#39;action sous forme d&#39;un int</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        qDebug() &lt;&lt; Q_FUNC_INFO &lt;&lt; <span class="stringliteral">&quot;ok = &quot;</span> &lt;&lt; ok &lt;&lt; <span class="stringliteral">&quot;typeEncodage = &quot;</span> &lt;&lt; typeEncodage;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keywordflow">if</span>(!ok)</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="keywordflow">switch</span>(typeEncodage)</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        {</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="class_dialogue_module.html#a3fb5891d3c383ec4f3fc951c137f2faca2af188c33df6526db2e6a05619a4da3f">DROITE</a>:</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                emit <a class="code" href="class_dialogue_module.html#a9ba528eb3d5774cc931906985fee80e8">encodeurDroite</a>();</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="class_dialogue_module.html#a3fb5891d3c383ec4f3fc951c137f2facabff897dfd8d70af33b99b1082755d872">GAUCHE</a>:</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                emit <a class="code" href="class_dialogue_module.html#a4139f3c456d5dcf8949cbf5f6551aa82">encodeurGauche</a>();</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="class_dialogue_module.html#a3fb5891d3c383ec4f3fc951c137f2facabdd6d3da51f0569a04e059f69412c1a4">VALIDATION</a>:</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                emit <a class="code" href="class_dialogue_module.html#a2fcd126f2994cd6c7fb25578ef062fd4">encodeurValidation</a>();</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        }</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    }</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;}</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="class_dialogue_module.html#a2b45bc4c81d495e8aeb0787fbd37accd">  112</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_dialogue_module.html#a2b45bc4c81d495e8aeb0787fbd37accd">DialogueModule::envoyerTrame</a>(QString trame)</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;{</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="class_dialogue_module.html#a33c6d0032e25b931ba485e9ab2ead825">portSerie</a>-&gt;open(QIODevice::WriteOnly))</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    {</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <a class="code" href="class_dialogue_module.html#a33c6d0032e25b931ba485e9ab2ead825">portSerie</a>-&gt;write(trame.toLatin1());</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <a class="code" href="class_dialogue_module.html#a33c6d0032e25b931ba485e9ab2ead825">portSerie</a>-&gt;write(<span class="stringliteral">&quot;\n&quot;</span>);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    }</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;}</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno"><a class="line" href="class_dialogue_module.html#a598640eeacda9182735c8fea0f0b5d88">  121</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_dialogue_module.html#a598640eeacda9182735c8fea0f0b5d88">DialogueModule::recevoirTrame</a>()</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;{</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    QByteArray donneesRecues;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="keywordflow">while</span>(<a class="code" href="class_dialogue_module.html#a33c6d0032e25b931ba485e9ab2ead825">portSerie</a>-&gt;waitForReadyRead(500))</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    {</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        donneesRecues.append(<a class="code" href="class_dialogue_module.html#a33c6d0032e25b931ba485e9ab2ead825">portSerie</a>-&gt;readAll());</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    }</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    qDebug() &lt;&lt; Q_FUNC_INFO &lt;&lt; <span class="stringliteral">&quot;donneesRecues&quot;</span> &lt;&lt; donneesRecues;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="comment">// trame valide ?</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="class_dialogue_module.html#a6c45b9a14aa97d38434ee68bbdc84b12">verifierTrame</a>(donneesRecues))</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    {</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <a class="code" href="class_dialogue_module.html#a5953211a80d6038c4c659e322313bba0">decoderTrame</a>(donneesRecues); <span class="comment">// décoder la trame</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    }</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;}</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
+<div class="line"><a name="l00137"></a><span class="lineno"><a class="line" href="class_dialogue_module.html#adb8d62c269b60f95fbc52339c531092d">  137</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_dialogue_module.html#adb8d62c269b60f95fbc52339c531092d">DialogueModule::gererErreur</a>(QSerialPort::SerialPortError erreur)</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;{</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    qDebug() &lt;&lt; Q_FUNC_INFO &lt;&lt; <span class="stringliteral">&quot;erreur&quot;</span> &lt;&lt; erreur &lt;&lt; <span class="stringliteral">&quot;isOpen&quot;</span> &lt;&lt; <a class="code" href="class_dialogue_module.html#a33c6d0032e25b931ba485e9ab2ead825">portSerie</a>-&gt;isOpen();</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <span class="comment">// @todo il faudra connecter le signal erreurOuvertureModule() pour que l&#39;IHM affiche une boîte</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="comment">// de dialogue d&#39;erreur</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <span class="keywordflow">if</span>(erreur == QSerialPort::DeviceNotFoundError)</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        emit <a class="code" href="class_dialogue_module.html#a93063c2ced0c6fe3fbf16b319e935c96">erreurOuvertureModule</a>();</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <span class="comment">// Erreur en cours d&#39;exécution si on envoie une trame : QSerialPort::ResourceError</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <span class="keywordflow">if</span>(erreur == QSerialPort::ResourceError)</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    {</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        <a class="code" href="class_dialogue_module.html#a3f32977edf854d06930fdfa255f7ed05">fermerPortSerie</a>();</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        emit <a class="code" href="class_dialogue_module.html#a73dc982252d4efc7bec9753ef4bcee81">erreurDialogueModule</a>();</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    }</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;}</div>
+<div class="ttc" id="aclass_dialogue_module_html_a0162f06313a7d27696725c68e2f7a596"><div class="ttname"><a href="class_dialogue_module.html#a0162f06313a7d27696725c68e2f7a596">DialogueModule::ouvrirPortSerie</a></div><div class="ttdeci">void ouvrirPortSerie()</div><div class="ttdef"><b>Definition:</b> <a href="dialoguemodule_8cpp_source.html#l00044">dialoguemodule.cpp:44</a></div></div>
+<div class="ttc" id="aclass_dialogue_module_html_a16fc78877646f1fca08f3181d43956f6"><div class="ttname"><a href="class_dialogue_module.html#a16fc78877646f1fca08f3181d43956f6">DialogueModule::DialogueModule</a></div><div class="ttdeci">DialogueModule(QObject *parent=nullptr)</div><div class="ttdef"><b>Definition:</b> <a href="dialoguemodule_8cpp_source.html#l00005">dialoguemodule.cpp:5</a></div></div>
+<div class="ttc" id="aclass_dialogue_module_html_a1f8be1a99a8c10215969864ce20e157f"><div class="ttname"><a href="class_dialogue_module.html#a1f8be1a99a8c10215969864ce20e157f">DialogueModule::arreter</a></div><div class="ttdeci">void arreter()</div><div class="ttdef"><b>Definition:</b> <a href="dialoguemodule_8cpp_source.html#l00024">dialoguemodule.cpp:24</a></div></div>
+<div class="ttc" id="aclass_dialogue_module_html_a2b45bc4c81d495e8aeb0787fbd37accd"><div class="ttname"><a href="class_dialogue_module.html#a2b45bc4c81d495e8aeb0787fbd37accd">DialogueModule::envoyerTrame</a></div><div class="ttdeci">void envoyerTrame(QString trame)</div><div class="ttdef"><b>Definition:</b> <a href="dialoguemodule_8cpp_source.html#l00112">dialoguemodule.cpp:112</a></div></div>
+<div class="ttc" id="aclass_dialogue_module_html_a2fcd126f2994cd6c7fb25578ef062fd4"><div class="ttname"><a href="class_dialogue_module.html#a2fcd126f2994cd6c7fb25578ef062fd4">DialogueModule::encodeurValidation</a></div><div class="ttdeci">void encodeurValidation()</div></div>
+<div class="ttc" id="aclass_dialogue_module_html_a33c6d0032e25b931ba485e9ab2ead825"><div class="ttname"><a href="class_dialogue_module.html#a33c6d0032e25b931ba485e9ab2ead825">DialogueModule::portSerie</a></div><div class="ttdeci">QSerialPort * portSerie</div><div class="ttdoc">pour gérer le port série</div><div class="ttdef"><b>Definition:</b> <a href="dialoguemodule_8h_source.html#l00058">dialoguemodule.h:58</a></div></div>
+<div class="ttc" id="aclass_dialogue_module_html_a39b7a6f79304221d6dbb03ad8d31581e"><div class="ttname"><a href="class_dialogue_module.html#a39b7a6f79304221d6dbb03ad8d31581e">DialogueModule::configurerPortSerie</a></div><div class="ttdeci">void configurerPortSerie(QString nomPortSerie=NOM_PORT_SERIE)</div><div class="ttdef"><b>Definition:</b> <a href="dialoguemodule_8cpp_source.html#l00030">dialoguemodule.cpp:30</a></div></div>
+<div class="ttc" id="aclass_dialogue_module_html_a3f32977edf854d06930fdfa255f7ed05"><div class="ttname"><a href="class_dialogue_module.html#a3f32977edf854d06930fdfa255f7ed05">DialogueModule::fermerPortSerie</a></div><div class="ttdeci">void fermerPortSerie()</div><div class="ttdef"><b>Definition:</b> <a href="dialoguemodule_8cpp_source.html#l00062">dialoguemodule.cpp:62</a></div></div>
+<div class="ttc" id="aclass_dialogue_module_html_a3fb5891d3c383ec4f3fc951c137f2faca2af188c33df6526db2e6a05619a4da3f"><div class="ttname"><a href="class_dialogue_module.html#a3fb5891d3c383ec4f3fc951c137f2faca2af188c33df6526db2e6a05619a4da3f">DialogueModule::DROITE</a></div><div class="ttdeci">@ DROITE</div><div class="ttdef"><b>Definition:</b> <a href="dialoguemodule_8h_source.html#l00033">dialoguemodule.h:33</a></div></div>
+<div class="ttc" id="aclass_dialogue_module_html_a3fb5891d3c383ec4f3fc951c137f2facabdd6d3da51f0569a04e059f69412c1a4"><div class="ttname"><a href="class_dialogue_module.html#a3fb5891d3c383ec4f3fc951c137f2facabdd6d3da51f0569a04e059f69412c1a4">DialogueModule::VALIDATION</a></div><div class="ttdeci">@ VALIDATION</div><div class="ttdef"><b>Definition:</b> <a href="dialoguemodule_8h_source.html#l00036">dialoguemodule.h:35</a></div></div>
+<div class="ttc" id="aclass_dialogue_module_html_a3fb5891d3c383ec4f3fc951c137f2facabff897dfd8d70af33b99b1082755d872"><div class="ttname"><a href="class_dialogue_module.html#a3fb5891d3c383ec4f3fc951c137f2facabff897dfd8d70af33b99b1082755d872">DialogueModule::GAUCHE</a></div><div class="ttdeci">@ GAUCHE</div><div class="ttdef"><b>Definition:</b> <a href="dialoguemodule_8h_source.html#l00034">dialoguemodule.h:34</a></div></div>
+<div class="ttc" id="aclass_dialogue_module_html_a4139f3c456d5dcf8949cbf5f6551aa82"><div class="ttname"><a href="class_dialogue_module.html#a4139f3c456d5dcf8949cbf5f6551aa82">DialogueModule::encodeurGauche</a></div><div class="ttdeci">void encodeurGauche()</div></div>
+<div class="ttc" id="aclass_dialogue_module_html_a5953211a80d6038c4c659e322313bba0"><div class="ttname"><a href="class_dialogue_module.html#a5953211a80d6038c4c659e322313bba0">DialogueModule::decoderTrame</a></div><div class="ttdeci">void decoderTrame(QByteArray trame)</div><div class="ttdef"><b>Definition:</b> <a href="dialoguemodule_8cpp_source.html#l00080">dialoguemodule.cpp:80</a></div></div>
+<div class="ttc" id="aclass_dialogue_module_html_a598640eeacda9182735c8fea0f0b5d88"><div class="ttname"><a href="class_dialogue_module.html#a598640eeacda9182735c8fea0f0b5d88">DialogueModule::recevoirTrame</a></div><div class="ttdeci">void recevoirTrame()</div><div class="ttdef"><b>Definition:</b> <a href="dialoguemodule_8cpp_source.html#l00121">dialoguemodule.cpp:121</a></div></div>
+<div class="ttc" id="aclass_dialogue_module_html_a6717470f66e86ec580924d3a3baafff3"><div class="ttname"><a href="class_dialogue_module.html#a6717470f66e86ec580924d3a3baafff3">DialogueModule::moduleDeconnecte</a></div><div class="ttdeci">void moduleDeconnecte()</div></div>
+<div class="ttc" id="aclass_dialogue_module_html_a6c45b9a14aa97d38434ee68bbdc84b12"><div class="ttname"><a href="class_dialogue_module.html#a6c45b9a14aa97d38434ee68bbdc84b12">DialogueModule::verifierTrame</a></div><div class="ttdeci">bool verifierTrame(const QByteArray &amp;trame)</div><div class="ttdef"><b>Definition:</b> <a href="dialoguemodule_8cpp_source.html#l00071">dialoguemodule.cpp:71</a></div></div>
+<div class="ttc" id="aclass_dialogue_module_html_a73dc982252d4efc7bec9753ef4bcee81"><div class="ttname"><a href="class_dialogue_module.html#a73dc982252d4efc7bec9753ef4bcee81">DialogueModule::erreurDialogueModule</a></div><div class="ttdeci">void erreurDialogueModule()</div></div>
+<div class="ttc" id="aclass_dialogue_module_html_a7ac0349ba2b1255c43e7c6361497616f"><div class="ttname"><a href="class_dialogue_module.html#a7ac0349ba2b1255c43e7c6361497616f">DialogueModule::demarrer</a></div><div class="ttdeci">void demarrer()</div><div class="ttdef"><b>Definition:</b> <a href="dialoguemodule_8cpp_source.html#l00017">dialoguemodule.cpp:17</a></div></div>
+<div class="ttc" id="aclass_dialogue_module_html_a81c40e90b34816aa797001172a37b3dd"><div class="ttname"><a href="class_dialogue_module.html#a81c40e90b34816aa797001172a37b3dd">DialogueModule::moduleConnecte</a></div><div class="ttdeci">void moduleConnecte()</div></div>
+<div class="ttc" id="aclass_dialogue_module_html_a93063c2ced0c6fe3fbf16b319e935c96"><div class="ttname"><a href="class_dialogue_module.html#a93063c2ced0c6fe3fbf16b319e935c96">DialogueModule::erreurOuvertureModule</a></div><div class="ttdeci">void erreurOuvertureModule()</div></div>
+<div class="ttc" id="aclass_dialogue_module_html_a9ba528eb3d5774cc931906985fee80e8"><div class="ttname"><a href="class_dialogue_module.html#a9ba528eb3d5774cc931906985fee80e8">DialogueModule::encodeurDroite</a></div><div class="ttdeci">void encodeurDroite()</div></div>
+<div class="ttc" id="aclass_dialogue_module_html_aba929af39ab27331e2f6f4775259013b"><div class="ttname"><a href="class_dialogue_module.html#aba929af39ab27331e2f6f4775259013b">DialogueModule::~DialogueModule</a></div><div class="ttdeci">~DialogueModule()</div><div class="ttdef"><b>Definition:</b> <a href="dialoguemodule_8cpp_source.html#l00010">dialoguemodule.cpp:10</a></div></div>
+<div class="ttc" id="aclass_dialogue_module_html_adb8d62c269b60f95fbc52339c531092d"><div class="ttname"><a href="class_dialogue_module.html#adb8d62c269b60f95fbc52339c531092d">DialogueModule::gererErreur</a></div><div class="ttdeci">void gererErreur(QSerialPort::SerialPortError erreur)</div><div class="ttdef"><b>Definition:</b> <a href="dialoguemodule_8cpp_source.html#l00137">dialoguemodule.cpp:137</a></div></div>
+<div class="ttc" id="aclass_dialogue_module_html_af61163015bfdd7e15d97842b460c66e0aa5795e2af409019a850f39e6e2f18676"><div class="ttname"><a href="class_dialogue_module.html#af61163015bfdd7e15d97842b460c66e0aa5795e2af409019a850f39e6e2f18676">DialogueModule::ACTION</a></div><div class="ttdeci">@ ACTION</div><div class="ttdef"><b>Definition:</b> <a href="dialoguemodule_8h_source.html#l00044">dialoguemodule.h:44</a></div></div>
+<div class="ttc" id="aclass_q_object_html"><div class="ttname"><a href="class_q_object.html">QObject</a></div></div>
+<div class="ttc" id="adialoguemodule_8h_html"><div class="ttname"><a href="dialoguemodule_8h.html">dialoguemodule.h</a></div></div>
+<div class="ttc" id="adialoguemodule_8h_html_a95e606786cfab236c19ec0761aad78f6"><div class="ttname"><a href="dialoguemodule_8h.html#a95e606786cfab236c19ec0761aad78f6">TYPE_TRAME_ENCODEUR</a></div><div class="ttdeci">#define TYPE_TRAME_ENCODEUR</div><div class="ttdoc">La trame &quot;$E;1|2|3\n&quot; envoyé par le module EC &quot;poste de travail&quot;.</div><div class="ttdef"><b>Definition:</b> <a href="dialoguemodule_8h_source.html#l00018">dialoguemodule.h:18</a></div></div>
+<div class="ttc" id="aihm_8h_html"><div class="ttname"><a href="ihm_8h.html">ihm.h</a></div><div class="ttdoc">Déclaration de la classe IHM.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_f75481b69e808cc131a887dc6b91cad1.html">ergonomic-workstation-rpi</a></li><li class="navelem"><a class="el" href="dialoguemodule_8cpp.html">dialoguemodule.cpp</a></li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Samedi 8 Juin 2024 09:43:56 pour Projet ergonomic-workstation par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+  </ul>
+</div>
+</body>
+</html>
