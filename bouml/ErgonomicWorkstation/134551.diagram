@@ -2,61 +2,98 @@ format 224
 
 classcanvas 128023 class_ref 135191 // IHM
   classdiagramsettings member_max_width 0 end
-  xyz 12 12 2000
+  color gray
+  xyz 9.4 -12.6 2000
 end
 classcanvas 128151 class_ref 135447 // ProcessusAssemblage
   classdiagramsettings member_max_width 0 end
-  xyz 811 529 2006
+  color lightmediumblue
+  xyz 1286.2 1190.4 2006
+end
+classcanvas 128170 class_ref 141226 // AffichagePageProcessus
+  classdiagramsettings member_max_width 0 end
+  color gray
+  xyz 1049.8 167 3011
 end
 classcanvas 128407 class_ref 135703 // PosteTravail
   classdiagramsettings member_max_width 0 end
-  xyz 324 1054 2012
+  color white
+  xyz 1294.2 1724.6 2012
 end
 classcanvas 128791 class_ref 135063 // Etape
   classdiagramsettings member_max_width 0 end
-  xyz 1058 1025 3005
+  color lightmediumblue
+  xyz 2114 1253 3005
+end
+classcanvas 128810 class_ref 135575 // Operateur
+  classdiagramsettings member_max_width 0 end
+  color white
+  xyz 929.2 1706.4 3005
 end
 classcanvas 129047 class_ref 134807 // DialogueModule
   classdiagramsettings member_max_width 0 end
-  xyz 1678 222 3005
+  xyz 2632.2 -1.2 3005
 end
 classcanvas 129303 class_ref 134679 // Bac
   classdiagramsettings member_max_width 0 end
-  xyz 1454 1047 3011
+  color lightmediumblue
+  xyz 2107 1693.2 3011
 end
 relationcanvas 128042 relation_ref 141738 // <unidirectional association>
+  decenter_begin 148
+  decenter_end 323
   from ref 128023 z 3006 to ref 129047
-  role_a_pos 1532 422 3000 no_role_b
+  role_a_pos 2483 121 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 128279 relation_ref 135063 // <unidirectional association>
   from ref 128023 z 2007 to ref 128151
-  role_a_pos 610 539 3000 no_role_b
+  role_a_pos 1144 1182 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 128298 relation_ref 148266 // <unidirectional association>
+  from ref 128170 z 3012 to ref 128151
+  role_a_pos 1628 1174 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 128426 relation_ref 148394 // <unidirectional association>
+  from ref 128170 z 3012 to ref 129047
+  role_a_pos 2483 274 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 128535 relation_ref 135319 // <unidirectional association>
   from ref 128407 z 2013 to ref 128151
-  role_a_pos 791 758 3000 no_role_b
+  role_a_pos 1629 1596 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 128554 relation_ref 141482 // <unidirectional association>
+  from ref 128170 z 3012 to ref 128791
+  role_a_pos 2285 1246 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 128663 relation_ref 135703 // <unidirectional association>
   from ref 128151 z 2013 to ref 128407
-  role_a_pos 696 1019 3000 no_role_b
+  role_a_pos 1629 1700 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 128682 relation_ref 148522 // <unidirectional association>
+  from ref 128023 z 3012 to ref 128170
+  role_a_pos 903 486 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 128919 relation_ref 135831 // <unidirectional association>
-  from ref 128151 z 3006 stereotype "<<QList>>" xyz 1079 869.5 3006 to ref 128791
-  role_a_pos 1151 999 3000 no_role_b
+  from ref 128151 z 3006 stereotype "<<QList>>" xyz 1987.5 1394 3006 to ref 128791
+  role_a_pos 2038 1369 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
-relationcanvas 129175 relation_ref 135959 // <unidirectional association>
-  from ref 128151 z 3006 to ref 129047
-  role_a_pos 1532 489 3000 no_role_b
+relationcanvas 128938 relation_ref 135447 // <unidirectional association>
+  from ref 128407 z 3006 to ref 128810
+  role_a_pos 1112 1737 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 129559 relation_ref 136087 // <unidirectional association>
-  from ref 128791 z 3012 stereotype "<<QVector>>" xyz 1284 1083.5 3000 to ref 129303
-  role_a_pos 1398 1068 3000 no_role_b
+  from ref 128791 z 3012 stereotype "<<QVector>>" xyz 2446 1584 3000 to ref 129303
+  role_a_pos 2503 1674 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 end

@@ -8,15 +8,22 @@ class Bac;
 class Etape
 {
   private:
-    QVector<Bac*> bacs;
     int           numero;
+    QString       nom;
+    QString       nomImage;
+    QVector<Bac*> bacs;
     bool          valide;
 
   public:
-    explicit Etape();
+    explicit Etape(int numero, QString nom, QString nomImage, QVector<Bac*> bacs);
     ~Etape();
 
-    int getNumero() const;
+    int           getNumero() const;
+    QString       getNom() const;
+    QString       getNomImage() const;
+    Bac*          getBac(int numeroBac) const;
+    int           getNbBacs() const;
+    QVector<Bac*> getBacs() const;
 };
 
 #endif // ETAPE_H

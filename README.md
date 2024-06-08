@@ -7,11 +7,11 @@
 - [Le projet ergonomic-workstation 2024](#le-projet-ergonomic-workstation-2024)
   - [Présentation](#présentation)
   - [Fonctionnalités](#fonctionnalités)
-  - [Documentation du code](#documentation-du-code)
+  - [Screenshots](#screenshots)
   - [Diagramme de classes](#diagramme-de-classes)
   - [Protocole](#protocole)
-  - [Screenshots](#screenshots)
   - [Historique des versions](#historique-des-versions)
+  - [Documentation du code](#documentation-du-code)
   - [Auteurs](#auteurs)
 
 ---
@@ -28,24 +28,21 @@ Il s'agit de digitaliser un poste de travail afin de guider l’opérateur pas �
 
 La table ergonomique devra être capable de proposer plusieurs processus d'assemblage et d'accompagner l'opérateur durant le  processus d'assemblage.
 
-|Tâche|Priorité|Itération|
-|-----|:------:|:-------:|
-|Séquences les opérations|H|2|
-|Visualiser les statistique de production|B|3|
-|Visualiser tous les processus d’assemblage|H|1|
-|Arrêter le système à tout moment|M|3|
-|Choisir un opérateur|B|3|
-|Détecter une erreur|M|2|
-|Choisir le processus d’assemblage|M|2|
-|Communiquer avec le poste de travail (liaison série)|M|2|
+| Fonctionnalités                                      | Validation |
+| ---------------------------------------------------- | :--------: |
+| Visualiser tous les processus d’assemblage           |    OUI     |
+| Choisir le processus d’assemblage                    |    OUI     |
+| Séquencer les opérations                             |    OUI     |
+| Arrêter le système à tout moment                     |    OUI     |
+| Communiquer avec le poste de travail (liaison série) |    OUI     |
 
-## Documentation du code
+## Screenshots
 
-https://btssn-lasalle-84.github.io/ergonomic-workstation-2024/
+![](images/screenshot-v1.0.gif)
 
 ## Diagramme de classes
 
-![](images/classes-v0.2.png)
+![](images/classes-v1.0.png)
 
 ## Protocole
 
@@ -64,11 +61,22 @@ Exemples :
 - `$E;2\n` l'encodeur a été” déplacé d’un “cran” vers la gauche 
 - `$E;3\n` appui sur l’encodeur
 
-## Screenshots
-
-![](images/screenshot-v0.2.gif)
-
 ## Historique des versions
+
+|Tâche|Priorité|Itération|
+|-----|:------:|:-------:|
+|Séquences les opérations|H|2|
+|Visualiser les statistique de production|B|3|
+|Visualiser tous les processus d’assemblage|H|1|
+|Arrêter le système à tout moment|M|3|
+|Choisir un opérateur|B|3|
+|Détecter une erreur|M|2|
+|Choisir le processus d’assemblage|M|2|
+|Communiquer avec le poste de travail (liaison série)|M|2|
+
+- Version 1.0
+
+![](images/jira-v1.0.png)
 
 - Version 0.2
 
@@ -77,6 +85,10 @@ Exemples :
 - Version 0.1
 
 ![](images/jira-v0.1.png)
+
+## Documentation du code
+
+https://btssn-lasalle-84.github.io/ergonomic-workstation-2024/
 
 ## Auteurs
 

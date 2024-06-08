@@ -2,7 +2,8 @@ class DialogueModule
 !!!134679.cpp!!!	DialogueModule(inout parent : QObject = nullptr)
     qDebug() << Q_FUNC_INFO;
 !!!134807.cpp!!!	~DialogueModule()
-    arreter();
+    if(portSerie != nullptr)
+        portSerie->close();
     qDebug() << Q_FUNC_INFO;
 !!!143658.cpp!!!	demarrer() : void
     qDebug() << Q_FUNC_INFO;

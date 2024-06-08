@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Projet ergonomic-workstation:  Fichier source de affichagepageprocessus.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="customdoxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Projet ergonomic-workstation
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">BTS SNIR LaSalle Avignon 2024</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('affichagepageprocessus_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">affichagepageprocessus.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="affichagepageprocessus_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef AFFICHAGEPAGEPROCESSUS_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define AFFICHAGEPAGEPROCESSUS_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;QtWidgets&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;QVector&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="affichagepageprocessus_8h.html#a835b87d45902e9fc6ccab7da950e0110">    7</a></span>&#160;<span class="preprocessor">#define NB_BACS_MAX       6</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="affichagepageprocessus_8h.html#a0eb8ec632c5ecd9fa1484ae87c4229c4">    8</a></span>&#160;<span class="preprocessor">#define REPERTOIRE_IMAGES &quot;images/&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="affichagepageprocessus_8h.html#a584c3811464cd944228d529c54060322">   10</a></span>&#160;<span class="preprocessor">#define HAUTEUR_PHOTO_OPERATION 400</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="affichagepageprocessus_8h.html#a5aa11e7178884fef76812a483f722b85">   11</a></span>&#160;<span class="preprocessor">#define LARGEUR_IMAGE_OPERATION 400</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="affichagepageprocessus_8h.html#a6bba8e0b64c0092952dd9e65c0aea362">   12</a></span>&#160;<span class="preprocessor">#define HAUTEUR_IMAGE_COMPOSANT 50</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="affichagepageprocessus_8h.html#af8bd7bc11701dc57584a012e86d61b92">   13</a></span>&#160;<span class="preprocessor">#define LARGEUR_IMAGE_COMPOSANT 50</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">class </span><a class="code" href="class_processus_assemblage.html">ProcessusAssemblage</a>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">class </span><a class="code" href="class_etape.html">Etape</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">class </span><a class="code" href="class_bac.html">Bac</a>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">class </span><a class="code" href="class_dialogue_module.html">DialogueModule</a>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="class_affichage_page_processus.html">   20</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_affichage_page_processus.html">AffichagePageProcessus</a> : <span class="keyword">public</span> <a class="code" href="class_q_widget.html">QWidget</a></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;{</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="class_affichage_page_processus.html#a0f4b9d92aee24936182ca3afde87f658">   24</a></span>&#160;    <a class="code" href="class_processus_assemblage.html">ProcessusAssemblage</a>* <a class="code" href="class_affichage_page_processus.html#a0f4b9d92aee24936182ca3afde87f658">processusAssemblage</a>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="class_affichage_page_processus.html#a160f65b5e7897c18e0fe4295f1fb101b">   25</a></span>&#160;    <a class="code" href="class_dialogue_module.html">DialogueModule</a>*      <a class="code" href="class_affichage_page_processus.html#a160f65b5e7897c18e0fe4295f1fb101b">dialogueModule</a>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="class_affichage_page_processus.html#a510d2a39e3cfa5fc13a60fe7b70f871f">   26</a></span>&#160;    <a class="code" href="class_etape.html">Etape</a>*               <a class="code" href="class_affichage_page_processus.html#a510d2a39e3cfa5fc13a60fe7b70f871f">etape</a>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="class_affichage_page_processus.html#a31f5036d79e38aec04eda0d516636c0f">   27</a></span>&#160;    <span class="keywordtype">int</span>                  <a class="code" href="class_affichage_page_processus.html#a31f5036d79e38aec04eda0d516636c0f">numeroEtapeCourante</a>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="class_affichage_page_processus.html#a8494371519746d79c13db8546834120c">   28</a></span>&#160;    <span class="keywordtype">int</span>                  <a class="code" href="class_affichage_page_processus.html#a8494371519746d79c13db8546834120c">nbEtapes</a>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="comment">// GUI</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="class_affichage_page_processus.html#ab6e951466fee90ab9dddfa1ccf49e816">   30</a></span>&#160;    QStackedWidget*       <a class="code" href="class_affichage_page_processus.html#ab6e951466fee90ab9dddfa1ccf49e816">fenetres</a>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="class_affichage_page_processus.html#a73e439ef85b46678502289cc1a37872b">   31</a></span>&#160;    <a class="code" href="class_q_widget.html">QWidget</a>*              <a class="code" href="class_affichage_page_processus.html#a73e439ef85b46678502289cc1a37872b">page</a>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="class_affichage_page_processus.html#a9f7fcd4552092e130fcbf8ffccce6607">   32</a></span>&#160;    <a class="code" href="class_q_label.html">QLabel</a>*               <a class="code" href="class_affichage_page_processus.html#a9f7fcd4552092e130fcbf8ffccce6607">numerotationEtapes</a>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="class_affichage_page_processus.html#a913db703292525af69099feedad8265d">   33</a></span>&#160;    <a class="code" href="class_q_label.html">QLabel</a>*               <a class="code" href="class_affichage_page_processus.html#a913db703292525af69099feedad8265d">nomProcessus</a>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="class_affichage_page_processus.html#a6c962ebd435215aef95491f61e24e83c">   34</a></span>&#160;    <a class="code" href="class_q_label.html">QLabel</a>*               <a class="code" href="class_affichage_page_processus.html#a6c962ebd435215aef95491f61e24e83c">chronometre</a>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="class_affichage_page_processus.html#aaede35c1a7d046ce3ad6f225384dc5ae">   35</a></span>&#160;    <a class="code" href="class_q_label.html">QLabel</a>*               <a class="code" href="class_affichage_page_processus.html#aaede35c1a7d046ce3ad6f225384dc5ae">nomOperation</a>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="class_affichage_page_processus.html#aad0a6200c905dcd81432d26407352987">   36</a></span>&#160;    QTextBrowser*         <a class="code" href="class_affichage_page_processus.html#aad0a6200c905dcd81432d26407352987">commentairesOperation</a>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="class_affichage_page_processus.html#a777eb41379e5cb4db08a25cd01bd27a6">   37</a></span>&#160;    <a class="code" href="class_q_label.html">QLabel</a>*               <a class="code" href="class_affichage_page_processus.html#a777eb41379e5cb4db08a25cd01bd27a6">photoOperation</a>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="class_affichage_page_processus.html#a200f0ba05282075c5d14a294ff68870a">   38</a></span>&#160;    QVector&lt;QLabel*&gt;      <a class="code" href="class_affichage_page_processus.html#a200f0ba05282075c5d14a294ff68870a">bacs</a>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="class_affichage_page_processus.html#a506a9dfb226d2e7d0aeb2740865f0483">   39</a></span>&#160;    QVector&lt;QPushButton*&gt; <a class="code" href="class_affichage_page_processus.html#a506a9dfb226d2e7d0aeb2740865f0483">boutonsPageProcessus</a>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="class_affichage_page_processus.html#a3fae6521f561823ef8cb5de59caa69f5">   40</a></span>&#160;    QPushButton*          <a class="code" href="class_affichage_page_processus.html#a3fae6521f561823ef8cb5de59caa69f5">boutonEtapeSuivante</a>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="class_affichage_page_processus.html#a61af7894df1575fd0f20cd9fd7cf8047">   41</a></span>&#160;    QPushButton*          <a class="code" href="class_affichage_page_processus.html#a61af7894df1575fd0f20cd9fd7cf8047">boutonAbandon</a>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="class_affichage_page_processus.html#a276719ce553609ae626a306de1b8be36">   42</a></span>&#160;    <span class="keywordtype">int</span>                   <a class="code" href="class_affichage_page_processus.html#a276719ce553609ae626a306de1b8be36">choixBoutonsPageProcessus</a>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="class_affichage_page_processus.html#af6eea336709d41047e0f6faaa83dac2e">   43</a></span>&#160;    QVector&lt;QVBoxLayout*&gt; <a class="code" href="class_affichage_page_processus.html#af6eea336709d41047e0f6faaa83dac2e">layoutsBacs</a>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="class_affichage_page_processus.html#adeaba47512be6610c84c793aac6a46c0">   44</a></span>&#160;    QVector&lt;QFrame*&gt;      <a class="code" href="class_affichage_page_processus.html#adeaba47512be6610c84c793aac6a46c0">encadrementsBacs</a>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="class_affichage_page_processus.html#a70645c27083562203440601548774987">   45</a></span>&#160;    QVector&lt;QLabel*&gt;      <a class="code" href="class_affichage_page_processus.html#a70645c27083562203440601548774987">numerosBacs</a>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="class_affichage_page_processus.html#a1595fd412eef0f1c079cedf3bb0d170e">   46</a></span>&#160;    QVector&lt;QLabel*&gt;      <a class="code" href="class_affichage_page_processus.html#a1595fd412eef0f1c079cedf3bb0d170e">piecesBacs</a>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="class_affichage_page_processus.html#a7487c842325cbaff515b5085f06c9599">   47</a></span>&#160;    QVector&lt;QLabel*&gt;      <a class="code" href="class_affichage_page_processus.html#a7487c842325cbaff515b5085f06c9599">nbPiecesBacs</a>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="class_affichage_page_processus.html#a47c8ea29e312c21c97b865f585321b27">   48</a></span>&#160;    QVector&lt;QLabel*&gt;      <a class="code" href="class_affichage_page_processus.html#a47c8ea29e312c21c97b865f585321b27">imagesBacs</a>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="class_affichage_page_processus.html#ae19c83bcd61dfef23ddad7b131e48007">   55</a></span>&#160;    <span class="keyword">enum</span> <a class="code" href="class_affichage_page_processus.html#ae19c83bcd61dfef23ddad7b131e48007">ActionPageProcessus</a></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    {</div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="class_affichage_page_processus.html#ae19c83bcd61dfef23ddad7b131e48007a850e7b3ca9cf7388179dee2593ba4cfa">   57</a></span>&#160;        <a class="code" href="class_affichage_page_processus.html#ae19c83bcd61dfef23ddad7b131e48007a850e7b3ca9cf7388179dee2593ba4cfa">ActionSuivant</a> = 0,</div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="class_affichage_page_processus.html#ae19c83bcd61dfef23ddad7b131e48007a08eda1c34c25baec590ac2b1f23e2c28">   58</a></span>&#160;        <a class="code" href="class_affichage_page_processus.html#ae19c83bcd61dfef23ddad7b131e48007a08eda1c34c25baec590ac2b1f23e2c28">ActionAbandon</a>,</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <a class="code" href="class_affichage_page_processus.html#ae19c83bcd61dfef23ddad7b131e48007afcd7de49251b96f3f2ec7cf3a67dca8e">NbActionsPageProcessus</a></div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="class_affichage_page_processus.html#ae19c83bcd61dfef23ddad7b131e48007afcd7de49251b96f3f2ec7cf3a67dca8e">   60</a></span>&#160;    };</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_affichage_page_processus.html#a3bd2e804f2843d6575b6599caa988cf6">creerConnexionsBoutonsNavigation</a>();</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_affichage_page_processus.html#a6ae16c3fec6b1b56cf1fcfba2eab91f0">creerConnexionEncodeur</a>();</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_affichage_page_processus.html#abc2a957a08369752edc7be2b8b67bcd5">creerDeconnexionEncodeur</a>();</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_affichage_page_processus.html#a909fc4edb34191b282021cd76e1d22f2">creerBacs</a>();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_affichage_page_processus.html#a6af687d428acf308db4c137d9b6d87d9">cacherBacs</a>();</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_affichage_page_processus.html#adfdc332e5428f3c2cbeb8753b94e7317">AffichagePageProcessus</a>(QStackedWidget*      <a class="code" href="class_affichage_page_processus.html#ab6e951466fee90ab9dddfa1ccf49e816">fenetres</a>,</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                                    <a class="code" href="class_processus_assemblage.html">ProcessusAssemblage</a>* processus,</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                                    <a class="code" href="class_dialogue_module.html">DialogueModule</a>*      <a class="code" href="class_affichage_page_processus.html#a160f65b5e7897c18e0fe4295f1fb101b">dialogueModule</a>);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <a class="code" href="class_affichage_page_processus.html#a7aa06760df8b2c74681bcf289f16a816">~AffichagePageProcessus</a>();</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;  <span class="keyword">public</span> slots:</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_affichage_page_processus.html#a438894dda796c66bb9b1e81b1998a8b2">afficher</a>();</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_affichage_page_processus.html#ab5c0c7d1baf6237500525eb384d98abd">afficherEtape</a>();</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_affichage_page_processus.html#ad619d21c86126051669917cf4a586297">abandonner</a>();</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="comment">// déclenchés par l&#39;encodeur du module EC</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_affichage_page_processus.html#a2b3cc087901729f6efeff4d6eaf443a0">avancerChoix</a>();</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_affichage_page_processus.html#ada0523f4757f8f3bc5cae46ee8ffaf33">reculerChoix</a>();</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_affichage_page_processus.html#a03cc9c63e3da5894a9f0020a9d669c06">validerChoix</a>();</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;  signals:</div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="class_affichage_page_processus.html#a451c62c29f85db8c3364e5739eac6f6a">   84</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_affichage_page_processus.html#a451c62c29f85db8c3364e5739eac6f6a">abandon</a>(QString <a class="code" href="class_affichage_page_processus.html#a913db703292525af69099feedad8265d">nomProcessus</a>);</div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="class_affichage_page_processus.html#a52f5d1d2619d4aece16865634e95b84e">   85</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_affichage_page_processus.html#a52f5d1d2619d4aece16865634e95b84e">fini</a>(QString <a class="code" href="class_affichage_page_processus.html#a913db703292525af69099feedad8265d">nomProcessus</a>);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;};</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// AFFICHAGEPAGEPROCESSUS_H</span></div>
+<div class="ttc" id="aclass_affichage_page_processus_html"><div class="ttname"><a href="class_affichage_page_processus.html">AffichagePageProcessus</a></div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8h_source.html#l00020">affichagepageprocessus.h:21</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_a03cc9c63e3da5894a9f0020a9d669c06"><div class="ttname"><a href="class_affichage_page_processus.html#a03cc9c63e3da5894a9f0020a9d669c06">AffichagePageProcessus::validerChoix</a></div><div class="ttdeci">void validerChoix()</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8cpp_source.html#l00225">affichagepageprocessus.cpp:225</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_a0f4b9d92aee24936182ca3afde87f658"><div class="ttname"><a href="class_affichage_page_processus.html#a0f4b9d92aee24936182ca3afde87f658">AffichagePageProcessus::processusAssemblage</a></div><div class="ttdeci">ProcessusAssemblage * processusAssemblage</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8h_source.html#l00024">affichagepageprocessus.h:24</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_a1595fd412eef0f1c079cedf3bb0d170e"><div class="ttname"><a href="class_affichage_page_processus.html#a1595fd412eef0f1c079cedf3bb0d170e">AffichagePageProcessus::piecesBacs</a></div><div class="ttdeci">QVector&lt; QLabel * &gt; piecesBacs</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8h_source.html#l00046">affichagepageprocessus.h:46</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_a160f65b5e7897c18e0fe4295f1fb101b"><div class="ttname"><a href="class_affichage_page_processus.html#a160f65b5e7897c18e0fe4295f1fb101b">AffichagePageProcessus::dialogueModule</a></div><div class="ttdeci">DialogueModule * dialogueModule</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8h_source.html#l00025">affichagepageprocessus.h:25</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_a200f0ba05282075c5d14a294ff68870a"><div class="ttname"><a href="class_affichage_page_processus.html#a200f0ba05282075c5d14a294ff68870a">AffichagePageProcessus::bacs</a></div><div class="ttdeci">QVector&lt; QLabel * &gt; bacs</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8h_source.html#l00038">affichagepageprocessus.h:38</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_a276719ce553609ae626a306de1b8be36"><div class="ttname"><a href="class_affichage_page_processus.html#a276719ce553609ae626a306de1b8be36">AffichagePageProcessus::choixBoutonsPageProcessus</a></div><div class="ttdeci">int choixBoutonsPageProcessus</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8h_source.html#l00042">affichagepageprocessus.h:42</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_a2b3cc087901729f6efeff4d6eaf443a0"><div class="ttname"><a href="class_affichage_page_processus.html#a2b3cc087901729f6efeff4d6eaf443a0">AffichagePageProcessus::avancerChoix</a></div><div class="ttdeci">void avancerChoix()</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8cpp_source.html#l00207">affichagepageprocessus.cpp:207</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_a31f5036d79e38aec04eda0d516636c0f"><div class="ttname"><a href="class_affichage_page_processus.html#a31f5036d79e38aec04eda0d516636c0f">AffichagePageProcessus::numeroEtapeCourante</a></div><div class="ttdeci">int numeroEtapeCourante</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8h_source.html#l00027">affichagepageprocessus.h:27</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_a3bd2e804f2843d6575b6599caa988cf6"><div class="ttname"><a href="class_affichage_page_processus.html#a3bd2e804f2843d6575b6599caa988cf6">AffichagePageProcessus::creerConnexionsBoutonsNavigation</a></div><div class="ttdeci">void creerConnexionsBoutonsNavigation()</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8cpp_source.html#l00181">affichagepageprocessus.cpp:181</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_a3fae6521f561823ef8cb5de59caa69f5"><div class="ttname"><a href="class_affichage_page_processus.html#a3fae6521f561823ef8cb5de59caa69f5">AffichagePageProcessus::boutonEtapeSuivante</a></div><div class="ttdeci">QPushButton * boutonEtapeSuivante</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8h_source.html#l00040">affichagepageprocessus.h:40</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_a438894dda796c66bb9b1e81b1998a8b2"><div class="ttname"><a href="class_affichage_page_processus.html#a438894dda796c66bb9b1e81b1998a8b2">AffichagePageProcessus::afficher</a></div><div class="ttdeci">void afficher()</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8cpp_source.html#l00114">affichagepageprocessus.cpp:114</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_a451c62c29f85db8c3364e5739eac6f6a"><div class="ttname"><a href="class_affichage_page_processus.html#a451c62c29f85db8c3364e5739eac6f6a">AffichagePageProcessus::abandon</a></div><div class="ttdeci">void abandon(QString nomProcessus)</div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_a47c8ea29e312c21c97b865f585321b27"><div class="ttname"><a href="class_affichage_page_processus.html#a47c8ea29e312c21c97b865f585321b27">AffichagePageProcessus::imagesBacs</a></div><div class="ttdeci">QVector&lt; QLabel * &gt; imagesBacs</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8h_source.html#l00048">affichagepageprocessus.h:48</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_a506a9dfb226d2e7d0aeb2740865f0483"><div class="ttname"><a href="class_affichage_page_processus.html#a506a9dfb226d2e7d0aeb2740865f0483">AffichagePageProcessus::boutonsPageProcessus</a></div><div class="ttdeci">QVector&lt; QPushButton * &gt; boutonsPageProcessus</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8h_source.html#l00039">affichagepageprocessus.h:39</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_a510d2a39e3cfa5fc13a60fe7b70f871f"><div class="ttname"><a href="class_affichage_page_processus.html#a510d2a39e3cfa5fc13a60fe7b70f871f">AffichagePageProcessus::etape</a></div><div class="ttdeci">Etape * etape</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8h_source.html#l00026">affichagepageprocessus.h:26</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_a52f5d1d2619d4aece16865634e95b84e"><div class="ttname"><a href="class_affichage_page_processus.html#a52f5d1d2619d4aece16865634e95b84e">AffichagePageProcessus::fini</a></div><div class="ttdeci">void fini(QString nomProcessus)</div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_a61af7894df1575fd0f20cd9fd7cf8047"><div class="ttname"><a href="class_affichage_page_processus.html#a61af7894df1575fd0f20cd9fd7cf8047">AffichagePageProcessus::boutonAbandon</a></div><div class="ttdeci">QPushButton * boutonAbandon</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8h_source.html#l00041">affichagepageprocessus.h:41</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_a6ae16c3fec6b1b56cf1fcfba2eab91f0"><div class="ttname"><a href="class_affichage_page_processus.html#a6ae16c3fec6b1b56cf1fcfba2eab91f0">AffichagePageProcessus::creerConnexionEncodeur</a></div><div class="ttdeci">void creerConnexionEncodeur()</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8cpp_source.html#l00193">affichagepageprocessus.cpp:193</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_a6af687d428acf308db4c137d9b6d87d9"><div class="ttname"><a href="class_affichage_page_processus.html#a6af687d428acf308db4c137d9b6d87d9">AffichagePageProcessus::cacherBacs</a></div><div class="ttdeci">void cacherBacs()</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8cpp_source.html#l00293">affichagepageprocessus.cpp:293</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_a6c962ebd435215aef95491f61e24e83c"><div class="ttname"><a href="class_affichage_page_processus.html#a6c962ebd435215aef95491f61e24e83c">AffichagePageProcessus::chronometre</a></div><div class="ttdeci">QLabel * chronometre</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8h_source.html#l00034">affichagepageprocessus.h:34</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_a70645c27083562203440601548774987"><div class="ttname"><a href="class_affichage_page_processus.html#a70645c27083562203440601548774987">AffichagePageProcessus::numerosBacs</a></div><div class="ttdeci">QVector&lt; QLabel * &gt; numerosBacs</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8h_source.html#l00045">affichagepageprocessus.h:45</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_a73e439ef85b46678502289cc1a37872b"><div class="ttname"><a href="class_affichage_page_processus.html#a73e439ef85b46678502289cc1a37872b">AffichagePageProcessus::page</a></div><div class="ttdeci">QWidget * page</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8h_source.html#l00031">affichagepageprocessus.h:31</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_a7487c842325cbaff515b5085f06c9599"><div class="ttname"><a href="class_affichage_page_processus.html#a7487c842325cbaff515b5085f06c9599">AffichagePageProcessus::nbPiecesBacs</a></div><div class="ttdeci">QVector&lt; QLabel * &gt; nbPiecesBacs</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8h_source.html#l00047">affichagepageprocessus.h:47</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_a777eb41379e5cb4db08a25cd01bd27a6"><div class="ttname"><a href="class_affichage_page_processus.html#a777eb41379e5cb4db08a25cd01bd27a6">AffichagePageProcessus::photoOperation</a></div><div class="ttdeci">QLabel * photoOperation</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8h_source.html#l00037">affichagepageprocessus.h:37</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_a7aa06760df8b2c74681bcf289f16a816"><div class="ttname"><a href="class_affichage_page_processus.html#a7aa06760df8b2c74681bcf289f16a816">AffichagePageProcessus::~AffichagePageProcessus</a></div><div class="ttdeci">~AffichagePageProcessus()</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8cpp_source.html#l00108">affichagepageprocessus.cpp:108</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_a8494371519746d79c13db8546834120c"><div class="ttname"><a href="class_affichage_page_processus.html#a8494371519746d79c13db8546834120c">AffichagePageProcessus::nbEtapes</a></div><div class="ttdeci">int nbEtapes</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8h_source.html#l00028">affichagepageprocessus.h:28</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_a909fc4edb34191b282021cd76e1d22f2"><div class="ttname"><a href="class_affichage_page_processus.html#a909fc4edb34191b282021cd76e1d22f2">AffichagePageProcessus::creerBacs</a></div><div class="ttdeci">void creerBacs()</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8cpp_source.html#l00232">affichagepageprocessus.cpp:232</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_a913db703292525af69099feedad8265d"><div class="ttname"><a href="class_affichage_page_processus.html#a913db703292525af69099feedad8265d">AffichagePageProcessus::nomProcessus</a></div><div class="ttdeci">QLabel * nomProcessus</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8h_source.html#l00033">affichagepageprocessus.h:33</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_a9f7fcd4552092e130fcbf8ffccce6607"><div class="ttname"><a href="class_affichage_page_processus.html#a9f7fcd4552092e130fcbf8ffccce6607">AffichagePageProcessus::numerotationEtapes</a></div><div class="ttdeci">QLabel * numerotationEtapes</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8h_source.html#l00032">affichagepageprocessus.h:32</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_aad0a6200c905dcd81432d26407352987"><div class="ttname"><a href="class_affichage_page_processus.html#aad0a6200c905dcd81432d26407352987">AffichagePageProcessus::commentairesOperation</a></div><div class="ttdeci">QTextBrowser * commentairesOperation</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8h_source.html#l00036">affichagepageprocessus.h:36</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_aaede35c1a7d046ce3ad6f225384dc5ae"><div class="ttname"><a href="class_affichage_page_processus.html#aaede35c1a7d046ce3ad6f225384dc5ae">AffichagePageProcessus::nomOperation</a></div><div class="ttdeci">QLabel * nomOperation</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8h_source.html#l00035">affichagepageprocessus.h:35</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_ab5c0c7d1baf6237500525eb384d98abd"><div class="ttname"><a href="class_affichage_page_processus.html#ab5c0c7d1baf6237500525eb384d98abd">AffichagePageProcessus::afficherEtape</a></div><div class="ttdeci">void afficherEtape()</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8cpp_source.html#l00119">affichagepageprocessus.cpp:119</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_ab6e951466fee90ab9dddfa1ccf49e816"><div class="ttname"><a href="class_affichage_page_processus.html#ab6e951466fee90ab9dddfa1ccf49e816">AffichagePageProcessus::fenetres</a></div><div class="ttdeci">QStackedWidget * fenetres</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8h_source.html#l00030">affichagepageprocessus.h:30</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_abc2a957a08369752edc7be2b8b67bcd5"><div class="ttname"><a href="class_affichage_page_processus.html#abc2a957a08369752edc7be2b8b67bcd5">AffichagePageProcessus::creerDeconnexionEncodeur</a></div><div class="ttdeci">void creerDeconnexionEncodeur()</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8cpp_source.html#l00200">affichagepageprocessus.cpp:200</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_ad619d21c86126051669917cf4a586297"><div class="ttname"><a href="class_affichage_page_processus.html#ad619d21c86126051669917cf4a586297">AffichagePageProcessus::abandonner</a></div><div class="ttdeci">void abandonner()</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8cpp_source.html#l00176">affichagepageprocessus.cpp:176</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_ada0523f4757f8f3bc5cae46ee8ffaf33"><div class="ttname"><a href="class_affichage_page_processus.html#ada0523f4757f8f3bc5cae46ee8ffaf33">AffichagePageProcessus::reculerChoix</a></div><div class="ttdeci">void reculerChoix()</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8cpp_source.html#l00215">affichagepageprocessus.cpp:215</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_adeaba47512be6610c84c793aac6a46c0"><div class="ttname"><a href="class_affichage_page_processus.html#adeaba47512be6610c84c793aac6a46c0">AffichagePageProcessus::encadrementsBacs</a></div><div class="ttdeci">QVector&lt; QFrame * &gt; encadrementsBacs</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8h_source.html#l00044">affichagepageprocessus.h:44</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_adfdc332e5428f3c2cbeb8753b94e7317"><div class="ttname"><a href="class_affichage_page_processus.html#adfdc332e5428f3c2cbeb8753b94e7317">AffichagePageProcessus::AffichagePageProcessus</a></div><div class="ttdeci">AffichagePageProcessus(QStackedWidget *fenetres, ProcessusAssemblage *processus, DialogueModule *dialogueModule)</div><div class="ttdoc">Constructeur de la classe AffichagePageProcessus.</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8cpp_source.html#l00015">affichagepageprocessus.cpp:15</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_ae19c83bcd61dfef23ddad7b131e48007"><div class="ttname"><a href="class_affichage_page_processus.html#ae19c83bcd61dfef23ddad7b131e48007">AffichagePageProcessus::ActionPageProcessus</a></div><div class="ttdeci">ActionPageProcessus</div><div class="ttdoc">Définit les actions des boutons sélectionnables dans cette fenêtre.</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8h_source.html#l00055">affichagepageprocessus.h:56</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_ae19c83bcd61dfef23ddad7b131e48007a08eda1c34c25baec590ac2b1f23e2c28"><div class="ttname"><a href="class_affichage_page_processus.html#ae19c83bcd61dfef23ddad7b131e48007a08eda1c34c25baec590ac2b1f23e2c28">AffichagePageProcessus::ActionAbandon</a></div><div class="ttdeci">@ ActionAbandon</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8h_source.html#l00058">affichagepageprocessus.h:58</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_ae19c83bcd61dfef23ddad7b131e48007a850e7b3ca9cf7388179dee2593ba4cfa"><div class="ttname"><a href="class_affichage_page_processus.html#ae19c83bcd61dfef23ddad7b131e48007a850e7b3ca9cf7388179dee2593ba4cfa">AffichagePageProcessus::ActionSuivant</a></div><div class="ttdeci">@ ActionSuivant</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8h_source.html#l00057">affichagepageprocessus.h:57</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_ae19c83bcd61dfef23ddad7b131e48007afcd7de49251b96f3f2ec7cf3a67dca8e"><div class="ttname"><a href="class_affichage_page_processus.html#ae19c83bcd61dfef23ddad7b131e48007afcd7de49251b96f3f2ec7cf3a67dca8e">AffichagePageProcessus::NbActionsPageProcessus</a></div><div class="ttdeci">@ NbActionsPageProcessus</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8h_source.html#l00060">affichagepageprocessus.h:59</a></div></div>
+<div class="ttc" id="aclass_affichage_page_processus_html_af6eea336709d41047e0f6faaa83dac2e"><div class="ttname"><a href="class_affichage_page_processus.html#af6eea336709d41047e0f6faaa83dac2e">AffichagePageProcessus::layoutsBacs</a></div><div class="ttdeci">QVector&lt; QVBoxLayout * &gt; layoutsBacs</div><div class="ttdef"><b>Definition:</b> <a href="affichagepageprocessus_8h_source.html#l00043">affichagepageprocessus.h:43</a></div></div>
+<div class="ttc" id="aclass_bac_html"><div class="ttname"><a href="class_bac.html">Bac</a></div><div class="ttdef"><b>Definition:</b> <a href="bac_8h_source.html#l00006">bac.h:7</a></div></div>
+<div class="ttc" id="aclass_dialogue_module_html"><div class="ttname"><a href="class_dialogue_module.html">DialogueModule</a></div><div class="ttdef"><b>Definition:</b> <a href="dialoguemodule_8h_source.html#l00022">dialoguemodule.h:23</a></div></div>
+<div class="ttc" id="aclass_etape_html"><div class="ttname"><a href="class_etape.html">Etape</a></div><div class="ttdef"><b>Definition:</b> <a href="etape_8h_source.html#l00008">etape.h:9</a></div></div>
+<div class="ttc" id="aclass_processus_assemblage_html"><div class="ttname"><a href="class_processus_assemblage.html">ProcessusAssemblage</a></div><div class="ttdef"><b>Definition:</b> <a href="processusassemblage_8h_source.html#l00013">processusassemblage.h:14</a></div></div>
+<div class="ttc" id="aclass_q_label_html"><div class="ttname"><a href="class_q_label.html">QLabel</a></div></div>
+<div class="ttc" id="aclass_q_widget_html"><div class="ttname"><a href="class_q_widget.html">QWidget</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_f75481b69e808cc131a887dc6b91cad1.html">ergonomic-workstation-rpi</a></li><li class="navelem"><a class="el" href="affichagepageprocessus_8h.html">affichagepageprocessus.h</a></li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Samedi 8 Juin 2024 09:43:56 pour Projet ergonomic-workstation par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+  </ul>
+</div>
+</body>
+</html>
