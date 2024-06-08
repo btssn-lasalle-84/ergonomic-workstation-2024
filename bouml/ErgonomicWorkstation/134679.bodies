@@ -1,0 +1,14 @@
+class Bac
+!!!134551.cpp!!!	Bac(in idBac : int, in typeDePiece : QString, in nbPieces : int, in nomImagePiece : QString)
+    qDebug() << Q_FUNC_INFO << "idBac" << idBac << "typeDePiece" << typeDePiece << "nbPieces"
+             << nbPieces << "nomImagePiece" << nomImagePiece;
+!!!155050.cpp!!!	~Bac()
+    qDebug() << Q_FUNC_INFO;
+!!!155178.cpp!!!	getIdBac() : int
+    return idBac;
+!!!155306.cpp!!!	getTypeDePiece() : QString
+    return typeDePiece;
+!!!155434.cpp!!!	getNbPieces() : int
+    return nbPieces;
+!!!155562.cpp!!!	getNomImagePiece() : QString
+    return nomImagePiece;

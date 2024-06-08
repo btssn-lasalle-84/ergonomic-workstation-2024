@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Projet ergonomic-workstation:  Fichier source de processusassemblage.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="customdoxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Projet ergonomic-workstation
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">BTS SNIR LaSalle Avignon 2024</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('processusassemblage_8cpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">processusassemblage.cpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="processusassemblage_8cpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="processusassemblage_8h.html">processusassemblage.h</a>&quot;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="postetravail_8h.html">postetravail.h</a>&quot;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="etape_8h.html">etape.h</a>&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="bac_8h.html">bac.h</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;QDebug&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;QDir&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;QSettings&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;QTextCodec&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="class_processus_assemblage.html#a9670924d61a4b2329b7a39575cee6b33">   10</a></span>&#160;<a class="code" href="class_processus_assemblage.html#a9670924d61a4b2329b7a39575cee6b33">ProcessusAssemblage::ProcessusAssemblage</a>(<a class="code" href="class_q_object.html">QObject</a>* parent) :</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="class_q_object.html">QObject</a>(parent), posteTravail(new <a class="code" href="class_poste_travail.html">PosteTravail</a>(this)), nom(<span class="stringliteral">&quot;&quot;</span>), tempsMoyen(0), nbPieces(0),</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    nbPiecesDifferentes(0), nbEtapes(0)</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    qDebug() &lt;&lt; Q_FUNC_INFO;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;}</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="class_processus_assemblage.html#ad2f7588b249c8ee37285dcbb4f02f64d">   17</a></span>&#160;<a class="code" href="class_processus_assemblage.html#ad2f7588b249c8ee37285dcbb4f02f64d">ProcessusAssemblage::~ProcessusAssemblage</a>()</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    qDebug() &lt;&lt; Q_FUNC_INFO;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;}</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="class_processus_assemblage.html#ae664c1a256104db53273f96221117665">   22</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_processus_assemblage.html#ae664c1a256104db53273f96221117665">ProcessusAssemblage::chargerProcessusAssemblage</a>(<span class="keyword">const</span> QString&amp; nomProcessusAssemblage)</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="class_processus_assemblage.html#a92bc3867f7fdc1d66b9e807cf8d3336b">chemin</a> = QDir::currentPath() + QString(<a class="code" href="ihm_8h.html#af83c59a24f74062196502104205781e0">RACINE_PROCESSUS_ASSEMBLAGE</a>) + QString(<span class="stringliteral">&quot;/&quot;</span>) +</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;             nomProcessusAssemblage + QString(<span class="stringliteral">&quot;/&quot;</span>);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    qDebug() &lt;&lt; Q_FUNC_INFO &lt;&lt; <span class="stringliteral">&quot;chemin&quot;</span> &lt;&lt; <a class="code" href="class_processus_assemblage.html#a92bc3867f7fdc1d66b9e807cf8d3336b">chemin</a>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    QString fichierINI = <a class="code" href="class_processus_assemblage.html#a92bc3867f7fdc1d66b9e807cf8d3336b">chemin</a> + nomProcessusAssemblage + QString(<span class="stringliteral">&quot;.ini&quot;</span>);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    qDebug() &lt;&lt; Q_FUNC_INFO &lt;&lt; <span class="stringliteral">&quot;fichierINI&quot;</span> &lt;&lt; fichierINI;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    QSettings configurationProcessusAssemblage(fichierINI, QSettings::IniFormat);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    configurationProcessusAssemblage.setIniCodec(QTextCodec::codecForName(<span class="stringliteral">&quot;UTF-8&quot;</span>));</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">        [ProcessusAssemblage]</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">        nom=&quot;Module O-LEDs-BP&quot;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">        etapes=3</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">        image=module-oled-bp.png</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">        glossaire=true</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="class_processus_assemblage.html#ab8f0b424a0a2e29ca7a8462077fa27d9">nom</a>      = configurationProcessusAssemblage.value(<span class="stringliteral">&quot;ProcessusAssemblage/nom&quot;</span>).toString();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="class_processus_assemblage.html#a8f1ee0a56563b1c43f0b04ca28217003">nbEtapes</a> = configurationProcessusAssemblage.value(<span class="stringliteral">&quot;ProcessusAssemblage/etapes&quot;</span>).toInt();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="class_processus_assemblage.html#a6d0a91c98308715248e5ca04f30e8920">nomImage</a> = configurationProcessusAssemblage.value(<span class="stringliteral">&quot;ProcessusAssemblage/image&quot;</span>).toString();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">bool</span> existenceGlossaire =</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;      configurationProcessusAssemblage.value(<span class="stringliteral">&quot;ProcessusAssemblage/glossaire&quot;</span>).toBool();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    QVector&lt;Bac*&gt; bacUtilise;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    qDebug() &lt;&lt; Q_FUNC_INFO &lt;&lt; <span class="stringliteral">&quot;nom&quot;</span> &lt;&lt; <a class="code" href="class_processus_assemblage.html#ab8f0b424a0a2e29ca7a8462077fa27d9">nom</a> &lt;&lt; <span class="stringliteral">&quot;nbEtapes&quot;</span> &lt;&lt; <a class="code" href="class_processus_assemblage.html#a8f1ee0a56563b1c43f0b04ca28217003">nbEtapes</a> &lt;&lt; <span class="stringliteral">&quot;nomImage&quot;</span> &lt;&lt; <a class="code" href="class_processus_assemblage.html#a6d0a91c98308715248e5ca04f30e8920">nomImage</a></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;             &lt;&lt; <span class="stringliteral">&quot;existenceGlossaire&quot;</span> &lt;&lt; existenceGlossaire;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">// Parcourir les étapes du processus</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="class_processus_assemblage.html#a8686cceb3bebebe4d06b5c6c44537576">etapes</a>.clear();</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 1; i &lt;= <a class="code" href="class_processus_assemblage.html#a8f1ee0a56563b1c43f0b04ca28217003">nbEtapes</a>; i++)</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="comment">/*</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">            Exemple d&#39;une étape :</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">            [Etape1]</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">            nom=&quot;Placer le composant Q1, Q2 et Q3&quot;</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">            bacs=1</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">            image=2n7002.png</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">         */</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        QString nomSectionEtape = QString(<span class="stringliteral">&quot;Etape%1&quot;</span>).arg(i);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        QString nomEtape =</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;          configurationProcessusAssemblage.value(nomSectionEtape + <span class="stringliteral">&quot;/nom&quot;</span>).toString();</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        QString nomImageEtape =</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;          configurationProcessusAssemblage.value(nomSectionEtape + <span class="stringliteral">&quot;/image&quot;</span>).toString();</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="class_processus_assemblage.html#aeadd36b5ecba77e2e132dac14dc7bcc7">nbBacs</a> = configurationProcessusAssemblage.value(nomSectionEtape + <span class="stringliteral">&quot;/bacs&quot;</span>).toInt();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        qDebug() &lt;&lt; Q_FUNC_INFO &lt;&lt; <span class="stringliteral">&quot;nomSectionEtape&quot;</span> &lt;&lt; nomSectionEtape &lt;&lt; <span class="stringliteral">&quot;nomEtape&quot;</span> &lt;&lt; nomEtape</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                 &lt;&lt; <span class="stringliteral">&quot;nbBacs&quot;</span> &lt;&lt; <a class="code" href="class_processus_assemblage.html#aeadd36b5ecba77e2e132dac14dc7bcc7">nbBacs</a> &lt;&lt; <span class="stringliteral">&quot;nomImageEtape&quot;</span> &lt;&lt; nomImageEtape;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> j = 1; j &lt;= <a class="code" href="class_processus_assemblage.html#aeadd36b5ecba77e2e132dac14dc7bcc7">nbBacs</a>; j++)</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            QString nomSectionBac = QString(<span class="stringliteral">&quot;Bac%1.%2&quot;</span>).arg(i).arg(j);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keywordtype">int</span>     idBac = configurationProcessusAssemblage.value(nomSectionBac + <span class="stringliteral">&quot;/id&quot;</span>).toInt();</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            QString nomPiece =</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;              configurationProcessusAssemblage.value(nomSectionBac + <span class="stringliteral">&quot;/piece&quot;</span>).toString();</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <span class="keywordtype">int</span> <a class="code" href="class_processus_assemblage.html#a821e5eec893e9bdcd0fe7268e1d4c8b6">nbPieces</a> = configurationProcessusAssemblage.value(nomSectionBac + <span class="stringliteral">&quot;/nb&quot;</span>).toInt();</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            QString nomImagePiece =</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;              configurationProcessusAssemblage.value(nomSectionBac + <span class="stringliteral">&quot;/image&quot;</span>).toString();</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            qDebug() &lt;&lt; Q_FUNC_INFO &lt;&lt; <span class="stringliteral">&quot;nomSectionBac&quot;</span> &lt;&lt; nomSectionBac;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            bacUtilise.push_back(<span class="keyword">new</span> <a class="code" href="class_bac.html">Bac</a>(idBac, nomPiece, <a class="code" href="class_processus_assemblage.html#a821e5eec893e9bdcd0fe7268e1d4c8b6">nbPieces</a>, nomImagePiece));</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        }</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <a class="code" href="class_processus_assemblage.html#a8686cceb3bebebe4d06b5c6c44537576">etapes</a>.push_back(<span class="keyword">new</span> <a class="code" href="class_etape.html">Etape</a>(i, nomEtape, nomImageEtape, bacUtilise));</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        bacUtilise.clear();</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    qDebug() &lt;&lt; Q_FUNC_INFO &lt;&lt; <span class="stringliteral">&quot;nbEtapes chargées&quot;</span> &lt;&lt; <a class="code" href="class_processus_assemblage.html#a8686cceb3bebebe4d06b5c6c44537576">etapes</a>.size();</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;}</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="class_processus_assemblage.html#a635b1746fab30fca0fa750fa546a384d">   86</a></span>&#160;QString <a class="code" href="class_processus_assemblage.html#a635b1746fab30fca0fa750fa546a384d">ProcessusAssemblage::getNom</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="class_processus_assemblage.html#ab8f0b424a0a2e29ca7a8462077fa27d9">nom</a>;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;}</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="class_processus_assemblage.html#a00862f27a4e7b489faade4e8a2df2f71">   91</a></span>&#160;QString <a class="code" href="class_processus_assemblage.html#a00862f27a4e7b489faade4e8a2df2f71">ProcessusAssemblage::getNomImage</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="class_processus_assemblage.html#a6d0a91c98308715248e5ca04f30e8920">nomImage</a>;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;}</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="class_processus_assemblage.html#a3cba154c7d75c61d910b424af9240df7">   96</a></span>&#160;QString <a class="code" href="class_processus_assemblage.html#a3cba154c7d75c61d910b424af9240df7">ProcessusAssemblage::getChemin</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="class_processus_assemblage.html#a92bc3867f7fdc1d66b9e807cf8d3336b">chemin</a>;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;}</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="class_processus_assemblage.html#a6184df1be0d031d67b8db79362c0e90a">  101</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="class_processus_assemblage.html#a6184df1be0d031d67b8db79362c0e90a">ProcessusAssemblage::getNbEtapes</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="class_processus_assemblage.html#a8f1ee0a56563b1c43f0b04ca28217003">nbEtapes</a>;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;}</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="class_processus_assemblage.html#afe257847c2b43d733b4d9fb9cbeec4a6">  106</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="class_processus_assemblage.html#afe257847c2b43d733b4d9fb9cbeec4a6">ProcessusAssemblage::getNbPieces</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="class_processus_assemblage.html#a821e5eec893e9bdcd0fe7268e1d4c8b6">nbPieces</a>;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;}</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="class_processus_assemblage.html#a58161687c6ccc5038fa7c977cfdaf7cb">  111</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="class_processus_assemblage.html#a58161687c6ccc5038fa7c977cfdaf7cb">ProcessusAssemblage::getNbBacs</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="class_processus_assemblage.html#aeadd36b5ecba77e2e132dac14dc7bcc7">nbBacs</a>;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;}</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="class_processus_assemblage.html#acc2db1a3d48b75c69564a4ef1761974f">  116</a></span>&#160;QList&lt;Etape*&gt; <a class="code" href="class_processus_assemblage.html#acc2db1a3d48b75c69564a4ef1761974f">ProcessusAssemblage::getEtapes</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="class_processus_assemblage.html#a8686cceb3bebebe4d06b5c6c44537576">etapes</a>;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;}</div>
+<div class="ttc" id="abac_8h_html"><div class="ttname"><a href="bac_8h.html">bac.h</a></div></div>
+<div class="ttc" id="aclass_bac_html"><div class="ttname"><a href="class_bac.html">Bac</a></div><div class="ttdef"><b>Definition:</b> <a href="bac_8h_source.html#l00006">bac.h:7</a></div></div>
+<div class="ttc" id="aclass_etape_html"><div class="ttname"><a href="class_etape.html">Etape</a></div><div class="ttdef"><b>Definition:</b> <a href="etape_8h_source.html#l00008">etape.h:9</a></div></div>
+<div class="ttc" id="aclass_poste_travail_html"><div class="ttname"><a href="class_poste_travail.html">PosteTravail</a></div><div class="ttdef"><b>Definition:</b> <a href="postetravail_8h_source.html#l00009">postetravail.h:10</a></div></div>
+<div class="ttc" id="aclass_processus_assemblage_html_a00862f27a4e7b489faade4e8a2df2f71"><div class="ttname"><a href="class_processus_assemblage.html#a00862f27a4e7b489faade4e8a2df2f71">ProcessusAssemblage::getNomImage</a></div><div class="ttdeci">QString getNomImage() const</div><div class="ttdef"><b>Definition:</b> <a href="processusassemblage_8cpp_source.html#l00091">processusassemblage.cpp:91</a></div></div>
+<div class="ttc" id="aclass_processus_assemblage_html_a3cba154c7d75c61d910b424af9240df7"><div class="ttname"><a href="class_processus_assemblage.html#a3cba154c7d75c61d910b424af9240df7">ProcessusAssemblage::getChemin</a></div><div class="ttdeci">QString getChemin() const</div><div class="ttdef"><b>Definition:</b> <a href="processusassemblage_8cpp_source.html#l00096">processusassemblage.cpp:96</a></div></div>
+<div class="ttc" id="aclass_processus_assemblage_html_a58161687c6ccc5038fa7c977cfdaf7cb"><div class="ttname"><a href="class_processus_assemblage.html#a58161687c6ccc5038fa7c977cfdaf7cb">ProcessusAssemblage::getNbBacs</a></div><div class="ttdeci">int getNbBacs() const</div><div class="ttdef"><b>Definition:</b> <a href="processusassemblage_8cpp_source.html#l00111">processusassemblage.cpp:111</a></div></div>
+<div class="ttc" id="aclass_processus_assemblage_html_a6184df1be0d031d67b8db79362c0e90a"><div class="ttname"><a href="class_processus_assemblage.html#a6184df1be0d031d67b8db79362c0e90a">ProcessusAssemblage::getNbEtapes</a></div><div class="ttdeci">int getNbEtapes() const</div><div class="ttdef"><b>Definition:</b> <a href="processusassemblage_8cpp_source.html#l00101">processusassemblage.cpp:101</a></div></div>
+<div class="ttc" id="aclass_processus_assemblage_html_a635b1746fab30fca0fa750fa546a384d"><div class="ttname"><a href="class_processus_assemblage.html#a635b1746fab30fca0fa750fa546a384d">ProcessusAssemblage::getNom</a></div><div class="ttdeci">QString getNom() const</div><div class="ttdef"><b>Definition:</b> <a href="processusassemblage_8cpp_source.html#l00086">processusassemblage.cpp:86</a></div></div>
+<div class="ttc" id="aclass_processus_assemblage_html_a6d0a91c98308715248e5ca04f30e8920"><div class="ttname"><a href="class_processus_assemblage.html#a6d0a91c98308715248e5ca04f30e8920">ProcessusAssemblage::nomImage</a></div><div class="ttdeci">QString nomImage</div><div class="ttdef"><b>Definition:</b> <a href="processusassemblage_8h_source.html#l00020">processusassemblage.h:20</a></div></div>
+<div class="ttc" id="aclass_processus_assemblage_html_a821e5eec893e9bdcd0fe7268e1d4c8b6"><div class="ttname"><a href="class_processus_assemblage.html#a821e5eec893e9bdcd0fe7268e1d4c8b6">ProcessusAssemblage::nbPieces</a></div><div class="ttdeci">int nbPieces</div><div class="ttdef"><b>Definition:</b> <a href="processusassemblage_8h_source.html#l00023">processusassemblage.h:23</a></div></div>
+<div class="ttc" id="aclass_processus_assemblage_html_a8686cceb3bebebe4d06b5c6c44537576"><div class="ttname"><a href="class_processus_assemblage.html#a8686cceb3bebebe4d06b5c6c44537576">ProcessusAssemblage::etapes</a></div><div class="ttdeci">QList&lt; Etape * &gt; etapes</div><div class="ttdef"><b>Definition:</b> <a href="processusassemblage_8h_source.html#l00018">processusassemblage.h:18</a></div></div>
+<div class="ttc" id="aclass_processus_assemblage_html_a8f1ee0a56563b1c43f0b04ca28217003"><div class="ttname"><a href="class_processus_assemblage.html#a8f1ee0a56563b1c43f0b04ca28217003">ProcessusAssemblage::nbEtapes</a></div><div class="ttdeci">int nbEtapes</div><div class="ttdef"><b>Definition:</b> <a href="processusassemblage_8h_source.html#l00025">processusassemblage.h:25</a></div></div>
+<div class="ttc" id="aclass_processus_assemblage_html_a92bc3867f7fdc1d66b9e807cf8d3336b"><div class="ttname"><a href="class_processus_assemblage.html#a92bc3867f7fdc1d66b9e807cf8d3336b">ProcessusAssemblage::chemin</a></div><div class="ttdeci">QString chemin</div><div class="ttdef"><b>Definition:</b> <a href="processusassemblage_8h_source.html#l00021">processusassemblage.h:21</a></div></div>
+<div class="ttc" id="aclass_processus_assemblage_html_a9670924d61a4b2329b7a39575cee6b33"><div class="ttname"><a href="class_processus_assemblage.html#a9670924d61a4b2329b7a39575cee6b33">ProcessusAssemblage::ProcessusAssemblage</a></div><div class="ttdeci">ProcessusAssemblage(QObject *parent=nullptr)</div><div class="ttdef"><b>Definition:</b> <a href="processusassemblage_8cpp_source.html#l00010">processusassemblage.cpp:10</a></div></div>
+<div class="ttc" id="aclass_processus_assemblage_html_ab8f0b424a0a2e29ca7a8462077fa27d9"><div class="ttname"><a href="class_processus_assemblage.html#ab8f0b424a0a2e29ca7a8462077fa27d9">ProcessusAssemblage::nom</a></div><div class="ttdeci">QString nom</div><div class="ttdef"><b>Definition:</b> <a href="processusassemblage_8h_source.html#l00019">processusassemblage.h:19</a></div></div>
+<div class="ttc" id="aclass_processus_assemblage_html_acc2db1a3d48b75c69564a4ef1761974f"><div class="ttname"><a href="class_processus_assemblage.html#acc2db1a3d48b75c69564a4ef1761974f">ProcessusAssemblage::getEtapes</a></div><div class="ttdeci">QList&lt; Etape * &gt; getEtapes() const</div><div class="ttdef"><b>Definition:</b> <a href="processusassemblage_8cpp_source.html#l00116">processusassemblage.cpp:116</a></div></div>
+<div class="ttc" id="aclass_processus_assemblage_html_ad2f7588b249c8ee37285dcbb4f02f64d"><div class="ttname"><a href="class_processus_assemblage.html#ad2f7588b249c8ee37285dcbb4f02f64d">ProcessusAssemblage::~ProcessusAssemblage</a></div><div class="ttdeci">~ProcessusAssemblage()</div><div class="ttdef"><b>Definition:</b> <a href="processusassemblage_8cpp_source.html#l00017">processusassemblage.cpp:17</a></div></div>
+<div class="ttc" id="aclass_processus_assemblage_html_ae664c1a256104db53273f96221117665"><div class="ttname"><a href="class_processus_assemblage.html#ae664c1a256104db53273f96221117665">ProcessusAssemblage::chargerProcessusAssemblage</a></div><div class="ttdeci">void chargerProcessusAssemblage(const QString &amp;)</div><div class="ttdef"><b>Definition:</b> <a href="processusassemblage_8cpp_source.html#l00022">processusassemblage.cpp:22</a></div></div>
+<div class="ttc" id="aclass_processus_assemblage_html_aeadd36b5ecba77e2e132dac14dc7bcc7"><div class="ttname"><a href="class_processus_assemblage.html#aeadd36b5ecba77e2e132dac14dc7bcc7">ProcessusAssemblage::nbBacs</a></div><div class="ttdeci">int nbBacs</div><div class="ttdef"><b>Definition:</b> <a href="processusassemblage_8h_source.html#l00026">processusassemblage.h:26</a></div></div>
+<div class="ttc" id="aclass_processus_assemblage_html_afe257847c2b43d733b4d9fb9cbeec4a6"><div class="ttname"><a href="class_processus_assemblage.html#afe257847c2b43d733b4d9fb9cbeec4a6">ProcessusAssemblage::getNbPieces</a></div><div class="ttdeci">int getNbPieces() const</div><div class="ttdef"><b>Definition:</b> <a href="processusassemblage_8cpp_source.html#l00106">processusassemblage.cpp:106</a></div></div>
+<div class="ttc" id="aclass_q_object_html"><div class="ttname"><a href="class_q_object.html">QObject</a></div></div>
+<div class="ttc" id="aetape_8h_html"><div class="ttname"><a href="etape_8h.html">etape.h</a></div></div>
+<div class="ttc" id="aihm_8h_html_af83c59a24f74062196502104205781e0"><div class="ttname"><a href="ihm_8h.html#af83c59a24f74062196502104205781e0">RACINE_PROCESSUS_ASSEMBLAGE</a></div><div class="ttdeci">#define RACINE_PROCESSUS_ASSEMBLAGE</div><div class="ttdoc">Pour définir la racine des processus d'assemblage.</div><div class="ttdef"><b>Definition:</b> <a href="ihm_8h_source.html#l00043">ihm.h:43</a></div></div>
+<div class="ttc" id="apostetravail_8h_html"><div class="ttname"><a href="postetravail_8h.html">postetravail.h</a></div></div>
+<div class="ttc" id="aprocessusassemblage_8h_html"><div class="ttname"><a href="processusassemblage_8h.html">processusassemblage.h</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_f75481b69e808cc131a887dc6b91cad1.html">ergonomic-workstation-rpi</a></li><li class="navelem"><a class="el" href="processusassemblage_8cpp.html">processusassemblage.cpp</a></li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Samedi 8 Juin 2024 09:43:56 pour Projet ergonomic-workstation par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+  </ul>
+</div>
+</body>
+</html>

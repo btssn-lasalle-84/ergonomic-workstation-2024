@@ -1,3 +1,20 @@
 class Etape
+!!!134935.cpp!!!	Etape(in numero : int, in nom : QString, in nomImage : QString, in bacs : QVector<Bac*>)
+    qDebug() << Q_FUNC_INFO << "numero" << numero << "nom" << nom << "nomImage" << nomImage;
+!!!135063.cpp!!!	~Etape()
+    qDebug() << Q_FUNC_INFO;
 !!!145834.cpp!!!	getNumero() : int
     return numero;
+!!!155690.cpp!!!	getNom() : QString
+    return nom;
+!!!155818.cpp!!!	getNomImage() : QString
+    return nomImage;
+!!!155946.cpp!!!	getBac(in numeroBac : int) : Bac
+    if(numeroBac >= 0 && numeroBac < bacs.size())
+    {
+        return bacs[numeroBac];
+    }
+!!!156074.cpp!!!	getNbBacs() : int
+    return bacs.size();
+!!!156202.cpp!!!	getBacs() : QVector<Bac*>
+    return bacs;

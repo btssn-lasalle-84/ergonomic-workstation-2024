@@ -1,0 +1,10 @@
+<map id="AffichagePageProcessus" name="AffichagePageProcessus">
+<area shape="rect" id="node1" title=" " alt="" coords="126,521,401,921"/>
+<area shape="rect" id="node2" href="$class_q_widget.html" title=" " alt="" coords="5,257,84,334"/>
+<area shape="rect" id="node3" href="$class_processus_assemblage.html" title=" " alt="" coords="477,132,719,459"/>
+<area shape="rect" id="node5" href="$class_poste_travail.html" title=" " alt="" coords="736,675,873,767"/>
+<area shape="rect" id="node4" href="$class_q_object.html" title=" " alt="" coords="561,5,635,83"/>
+<area shape="rect" id="node8" href="$class_dialogue_module.html" title=" " alt="" coords="109,176,274,415"/>
+<area shape="rect" id="node6" href="$class_operateur.html" title=" " alt="" coords="930,242,1042,349"/>
+<area shape="rect" id="node7" href="$class_etape.html" title=" " alt="" coords="299,176,439,415"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="IHM" name="IHM">
+<area shape="rect" id="node1" title="Déclaration de la classe IHM." alt="" coords="195,984,470,1633"/>
+<area shape="rect" id="node2" href="$class_q_widget.html" title=" " alt="" coords="5,257,84,334"/>
+<area shape="rect" id="node8" href="$class_affichage_page_processus.html" title=" " alt="" coords="74,521,349,921"/>
+<area shape="rect" id="node3" href="$class_processus_assemblage.html" title=" " alt="" coords="521,132,763,459"/>
+<area shape="rect" id="node5" href="$class_poste_travail.html" title=" " alt="" coords="845,675,983,767"/>
+<area shape="rect" id="node4" href="$class_q_object.html" title=" " alt="" coords="605,5,679,83"/>
+<area shape="rect" id="node7" href="$class_dialogue_module.html" title=" " alt="" coords="314,176,479,415"/>
+<area shape="rect" id="node6" href="$class_operateur.html" title=" " alt="" coords="909,242,1021,349"/>
+<area shape="rect" id="node9" href="$class_etape.html" title=" " alt="" coords="116,176,256,415"/>
+</map>
