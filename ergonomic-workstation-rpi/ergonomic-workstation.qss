@@ -9,8 +9,27 @@ QLabel
     border: 2px solid grey;
     border-radius: 8px;
     color: #AD956B;
-    font-size: 24px;
+    font-size: 30px;
     font-weight: 800;
+}
+
+QLabel#nomOperation
+{
+    border: 4px solid #317AC1;
+    border-radius: 8px;
+    color: #4a97e1;
+    font-size: 48px;
+    font-weight: 800;
+}
+
+QTextBrowser#commentairesOperation
+{
+    border: none;
+}
+
+QLabel#photoOperation
+{
+    border: none;
 }
 
 QWidget#titre
@@ -24,7 +43,7 @@ QWidget#titre
 
 QWidget#version
 {
- border: 0px solid white;
+    border: 0px solid white;
     font-size: 60px;
     font-weight: 800;
     text-align: center;
@@ -43,37 +62,20 @@ QPushButton
 
 QPushButton:hover:!pressed
 {
-    border: 2px solid #E1A624;
+    border: 4px solid #f18d0a;
     border-radius: 8px;
-    color: #E1A624;
+    color: #f18d0a;
     font-size: 48px;
     font-weight: 800;
 }
 
 QPushButton:focus
 {
-    border: 2px solid #E1A624;
+    border: 4px solid #f18d0a;
     border-radius: 8px;
-    color: #E1A624;
+    color: #f18d0a;
     font-size: 48px;
     font-weight: 800;
-}
-
-QComboBox
-{
-    selection-color: #E1A624;
-    selection-background-color: #384454;
-    border: 2px solid grey;
-    border-radius: 8px;
-    padding: 20px;
-    color: #D4D3DC;
-    font-size: 48px;
-    font-weight: 800;
-}
-
-QComboBox::item:hover
-{
-    background-color: wheat;
 }
 
 QTextBrowser

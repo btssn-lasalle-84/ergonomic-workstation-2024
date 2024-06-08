@@ -25,12 +25,20 @@ AffichagePageProcessus::AffichagePageProcessus(QStackedWidget*      fenetres,
     page = new QWidget(this);
     fenetres->addWidget(page);
     // les widgets
-    this->numerotationEtapes    = new QLabel("", this);
-    this->nomProcessus          = new QLabel(processusAssemblage->getNom(), this);
-    this->chronometre           = new QLabel("00:00", this);
-    this->nomOperation          = new QLabel("", this);
+    this->numerotationEtapes = new QLabel("", this);
+    this->nomProcessus       = new QLabel(processusAssemblage->getNom(), this);
+    this->chronometre        = new QLabel("00:00", this);
+    this->nomOperation       = new QLabel("", this);
+    this->nomOperation->setObjectName("nomOperation");
+    QSizePolicy sizePolicy = this->nomOperation->sizePolicy();
+    sizePolicy.setRetainSizeWhenHidden(true);
+    this->nomOperation->setSizePolicy(sizePolicy);
     this->commentairesOperation = new QTextBrowser(this);
-    this->photoOperation        = new QLabel("", this);
+    this->commentairesOperation->setObjectName("commentairesOperation");
+    // this->commentairesOperation->setAlignment(Qt::AlignHCenter | Qt::AlignBottom);
+    this->photoOperation = new QLabel("", this);
+    this->photoOperation->setObjectName("photoOperation");
+    this->photoOperation->setAlignment(Qt::AlignCenter);
     for(int i = 0; i < NB_BACS_MAX; ++i)
     {
         bacs.push_back(new QLabel(QString("Bac ") + QString::number(i + 1), this));
@@ -53,7 +61,7 @@ AffichagePageProcessus::AffichagePageProcessus(QStackedWidget*      fenetres,
     QVBoxLayout* layoutPage      = new QVBoxLayout;
     QHBoxLayout* layoutHeader    = new QHBoxLayout;
     QHBoxLayout* layoutOperation = new QHBoxLayout;
-    QHBoxLayout* layoutContenu   = new QHBoxLayout;
+    QVBoxLayout* layoutContenu   = new QVBoxLayout;
     QHBoxLayout* layoutBacs      = new QHBoxLayout;
     QHBoxLayout* layoutFooter    = new QHBoxLayout;
 
@@ -80,6 +88,7 @@ AffichagePageProcessus::AffichagePageProcessus(QStackedWidget*      fenetres,
     layoutOperation->addWidget(this->nomOperation);
     layoutContenu->addWidget(this->commentairesOperation);
     layoutContenu->addWidget(this->photoOperation);
+
     // layoutBacs->addStretch();
     for(int i = 0; i < NB_BACS_MAX; ++i)
     {
@@ -126,7 +135,13 @@ void AffichagePageProcessus::afficherEtape()
     // et l'affiche
     this->numerotationEtapes->setText(QString::number(etape->getNumero()) + QString("/") +
                                       QString::number(nbEtapes));
-    this->nomOperation->setText(etape->getNom());
+    if(!etape->getNom().isEmpty())
+    {
+        this->nomOperation->show();
+        this->nomOperation->setText(etape->getNom());
+    }
+    else
+        this->nomOperation->hide();
     QString fichierHTML = processusAssemblage->getChemin() + QString("etape") +
                           QString::number(etape->getNumero()) + QString(".html");
     if(QFileInfo::exists(fichierHTML))

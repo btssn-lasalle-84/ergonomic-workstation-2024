@@ -9,7 +9,7 @@
  *
  * @brief Définition de la classe IHM
  * @author Gabain AVRIL
- * @version 0.2
+ * @version 1.0
  */
 
 /**
@@ -97,7 +97,7 @@ void IHM::creerFenetreProcessus()
     boutonRetourMenu1->setFocus();
     boutonsFenetreProcessus.push_back(boutonRetourMenu1);
     fenetres->addWidget(fenetreProcessus);
-    connexionPosteDeTravail = new QLabel("Non connecté", fenetreProcessus);
+    connexionPosteDeTravail = new QLabel("Poste de travail non connecté", fenetreProcessus);
 
     // Lister les processus d'assemblage
     // QDir racineProcessusAssemblage(QDir::currentPath() + RACINE_PROCESSUS_ASSEMBLAGE);
@@ -119,14 +119,22 @@ void IHM::creerFenetreProcessus()
     qDebug() << Q_FUNC_INFO << "listeProcessusAssemblage" << listeProcessusAssemblage;
 
     layoutProcessus->addWidget(connexionPosteDeTravail);
+    layoutProcessus->addSpacing(50);
+    QVBoxLayout* layoutBoutonsProcessus = new QVBoxLayout;
+    layoutBoutonsProcessus->setAlignment(Qt::AlignCenter);
+    int margeCotes    = (qApp->primaryScreen()->availableSize().width() * 0.15);
+    int largeurBouton = (qApp->primaryScreen()->availableSize().width() - margeCotes);
     for(int i = 0; i < listeProcessusAssemblage.size(); ++i)
     {
         boutonsFenetreProcessus.push_back(
           new QPushButton(listeProcessusAssemblage.at(i), fenetreProcessus));
-        layoutProcessus->addWidget(boutonsFenetreProcessus.last());
-        boutonsFenetreProcessus.last()->setStyleSheet("color: #AD956B;");
+        layoutBoutonsProcessus->addWidget(boutonsFenetreProcessus.last());
+        // boutonsFenetreProcessus.last()->setStyleSheet("color: #AD956B;");
+        boutonsFenetreProcessus.last()->setMinimumWidth(largeurBouton);
+        boutonsFenetreProcessus.last()->setMaximumWidth(largeurBouton);
     }
 
+    layoutProcessus->addLayout(layoutBoutonsProcessus);
     layoutProcessus->addStretch();
     layoutProcessus->addWidget(boutonRetourMenu1);
     fenetreProcessus->setLayout(layoutProcessus);
@@ -139,6 +147,7 @@ void IHM::creerFenetreStatistique()
     boutonRetourMenu2              = new QPushButton("Menu", fenetreStatistique);
     boutonsFenetreStatistique.push_back(boutonRetourMenu2);
     fenetres->addWidget(fenetreStatistique);
+    layoutStatistique->addStretch();
     layoutStatistique->addWidget(boutonRetourMenu2);
 
     fenetreStatistique->setLayout(layoutStatistique);
@@ -226,7 +235,7 @@ void IHM::creerConnexionsGUI()
 
 void IHM::initialiserDialogueModule()
 {
-    connexionPosteDeTravail->setText("Non connecté");
+    connexionPosteDeTravail->setText("Poste de travail non connecté");
     dialogueModule->demarrer();
 }
 
@@ -300,7 +309,7 @@ void IHM::terminerProcessusAssemblage(QString nomProcessus)
 
 void IHM::afficherConnexionPosteDeTravail()
 {
-    connexionPosteDeTravail->setText("Connecté");
+    connexionPosteDeTravail->setText("Poste de travail connecté");
 }
 
 void IHM::afficherDeconnexionPosteDeTravail()

@@ -6,7 +6,7 @@
  *
  * @brief Déclaration de la classe IHM
  * @author Gabain AVRIL
- * @version 0.2
+ * @version 1.0
  */
 
 #include <QtWidgets>
@@ -77,7 +77,7 @@ class IHM : public QWidget
     QWidget*        fenetreStatistique;
     QWidget*        fenetreProcessus;
     QVector<QPushButton*>
-                          boutonsFenetreMenu; //!< les boutons sélectionnables par l'encodeur dans la fenêtre Menu
+      boutonsFenetreMenu; //!< les boutons sélectionnables par l'encodeur dans la fenêtre Menu
     QVector<QPushButton*> boutonsFenetreStatistique;
     QVector<QPushButton*> boutonsFenetreProcessus;
     QPushButton*          boutonRetourMenu1; // Depuis Processus

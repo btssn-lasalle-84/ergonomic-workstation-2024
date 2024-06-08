@@ -4,7 +4,7 @@
 #include <QtWidgets>
 #include <QVector>
 
-#define NB_BACS_MAX       8
+#define NB_BACS_MAX       6
 #define REPERTOIRE_IMAGES "images/"
 
 #define HAUTEUR_PHOTO_OPERATION 400
