@@ -6,6 +6,7 @@
 #include <QDir>
 #include <QSettings>
 #include <QTextCodec>
+#include <QCoreApplication>
 
 ProcessusAssemblage::ProcessusAssemblage(QObject* parent) :
     QObject(parent), posteTravail(new PosteTravail(this)), nom(""), tempsMoyen(0), nbPieces(0),
@@ -21,8 +22,8 @@ ProcessusAssemblage::~ProcessusAssemblage()
 
 void ProcessusAssemblage::chargerProcessusAssemblage(const QString& nomProcessusAssemblage)
 {
-    chemin = QDir::currentPath() + QString(RACINE_PROCESSUS_ASSEMBLAGE) + QString("/") +
-             nomProcessusAssemblage + QString("/");
+    chemin = QCoreApplication::applicationDirPath() + QString(RACINE_PROCESSUS_ASSEMBLAGE) +
+             QString("/") + nomProcessusAssemblage + QString("/");
     qDebug() << Q_FUNC_INFO << "chemin" << chemin;
     QString fichierINI = chemin + nomProcessusAssemblage + QString(".ini");
     qDebug() << Q_FUNC_INFO << "fichierINI" << fichierINI;

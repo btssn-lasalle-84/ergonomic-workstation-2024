@@ -3,6 +3,7 @@
 #include "affichagepageprocessus.h"
 #include "dialoguemodule.h"
 #include <QDebug>
+#include <QCoreApplication>
 
 /**
  * @file ihm.cpp
@@ -21,7 +22,7 @@
 IHM::IHM(QWidget* parent) :
     QWidget(parent), processusAssemblage(new ProcessusAssemblage(this)),
     dialogueModule(new DialogueModule(this)),
-    cheminRacineProcessusAssemblage(QString(CHEMIN_SERVEUR_NFS) +
+    cheminRacineProcessusAssemblage(QCoreApplication::applicationDirPath() +
                                     QString(RACINE_PROCESSUS_ASSEMBLAGE)),
     choixBoutonsFenetreMenu(ActionFenetreMenu::ActionDemarrer),
     choixBoutonsFenetreStatistique(ActionFenetreStatistique::ActionFSMenu),
