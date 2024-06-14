@@ -8,6 +8,7 @@
   - [Présentation](#présentation)
   - [Fonctionnalités](#fonctionnalités)
   - [Screenshots](#screenshots)
+  - [Diaporama de présentation](#diaporama-de-présentation)
   - [Diagramme de classes](#diagramme-de-classes)
   - [Protocole](#protocole)
   - [Historique des versions](#historique-des-versions)
@@ -39,6 +40,10 @@ La table ergonomique devra être capable de proposer plusieurs processus d'assem
 ## Screenshots
 
 ![](images/screenshot-v1.0.gif)
+
+## Diaporama de présentation
+
+- [Oral final - AVRIL.pptx](diaporamas/Oral%20final%20-%20AVRIL.pptx)
 
 ## Diagramme de classes
 
